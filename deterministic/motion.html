@@ -1,0 +1,830 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Bodies in Motion &#8212; MATH 360 Introduction to Mathematical Modelling</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'deterministic/motion';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Examples of Models" href="models/index.html" />
+    <link rel="prev" title="Nondimensionalization" href="nondimensionalization.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">MATH 360 Introduction to Mathematical Modelling</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelling Process</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../process/process.html">Modelling Process</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="differential-equations.html">Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="systems-of-equations.html">Systems of Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nondimensionalization.html">Nondimensionalization</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Bodies in Motion</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="models/index.html">Examples of Models</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="models/mass-spring-2d.html">2D Mass Spring System</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Stochastic Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../stochastic/distributions.html">Probability Distributions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data-Driven Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../data-driven/linear-regression.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-driven/logistic-regression.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-driven/gradient-descent.html">Gradient Descent</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/deterministic/motion.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/UBCMath/MATH360" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/deterministic/motion.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Bodies in Motion</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#newton-s-second-law-of-motion">Newton’s Second Law of Motion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forces">Forces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gravity">Gravity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spring-force">Spring Force</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drag-and-damping-forces">Drag and Damping Forces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#friction">Friction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-mass-spring-damper-system">1D Mass Spring Damper System</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-mass-spring-damper-system-with-friction">1D Mass Spring Damper System with Friction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-mass-spring-system">2D Mass Spring System</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-pendulum">Simple Pendulum</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bodies-in-motion">
+<h1>Bodies in Motion<a class="headerlink" href="#bodies-in-motion" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">spi</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="learning-goals">
+<h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Apply Newton’s second law to construct mathematical models of objects in motion</p></li>
+<li><p>Apply nondimensionalization process and interpret dimensionless parameters</p></li>
+<li><p>Compute numerical solutions of systems of differential equations</p></li>
+</ul>
+</section>
+<section id="newton-s-second-law-of-motion">
+<h2>Newton’s Second Law of Motion<a class="headerlink" href="#newton-s-second-law-of-motion" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion#Second_law"><strong>Newton’s second law of motion</strong></a> states that an object’s motion is proprotional to the force acting on it. In other words, if an object has mass <span class="math notranslate nohighlight">\(m\)</span> and position <span class="math notranslate nohighlight">\(\mathbf{x}(t) = (x(t),y(t),z(t))\)</span> then</p>
+<div class="math notranslate nohighlight">
+\[
+m \frac{d^2 \mathbf{x}}{dt^2} = \mathbf{F}
+\]</div>
+<p>where the right hand side is the total sum of forces acting on the object. Let <span class="math notranslate nohighlight">\(\mathbf{F} = (F_x,F_y,F_z)\)</span> be the components of the force vector and write Newton’s second law as a second order, 3-dimensional system of differential equations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{d^2x}{dt^2} &amp;= \frac{F_x}{m} \\
+\frac{d^2y}{dt^2} &amp;= \frac{F_y}{m} \\
+\frac{d^2z}{dt^2} &amp;= \frac{F_z}{m}
+\end{align*}
+\end{split}\]</div>
+</section>
+<section id="forces">
+<h2>Forces<a class="headerlink" href="#forces" title="Permalink to this heading">#</a></h2>
+<p>The force vector <span class="math notranslate nohighlight">\(\mathbf{F}\)</span> in Newton’s second law is built from <strong>constitutive laws</strong> which models the components of a system. Each constitutive law below is itself a mathematical model and has its own assumptions and constraints built in.</p>
+<section id="gravity">
+<h3>Gravity<a class="headerlink" href="#gravity" title="Permalink to this heading">#</a></h3>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Gravity_of_Earth">gravitational force</a> experienced by an object of mass <span class="math notranslate nohighlight">\(m\)</span> on the surface of the Earth is</p>
+<div class="math notranslate nohighlight">
+\[
+F_g = m g
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(g\)</span> = 9.81 m/s<sup>2</sup>.</p>
+</section>
+<section id="spring-force">
+<h3>Spring Force<a class="headerlink" href="#spring-force" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Hooke%27s_law">Hooke’s law</a> states that the force required to stretch/compress a spring by a distance <span class="math notranslate nohighlight">\(x\)</span> is proportional to <span class="math notranslate nohighlight">\(x\)</span>. in other words, the spring force is</p>
+<div class="math notranslate nohighlight">
+\[
+F_s = kx
+\]</div>
+<p>for a spring constant <span class="math notranslate nohighlight">\(k\)</span> with dimensions M T<sup>-2</sup>.</p>
+</section>
+<section id="drag-and-damping-forces">
+<h3>Drag and Damping Forces<a class="headerlink" href="#drag-and-damping-forces" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Stokes%27_law">Stokes law</a> states that the force exerted on an object moving through a fluid is proportional to the speed of the object. In other words, the drag force equation is</p>
+<div class="math notranslate nohighlight">
+\[
+F_d = c v
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(v\)</span> is the speed of the object and <span class="math notranslate nohighlight">\(c\)</span> is the drag coefficient with units M T<sup>-3</sup>.</p>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Dashpot">damper</a> is a device that uses fluid to exert force on a moving object. Shock absorbers in bikes and cars are examples of dampers. The damping force equation is the same as the drag equation but we call <span class="math notranslate nohighlight">\(c\)</span> the damping coefficent.</p>
+<p>Note that drag and damping forces always act in the direction opposite to the motion of the object.</p>
+</section>
+<section id="friction">
+<h3>Friction<a class="headerlink" href="#friction" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Friction">Friction</a> is the force resisting the relative motion of solid surfaces sliding against each other. The laws of friction state that the force of friction is proportional to the normal force (the force compressing two parallel surfaces together). In other words, the friction force equation is</p>
+<div class="math notranslate nohighlight">
+\[
+F_f = \mu F_n
+\]</div>
+<p>for a friction coefficient <span class="math notranslate nohighlight">\(\mu\)</span> (which is dimensionless) and normal force <span class="math notranslate nohighlight">\(F_n\)</span>. Note that friction always acts in the direction opposite to the motion of the objects.</p>
+</section>
+</section>
+<section id="d-mass-spring-damper-system">
+<h2>1D Mass Spring Damper System<a class="headerlink" href="#d-mass-spring-damper-system" title="Permalink to this heading">#</a></h2>
+<p>Consider a mass sliding in the <span class="math notranslate nohighlight">\(x\)</span>-direction on a frictionless surface attached to a spring and damper and subject to an external force. Applying Newton’s second law yields the equation</p>
+<div class="math notranslate nohighlight">
+\[
+m x'' = -cx' - kx + F(t)
+\]</div>
+<p>where the right hand side is the sum of forces acting in the <span class="math notranslate nohighlight">\(x\)</span>-direction. Rearranging gives the equation of motion of a mass attached to a spring and damper with an applied external force is</p>
+<div class="math notranslate nohighlight">
+\[
+m x'' + cx' + kx = F(t)
+\]</div>
+<p>Let’s plot the solution for a sinusoidal forcing function <span class="math notranslate nohighlight">\(F(t) = \cos(\omega t)\)</span>. See <a class="reference external" href="https://www.jirka.org/diffyqs/html/sec_mv.html">Diffy Qs Section 2.4</a> and <a class="reference external" href="https://www.jirka.org/diffyqs/html/sec_nonhom.html">Diffy Qs Section 2.5</a> for more about mechanical vibrations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">;</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">F</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">],(</span><span class="n">F</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">k</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">m</span><span class="p">])</span>
+<span class="n">u0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">u0</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">u</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7139f555406a77082a6119190350213f552fc83fae0a5adaa4f31f1862cfdb7e.png" src="../_images/7139f555406a77082a6119190350213f552fc83fae0a5adaa4f31f1862cfdb7e.png" />
+</div>
+</div>
+</section>
+<section id="d-mass-spring-damper-system-with-friction">
+<h2>1D Mass Spring Damper System with Friction<a class="headerlink" href="#d-mass-spring-damper-system-with-friction" title="Permalink to this heading">#</a></h2>
+<p>Consider a mass sliding in the <span class="math notranslate nohighlight">\(x\)</span>-direction on a surface with friction attached to a spring and damper but no external force. The normal force is <span class="math notranslate nohighlight">\(F_n = mg\)</span> and the force of friction is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+F_f(x,x') = \left\{ \begin{array}{cc} -\mu mg &amp; x' &gt; 0 \\ \min(kx,\mu mg) &amp; x' = 0, x &gt; 0 \\ -\min(-kx,\mu mg) &amp; x' = 0, x &lt; 0 \\ \mu mg &amp; x' &lt; 0 \end{array} \right.
+\end{split}\]</div>
+<p>applying Newton’s second law yields the equation</p>
+<div class="math notranslate nohighlight">
+\[
+m x'' + cx' + kx = F_f(x,x')
+\]</div>
+<p>Let’s plot the solution for a sinusoidal forcing function <span class="math notranslate nohighlight">\(F(t) = \cos(\omega t)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">5000</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="n">mu</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">;</span> <span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span><span class="p">;</span>
+<span class="n">F</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">Ff</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
+    <span class="n">eps</span> <span class="o">=</span> <span class="mf">1e-8</span>
+    <span class="k">if</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">eps</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">mu</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="n">g</span>
+    <span class="k">elif</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">eps</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">mu</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="n">g</span>
+    <span class="k">elif</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">eps</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">k</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">mu</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="n">g</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">eps</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="o">-</span><span class="n">k</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">mu</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="n">g</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">],(</span> <span class="n">Ff</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">k</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">m</span><span class="p">])</span>
+<span class="n">u0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">u0</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">u</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/62dbfbb14cbea4da39d8d68c7cdb8587bd5d3a9581ada07b8e63c4a86e34552b.png" src="../_images/62dbfbb14cbea4da39d8d68c7cdb8587bd5d3a9581ada07b8e63c4a86e34552b.png" />
+</div>
+</div>
+</section>
+<section id="d-mass-spring-system">
+<h2>2D Mass Spring System<a class="headerlink" href="#d-mass-spring-system" title="Permalink to this heading">#</a></h2>
+<p><strong>Step 1: State the problem</strong></p>
+<p>A flat object slides over a flat surface. The object is attached to one end of a spring and the spring is fixed at the other end. Construct a mathematical model of the motion of the object.</p>
+<p><strong>Step 2: Identify variables and parameters</strong></p>
+<ul class="simple">
+<li><p>time <span class="math notranslate nohighlight">\(t\)</span> (independent variable)</p></li>
+<li><p>position <span class="math notranslate nohighlight">\(x(t)\)</span> of the mass in <span class="math notranslate nohighlight">\(x\)</span>-direction (dependent variable)</p></li>
+<li><p>position <span class="math notranslate nohighlight">\(y(t)\)</span> of the mass in <span class="math notranslate nohighlight">\(y\)</span>-direction (dependent variable)</p></li>
+<li><p>mass <span class="math notranslate nohighlight">\(m\)</span></p></li>
+<li><p>spring constant <span class="math notranslate nohighlight">\(k\)</span></p></li>
+<li><p>equilibrium length of spring <span class="math notranslate nohighlight">\(L\)</span></p></li>
+</ul>
+<p><strong>Step 3: Identify assumptions and constraints</strong></p>
+<ul class="simple">
+<li><p>no friction, drag or damping</p></li>
+<li><p>one end of the spring is fixed at the origin <span class="math notranslate nohighlight">\((0,0)\)</span> and the other end is attached to the mass a position <span class="math notranslate nohighlight">\((x(t),y(t))\)</span></p></li>
+<li><p>the mass of the spring is negligible</p></li>
+</ul>
+<p><strong>Step 4: Do the math!</strong></p>
+<p>The stretch/compression in the spring is the difference of the equilibrium length and the distance of the mass from origin. In other words, the stretch/compression in the spring is given by</p>
+<div class="math notranslate nohighlight">
+\[
+L - \| \mathbf{x}(t) \|
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\| \mathbf{x}(t) \| = \sqrt{ x(t)^2 + y(t)^2 }\)</span>. The spring force acts in the direction from the mass to the origin. The corresponding unit vector is</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\mathbf{x}(t)}{\| \mathbf{x}(t) \|}
+\]</div>
+<p>Therefore the spring force is given by</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{F}_s = k \left( L - \| \mathbf{x}(t) \| \right) \frac{\mathbf{x}(t)}{\| \mathbf{x}(t) \|} = k \left( \frac{L}{\| \mathbf{x}(t) \|} - 1 \right) \mathbf{x}(t)
+\]</div>
+<p>Apply Newton’s second law of motion:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+m \frac{d^2x}{dt^2} &amp;= \frac{k L x}{\sqrt{ x^2 + y^2 }} - k x \\
+m \frac{d^2y}{dt^2} &amp;= \frac{k L y}{\sqrt{ x^2 + y^2 }} - k y
+\end{align*}
+\end{split}\]</div>
+<p>Apply the nondimensionalization procedure. Let <span class="math notranslate nohighlight">\(x = [x]x^*\)</span>, <span class="math notranslate nohighlight">\(y = [y]y^*\)</span> and <span class="math notranslate nohighlight">\(t = [t]t^*\)</span>. We should choose <span class="math notranslate nohighlight">\([x] = [y]\)</span> since there is no reason to treat the two directions differently and so let <span class="math notranslate nohighlight">\([c] = [x] = [y]\)</span>. Make the substitutions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{m[c]}{[t]^2} \frac{d^2 x^*}{dt^{*2}} &amp;= \frac{k L [c]x^*}{[c] \sqrt{ x^{*2} + y^{*2} }} - k [c] x^* \\
+\frac{m[c]}{[t]^2} \frac{d^2 y^*}{dt^{*2}} &amp;= \frac{k L [c]y^*}{[c] \sqrt{ x^{*2} + y^{*2} }} - k [c] y^*
+\end{align*}
+\end{split}\]</div>
+<p>Divide by the highest order coefficient <span class="math notranslate nohighlight">\(m[c]/[t]^2\)</span> to find:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{d^2 x^*}{dt^{*2}} &amp;= \frac{k L [t]^2 x^*}{ m [c] \sqrt{ x^{*2} + y^{*2} }} - \frac{k [t]^2 x^*}{m} \\
+\frac{d^2 y^*}{dt^{*2}} &amp;= \frac{k L [t]^2 y^*}{ m [c] \sqrt{ x^{*2} + y^{*2} }} - \frac{k [t]^2 y^*}{m} \\
+\end{align*}
+\end{split}\]</div>
+<p>Choose scaling factors</p>
+<div class="math notranslate nohighlight">
+\[
+[t] = \sqrt{\frac{m}{k}} \hspace{20mm} [c] = L
+\]</div>
+<p>and find</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{d^2 x^*}{dt^{*2}} &amp;= \frac{x^*}{ \sqrt{ x^{*2} + y^{*2} }} - x^* \\
+\frac{d^2 y^*}{dt^{*2}} &amp;= \frac{y^*}{ \sqrt{ x^{*2} + y^{*2} }} - y^*
+\end{align*}
+\end{split}\]</div>
+<p><strong>Step 5: Analyze the model</strong></p>
+<p>Introduce new variables</p>
+<div class="math notranslate nohighlight">
+\[
+u_0 = x^* \ , \ \ u_1 = \frac{dx^*}{dt^*} \ , \ \ u_2 = y^* \ , \ \ u_3 = \frac{dy^*}{dt^*}
+\]</div>
+<p>and write the system as a first order system of equation</p>
+<p>\begin{align*}
+u_0’ &amp;= u_1 \
+u_1’ &amp;= \frac{u_0}{ \sqrt{ u_0^2 + u_2^2 }} - u_0 \
+u_2’ &amp;= u_3 \
+u_3’ &amp;= \frac{u_2}{ \sqrt{ u_0^2 + u_2^2 }} - u_2
+\end{align*}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+    <span class="n">dudt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">])</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">dudt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dudt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">D</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">dudt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">dudt</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">D</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">dudt</span>
+
+<span class="n">u0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">u0</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">U</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">U</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1667e65a191cac2f0a9b4e9a82733d099f4cf63849b4bc1c92a734b5fbc9ae8f.png" src="../_images/1667e65a191cac2f0a9b4e9a82733d099f4cf63849b4bc1c92a734b5fbc9ae8f.png" />
+</div>
+</div>
+</section>
+<section id="simple-pendulum">
+<h2>Simple Pendulum<a class="headerlink" href="#simple-pendulum" title="Permalink to this heading">#</a></h2>
+<p><strong>Step 1: State the problem</strong></p>
+<p>A pendulum is a mass attached to one end of a rod which is fixed at the other end and swings about the fixed end under the force of gravity. How does the pendulum swing over time based on initial position and velocity?</p>
+<p><strong>Step 2: Identify variables and parameters</strong></p>
+<ul class="simple">
+<li><p>angle of the pendulum <span class="math notranslate nohighlight">\(\theta\)</span> (dependent variable)</p></li>
+<li><p>time <span class="math notranslate nohighlight">\(t\)</span> (independent variable)</p></li>
+<li><p>length of rod <span class="math notranslate nohighlight">\(L\)</span> (parameter)</p></li>
+<li><p>mass of the object <span class="math notranslate nohighlight">\(m\)</span> (parameter)</p></li>
+<li><p>constant of gravity <span class="math notranslate nohighlight">\(g\)</span> (paramter)</p></li>
+</ul>
+<p><strong>Step 3: Identify constraints and assumptions</strong></p>
+<ul class="simple">
+<li><p>No drag force</p></li>
+<li><p>A point mass</p></li>
+<li><p>Rod has no mass and no drag</p></li>
+</ul>
+<p><strong>Step 4: Do the math!</strong></p>
+<p>Since <span class="math notranslate nohighlight">\(x = L \sin \theta \)</span> and <span class="math notranslate nohighlight">\(y = - L \cos \theta\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[
+x'' = - \theta'' L \sin \theta \hspace{20mm}
+y'' = \theta'' L \cos \theta
+\]</div>
+<p>Apply Newton’s seoncd law we find</p>
+<p>\begin{align*}
+m x’’ &amp;= -F \sin \theta \
+m y’’ &amp;= F \cos \theta - mg \
+\end{align*}</p>
+<p>therefore</p>
+<p>\begin{align*}
+m \theta’’ L &amp;= F \
+m \theta’’ L &amp;= F - \frac{mg}{\cos \theta} \
+\end{align*}</p>
+<div class="math notranslate nohighlight">
+\[
+\ddot{ \theta } + \frac{g}{L} \sin \theta = 0
+\]</div>
+<p><strong>Step 5: Analyze the model</strong></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./deterministic"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="nondimensionalization.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Nondimensionalization</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="models/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Examples of Models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#newton-s-second-law-of-motion">Newton’s Second Law of Motion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forces">Forces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gravity">Gravity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spring-force">Spring Force</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drag-and-damping-forces">Drag and Damping Forces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#friction">Friction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-mass-spring-damper-system">1D Mass Spring Damper System</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-mass-spring-damper-system-with-friction">1D Mass Spring Damper System with Friction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-mass-spring-system">2D Mass Spring System</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-pendulum">Simple Pendulum</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UBC Math
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

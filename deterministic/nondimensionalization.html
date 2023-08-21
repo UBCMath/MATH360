@@ -1,0 +1,947 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Nondimensionalization &#8212; MATH 360 Introduction to Mathematical Modelling</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'deterministic/nondimensionalization';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bodies in Motion" href="motion.html" />
+    <link rel="prev" title="Systems of Equations" href="systems-of-equations.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">MATH 360 Introduction to Mathematical Modelling</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelling Process</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../process/process.html">Modelling Process</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="differential-equations.html">Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="systems-of-equations.html">Systems of Equations</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Nondimensionalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motion.html">Bodies in Motion</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="models/index.html">Examples of Models</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="models/mass-spring-2d.html">2D Mass Spring System</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Stochastic Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../stochastic/distributions.html">Probability Distributions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data-Driven Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../data-driven/linear-regression.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-driven/logistic-regression.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-driven/gradient-descent.html">Gradient Descent</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/deterministic/nondimensionalization.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/UBCMath/MATH360" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/deterministic/nondimensionalization.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Nondimensionalization</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensions-and-units">Dimensions and Units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensional-homogeneity">Dimensional Homogeneity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nondimensionalization-and-scaling">Nondimensionalization and Scaling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-spring-equation">Mass Spring Equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-equation">Logistic Equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lotka-volterra-equations">Lotka-Volterra Equations</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="nondimensionalization">
+<h1>Nondimensionalization<a class="headerlink" href="#nondimensionalization" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">spi</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="learning-goals">
+<h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Identify dimensions and units of variables and parameters in a mathematical model</p></li>
+<li><p>Apply nondimensionalization process to a mathematical model</p></li>
+<li><p>Interpret dimensionless parameters in a nondimensionalized mathematical model</p></li>
+</ul>
+</section>
+<section id="dimensions-and-units">
+<h2>Dimensions and Units<a class="headerlink" href="#dimensions-and-units" title="Permalink to this heading">#</a></h2>
+<p>All physical quantities are expressed in terms of <strong>base quantities</strong> and <strong>standard international (SI) units</strong>:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Base Quantity</p></th>
+<th class="head text-center"><p>Symbol</p></th>
+<th class="head text-center"><p>SI Unit</p></th>
+<th class="head text-center"><p>SI Unit Symbol</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>time</p></td>
+<td class="text-center"><p>T</p></td>
+<td class="text-center"><p>second</p></td>
+<td class="text-center"><p>s</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>length</p></td>
+<td class="text-center"><p>L</p></td>
+<td class="text-center"><p>meter</p></td>
+<td class="text-center"><p>m</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>mass</p></td>
+<td class="text-center"><p>M</p></td>
+<td class="text-center"><p>kilogram</p></td>
+<td class="text-center"><p>kg</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>temperature</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\Theta\)</span></p></td>
+<td class="text-center"><p>kelvin</p></td>
+<td class="text-center"><p>K</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>electric current</p></td>
+<td class="text-center"><p>I</p></td>
+<td class="text-center"><p>ampere</p></td>
+<td class="text-center"><p>A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>amount of substance</p></td>
+<td class="text-center"><p>N</p></td>
+<td class="text-center"><p>mole</p></td>
+<td class="text-center"><p>mol</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>luminous intensity</p></td>
+<td class="text-center"><p>J</p></td>
+<td class="text-center"><p>candela</p></td>
+<td class="text-center"><p>cd</p></td>
+</tr>
+</tbody>
+</table>
+<p>All other physical quantities are called <strong>derived quantities</strong> because they are expressed in terms of base quantities. The <strong>dimensions</strong> of a physical quantity refers to its expression in terms of the base quantities.  For example, common derived quantities are:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Physical Quantity</p></th>
+<th class="head text-center"><p>Dimensions</p></th>
+<th class="head text-center"><p>Base SI Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>velocity</p></td>
+<td class="text-center"><p>L T<sup>-1</sup></p></td>
+<td class="text-center"><p>m s<sup>-1</sup></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>acceleration</p></td>
+<td class="text-center"><p>L T<sup>-2</sup></p></td>
+<td class="text-center"><p>m s<sup>-2</sup></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>area</p></td>
+<td class="text-center"><p>L<sup>2</sup></p></td>
+<td class="text-center"><p>m<sup>2</sup></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>volume</p></td>
+<td class="text-center"><p>L<sup>3</sup></p></td>
+<td class="text-center"><p>m<sup>3</sup></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>density</p></td>
+<td class="text-center"><p>M L<sup>-3</sup></p></td>
+<td class="text-center"><p>kg m<sup>-3</sup></p></td>
+</tr>
+</tbody>
+</table>
+<p>Some derived quantities have their own SI units:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Physical Quantity</p></th>
+<th class="head text-center"><p>Dimensions</p></th>
+<th class="head text-center"><p>SI Unit</p></th>
+<th class="head text-center"><p>SI Unit Symbol</p></th>
+<th class="head text-center"><p>Base SI Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>force</p></td>
+<td class="text-center"><p>M L T<sup>-2</sup></p></td>
+<td class="text-center"><p>newton</p></td>
+<td class="text-center"><p>N</p></td>
+<td class="text-center"><p>kg m s<sup>-2</sup></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>pressure</p></td>
+<td class="text-center"><p>M L<sup>-1</sup> T<sup>-2</sup></p></td>
+<td class="text-center"><p>pascal</p></td>
+<td class="text-center"><p>Pa</p></td>
+<td class="text-center"><p>kg m<sup>-1</sup> s<sup>-2</sup></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>energy</p></td>
+<td class="text-center"><p>M L<sup>2</sup> T<sup>-2</sup></p></td>
+<td class="text-center"><p>joule</p></td>
+<td class="text-center"><p>J</p></td>
+<td class="text-center"><p>kg m<sup>2</sup> s<sup>-2</sup></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>power</p></td>
+<td class="text-center"><p>M L<sup>2</sup> T<sup>-3</sup></p></td>
+<td class="text-center"><p>watt</p></td>
+<td class="text-center"><p>W</p></td>
+<td class="text-center"><p>kg m<sup>2</sup> s<sup>-3</sup></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>frequency</p></td>
+<td class="text-center"><p>T<sup>-1</sup></p></td>
+<td class="text-center"><p>hertz</p></td>
+<td class="text-center"><p>Hz</p></td>
+<td class="text-center"><p>s<sup>-1</sup></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>angle</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>radian</p></td>
+<td class="text-center"><p>rad</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<p>Note that an angle is a ratio of lengths, arc length over radius, therefore its dimensions are L L<sup>-1</sup> = 1. This is an example of a <strong>dimensionless quantity</strong>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Check out <a class="reference external" href="https://en.wikipedia.org/wiki/International_System_of_Quantities">Wikipedia: International System of Quantities</a> for more information about dimensions and units.</p>
+</div>
+</section>
+<section id="dimensional-homogeneity">
+<h2>Dimensional Homogeneity<a class="headerlink" href="#dimensional-homogeneity" title="Permalink to this heading">#</a></h2>
+<p>An equation is <strong>dimensionally homogeneous</strong> if the expressions on both sides of the equation have the same dimensions. During the mathematical modelling process we should always check that the equations in our models are dimensionally homogeneous.</p>
+<p>For example, consider the mass-spring-damper equation derived from Newton’s second law of motion:</p>
+<div class="math notranslate nohighlight">
+\[
+m x'' + c x' + k x = F(t)
+\]</div>
+<p>Each term in the equation is a force therefore each side of the equation has dimensions M L T<sup>-2</sup> and the equation is dimensionally homogeneous.</p>
+<p>Let’s find the dimensions of the variables and parameters in the mass-spring-damper equation:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Variable/Parameter</p></th>
+<th class="head text-center"><p>Symbol</p></th>
+<th class="head text-center"><p>Dimensions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>position</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x\)</span></p></td>
+<td class="text-center"><p>L</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>velocity</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x'\)</span></p></td>
+<td class="text-center"><p>L T<sup>-1</sup></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>acceleration</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x''\)</span></p></td>
+<td class="text-center"><p>L T<sup>-2</sup></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>mass</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(m\)</span></p></td>
+<td class="text-center"><p>M</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>damping coefficient</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-center"><p>M T<sup>-1</sup></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>spring coefficient</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(k\)</span></p></td>
+<td class="text-center"><p>M T<sup>-2</sup></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>external force</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(F(t)\)</span></p></td>
+<td class="text-center"><p>M L T<sup>-2</sup></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="nondimensionalization-and-scaling">
+<h2>Nondimensionalization and Scaling<a class="headerlink" href="#nondimensionalization-and-scaling" title="Permalink to this heading">#</a></h2>
+<p>Consider a simple model of exponential growth where a population <span class="math notranslate nohighlight">\(P\)</span> starts with <span class="math notranslate nohighlight">\(P(0) = P_0\)</span> and increases at a rate proportional to its size. The model is described by the differential equation</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dP}{dt} = rP \ , \ \ P(0) = P_0 
+\]</div>
+<p>for some coefficient <span class="math notranslate nohighlight">\(r\)</span> with dimension T<sup>-1</sup>. We can scale the variables <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(t\)</span> relative to the parameters <span class="math notranslate nohighlight">\(P_0\)</span> and <span class="math notranslate nohighlight">\(r\)</span> to define new dimensionless parameters <span class="math notranslate nohighlight">\(P^*\)</span> and <span class="math notranslate nohighlight">\(t^*\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+P = P_0 P^* \hspace{10mm} t = \frac{t^*}{r}
+\]</div>
+<p>Make the subsititutions to find the nondimensionalized equation</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dP^*}{dt^*} = P^* \ , \ \ P^*(0) = 1 
+\]</div>
+<p>Therefore the parameters <span class="math notranslate nohighlight">\(P_0\)</span> and <span class="math notranslate nohighlight">\(r\)</span> only affect the scale of the variables in the solution <span class="math notranslate nohighlight">\(P(t)\)</span> and do not change the intrinic behaviour of the system, and so we can study the model without specifying values for <span class="math notranslate nohighlight">\(P_0\)</span> and <span class="math notranslate nohighlight">\(r\)</span>. Furthermore, the scaling factors tell us that we should measure population as multiples of the initial value <span class="math notranslate nohighlight">\(P_0\)</span> and time as multiples of <span class="math notranslate nohighlight">\(r^{-1}\)</span>.</p>
+<p>The goals of <strong>nondimensionalization</strong> are:</p>
+<ol class="arabic simple">
+<li><p>To simplify a mathematical model by reducing the number of parameters in the model.</p></li>
+<li><p>To identify key properties of a mathematical model in terms of dimensionless variables and parameters.</p></li>
+</ol>
+<p>Nondimensionalization is all about choosing a <strong>scaling</strong> factor <span class="math notranslate nohighlight">\([x]\)</span> (also called <strong>charactersitic unit</strong>) for each variable <span class="math notranslate nohighlight">\(x\)</span>. The <strong>steps in the nondimensionalization process</strong> are:</p>
+<ol class="arabic simple">
+<li><p>Identify all the independent and dependent variables.</p></li>
+<li><p>Replace each variable <span class="math notranslate nohighlight">\(x\)</span> with a quantity <span class="math notranslate nohighlight">\(x = [x]x^*\)</span> where <span class="math notranslate nohighlight">\([x]\)</span> is a scaling factor to be determined and <span class="math notranslate nohighlight">\(x^*\)</span> is dimensionless.</p></li>
+<li><p>Divide all equations in the model by the coefficient of the highest order polynomial or derivative term.</p></li>
+<li><p>Choose the scaling factor for each variable so that the coefficients of as many terms as possible become 1.</p></li>
+<li><p>Rewrite the system of equations in terms of their new dimensionless quantities.</p></li>
+</ol>
+<p>In the previous example, we let <span class="math notranslate nohighlight">\(P = [P]P^*\)</span> and <span class="math notranslate nohighlight">\(t = [t]t^*\)</span> and found</p>
+<div class="math notranslate nohighlight">
+\[
+[P] = P_0 \hspace{20mm} [t] = \frac{1}{r}
+\]</div>
+<p>Let’s take a closer look at how differential equations transform with scaling. Let <span class="math notranslate nohighlight">\(t\)</span> be the independent variable and let <span class="math notranslate nohighlight">\(x\)</span> be a dependent variable. Introduce scaling factors <span class="math notranslate nohighlight">\([x]\)</span> and <span class="math notranslate nohighlight">\([t]\)</span> and dimensionless variables <span class="math notranslate nohighlight">\(x^*\)</span> and <span class="math notranslate nohighlight">\(t^*\)</span> where</p>
+<div class="math notranslate nohighlight">
+\[
+x = [x] x^* \ \ \ \text{and} \ \ \ t = [t] t^*
+\]</div>
+<p>Take the derivative of the equation <span class="math notranslate nohighlight">\(x = [x] t^*\)</span> with respect to <span class="math notranslate nohighlight">\(t\)</span> and use the chain rule to find</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dx}{dt} = [x] \frac{dx^*}{dt} = 
+[x] \frac{dx^*}{dt^*} \frac{dt^*}{dt} = 
+[x] \frac{dx^*}{dt^*} \left( \frac{1}{[t]} \right) = 
+\frac{[x]}{[t]} \frac{dx^*}{dt^*}
+\]</div>
+<p>In general, we have the following rule for derivatives when making substitutions for <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(t\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d^n x}{dt^n} = \frac{[x]}{[t]^n} \frac{d^n x^*}{dt^{*n}}
+\]</div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<section id="mass-spring-equation">
+<h3>Mass Spring Equation<a class="headerlink" href="#mass-spring-equation" title="Permalink to this heading">#</a></h3>
+<p>Apply the nondimensionalization process to the mass-spring equation:</p>
+<div class="math notranslate nohighlight">
+\[
+m \frac{d^2x}{dt^2} + k x = 0 \ , \ \ x(0) = x_0 \ , \ \ \frac{dx}{dt}(0) = 0
+\]</div>
+<p><strong>Step 1:</strong> The independent variable is time <span class="math notranslate nohighlight">\(t\)</span> and the dependent variable is position <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p><strong>Step 2:</strong> Let <span class="math notranslate nohighlight">\(t = [t] t^*\)</span> and <span class="math notranslate nohighlight">\(x = [x] x^*\)</span>. The symbols <span class="math notranslate nohighlight">\([t]\)</span> and <span class="math notranslate nohighlight">\([x]\)</span> are scaling factors to be determined with dimensions T and L respectively. Substitute the new dimensionless variables <span class="math notranslate nohighlight">\(t^*\)</span> and <span class="math notranslate nohighlight">\(x^*\)</span> into the equation:</p>
+<div class="math notranslate nohighlight">
+\[
+m \frac{[x]}{[t]^2} \frac{d^2 x^*}{dt^{* 2}} + k [x] x^* = 0 \ , \ \ [x] x^*(0) = x_0 \ , \ \ \frac{[x]}{[t]} \frac{dx^*}{dt^*}(0) = 0
+\]</div>
+<p><strong>Step 3:</strong> Divide the differential equation by the coefficient in the second derivative term and simply rearrange the initial conditions:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d^2 x^*}{dt^{* 2}} + \frac{k [t]^2}{m} x^* = 0\ , \ \ x^*(0) = \frac{x_0}{[x]} \ , \ \ \frac{dx^*}{dt^*}(0) = 0
+\]</div>
+<p><strong>Step 4:</strong> Choose values for scaling factors <span class="math notranslate nohighlight">\([t]\)</span> and <span class="math notranslate nohighlight">\([x]\)</span> to make coefficients equal to 1:</p>
+<div class="math notranslate nohighlight">
+\[
+[t] = \sqrt{ \frac{m}{k} } \hspace{10mm} [x] = x_0
+\]</div>
+<p><strong>Step 5:</strong> Rewrite the system:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d^2 x^*}{dt^{* 2}} + x^* = 0 \ , \ \ x^*(0) = 1 \ , \ \ \frac{dx^*}{dt^*}(0) = 0
+\]</div>
+<p><strong>Interpretation:</strong> The general solution of the system is</p>
+<div class="math notranslate nohighlight">
+\[
+x^*(t^*) = \cos(t^*) \ \ \Rightarrow \ \ x(t) = x_0 \cos( \omega_0 t)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\omega_0 = \sqrt{k/m} = 1/[t]\)</span> is the <strong>natural frequency</strong> and the initial value <span class="math notranslate nohighlight">\(x_0\)</span> is the <strong>amplitude</strong> of the system. There are no parameters remaining in the nondimensionalized equation therefore the parameters <span class="math notranslate nohighlight">\(m\)</span>, <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(x_0\)</span> do not change the behaviour of the system but simply change the scale of the variables <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(t\)</span>.</p>
+</section>
+<section id="logistic-equation">
+<h3>Logistic Equation<a class="headerlink" href="#logistic-equation" title="Permalink to this heading">#</a></h3>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Logistic_function">logistic equation</a> models the growth of a population <span class="math notranslate nohighlight">\(P\)</span> at rate <span class="math notranslate nohighlight">\(r\)</span> limited by a capacity <span class="math notranslate nohighlight">\(K\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dP}{dt} = rP(1 - P/K) \ \ , \ \ P(0) = P_0
+\]</div>
+<p>The dimensions of the left hand side of the equation are N T<sup>-1</sup> since <span class="math notranslate nohighlight">\(P\)</span> is an amount changing over time. For the equation to be dimensionally homogeneous, the parameters <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(K\)</span> must have dimensions T<sup>-1</sup> and N respectively. Apply the nondimensionalization process to the logistic equation.</p>
+<p><strong>Step 1:</strong> Time <span class="math notranslate nohighlight">\(t\)</span> is the independent variable and population <span class="math notranslate nohighlight">\(P\)</span> is the dependent variable.</p>
+<p><strong>Step 2:</strong> Let <span class="math notranslate nohighlight">\(t = [t] t^*\)</span> and <span class="math notranslate nohighlight">\(P = [P] P^*\)</span> and make the substitution:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{[P]}{[t]} \frac{dP^*}{dt^*} = r[P]P^* - \frac{r[P]^2}{K} (P^*)^2 \ \ , \ \ [P]P^*(0) = P_0
+\]</div>
+<p><strong>Step 3:</strong> Divide by the coefficient of <span class="math notranslate nohighlight">\((P^*)^2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{K}{r[P][t]} \frac{dP^*}{dt^*} = \frac{K}{[P]} P^* - (P^*)^2 \ \ , \ \ P^*(0) = \frac{P_0}{[P]}
+\]</div>
+<p><strong>Step 4:</strong> Choose scaling factors such that</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{K}{r[P][t]} = 1 \ , \ \frac{K}{[P]} = 1
+\]</div>
+<p>Solve to find <span class="math notranslate nohighlight">\([P] = K\)</span> and <span class="math notranslate nohighlight">\([t] = r^{-1}\)</span>.</p>
+<p><strong>Step 5:</strong> Rewrite the equation:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dP^*}{dt^*} = P^*(1 - P^*) \ \ , \ \ P^*(0) = \kappa
+\]</div>
+<p>where the initial condition <span class="math notranslate nohighlight">\(\kappa = \frac{P_0}{K}\)</span> describes <span class="math notranslate nohighlight">\(P_0\)</span> as multiples of <span class="math notranslate nohighlight">\(K\)</span>.</p>
+<p><strong>Interpretation:</strong> The dimensionless variable <span class="math notranslate nohighlight">\(P^*\)</span> is measured in multiples of the capacity <span class="math notranslate nohighlight">\(K\)</span>, and the dimensionless variable <span class="math notranslate nohighlight">\(t^*\)</span> is measured in multiples of <span class="math notranslate nohighlight">\(r^{-1}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">P</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="n">P</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">P</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">P0K</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.5</span><span class="p">]:</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">P0K</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a371630787d9666ebce53520a08275537af0bb2db0fdfd8c1cc3b16f91f0d23f.png" src="../_images/a371630787d9666ebce53520a08275537af0bb2db0fdfd8c1cc3b16f91f0d23f.png" />
+</div>
+</div>
+</section>
+<section id="lotka-volterra-equations">
+<h3>Lotka-Volterra Equations<a class="headerlink" href="#lotka-volterra-equations" title="Permalink to this heading">#</a></h3>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations">Lotka-Volterra equations</a> model the population dynamics of a predator-prey system:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{dx}{dt} &amp;= \alpha x - \beta xy \\
+\frac{dy}{dt} &amp;= \delta xy - \gamma y
+\end{align*}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(x\)</span> is the population of prey, <span class="math notranslate nohighlight">\(y\)</span> is the population of predators and <span class="math notranslate nohighlight">\(\alpha,\beta,\gamma,\delta\)</span> are parameters. The dimensions of the variables <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are N, the dimensions of the parameters <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\gamma\)</span> are T<sup>-1</sup>, and the dimensions of the parameters <span class="math notranslate nohighlight">\(\beta\)</span> and <span class="math notranslate nohighlight">\(\delta\)</span> are N<sup>-1</sup> T<sup>-1</sup>. Apply the nondimensionalization process to the Lotka-Volterra equations.</p>
+<p><strong>Step 1:</strong> Time <span class="math notranslate nohighlight">\(t\)</span> is the independent variable and populations <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are the dependent variables.</p>
+<p><strong>Step 2:</strong> Let <span class="math notranslate nohighlight">\(t = [t] t^*\)</span>, <span class="math notranslate nohighlight">\(x = [x] x^*\)</span>, <span class="math notranslate nohighlight">\(y = [y] y^*\)</span> and make the substitutions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{[x]}{[t]} \frac{dx^*}{dt^*} &amp;= \alpha [x] x^* - \beta [x] [y] x^* y^* \\
+\frac{[y]}{[t]} \frac{dy^*}{dt^*} &amp;= \delta [x][y] x^* y^* - \gamma [y]y^*
+\end{align*}
+\end{split}\]</div>
+<p><strong>Step 3:</strong> Divide each equation by the coefficient of <span class="math notranslate nohighlight">\(x^* y^*\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{1}{\beta [y] [t]}  \frac{dx^*}{dt^*} &amp;= \frac{\alpha}{\beta [y]} x^* - x^* y^* \\
+\frac{1}{\delta [x] [t]} \frac{dy^*}{dt^*} &amp;= x^* y^* - \frac{\gamma}{\delta [x]}y^*
+\end{align*}
+\end{split}\]</div>
+<p><strong>Step 4:</strong> We see that we should choose</p>
+<div class="math notranslate nohighlight">
+\[
+[x] = \frac{\gamma}{\delta} \ \ , \ \ [y] = \frac{\alpha}{\beta}
+\]</div>
+<p>However it is not possible to choose <span class="math notranslate nohighlight">\([t]\)</span> such that all the coefficients are 1. We have two choices:</p>
+<div class="math notranslate nohighlight">
+\[
+[t] = \frac{1}{\alpha} \ \ \text{or} \ \ [t] = \frac{1}{\beta}
+\]</div>
+<p>and so we choose (arbitrarily) <span class="math notranslate nohighlight">\([t] = \alpha^{-1}\)</span>.</p>
+<p><strong>Step 5:</strong> Rewrite the system:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{dx^*}{dt^*} &amp;= x^* - x^* y^* \\
+\frac{dy^*}{dt^*} &amp;= c \left( x^* y^* - y^* \right)
+\end{align*}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(c = \frac{\gamma}{\alpha}\)</span>.</p>
+<p><strong>Interpretation:</strong> The parameter <span class="math notranslate nohighlight">\(c\)</span> controls how fast <span class="math notranslate nohighlight">\(x^*\)</span> and <span class="math notranslate nohighlight">\(y^*\)</span> change relative to each other. Plot the system for different values of <span class="math notranslate nohighlight">\(c\)</span> to observe the behaviour.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+    <span class="n">U</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">u0</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">U</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">U</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ff1b8d13158226015e6663288dc7b940f8bb6bc383a23f80343f5e9e302f3960.png" src="../_images/ff1b8d13158226015e6663288dc7b940f8bb6bc383a23f80343f5e9e302f3960.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">u0</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">U</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">,</span><span class="n">U</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$x^*(t)$&#39;</span><span class="p">,</span><span class="s1">&#39;$y^*(t)$&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/891fc89eeb2a2d4775b0411e6aaf34075c2efa3c6790825919c1e4348d8de061.png" src="../_images/891fc89eeb2a2d4775b0411e6aaf34075c2efa3c6790825919c1e4348d8de061.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./deterministic"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="systems-of-equations.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Systems of Equations</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="motion.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bodies in Motion</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensions-and-units">Dimensions and Units</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensional-homogeneity">Dimensional Homogeneity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nondimensionalization-and-scaling">Nondimensionalization and Scaling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-spring-equation">Mass Spring Equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-equation">Logistic Equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lotka-volterra-equations">Lotka-Volterra Equations</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UBC Math
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

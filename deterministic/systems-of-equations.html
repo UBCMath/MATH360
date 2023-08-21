@@ -1,0 +1,853 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Systems of Equations &#8212; MATH 360 Introduction to Mathematical Modelling</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'deterministic/systems-of-equations';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Nondimensionalization" href="nondimensionalization.html" />
+    <link rel="prev" title="Differential Equations" href="differential-equations.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">MATH 360 Introduction to Mathematical Modelling</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelling Process</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../process/process.html">Modelling Process</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="differential-equations.html">Differential Equations</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Systems of Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nondimensionalization.html">Nondimensionalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motion.html">Bodies in Motion</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="models/index.html">Examples of Models</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="models/mass-spring-2d.html">2D Mass Spring System</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Stochastic Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../stochastic/distributions.html">Probability Distributions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data-Driven Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../data-driven/linear-regression.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-driven/logistic-regression.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-driven/gradient-descent.html">Gradient Descent</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/deterministic/systems-of-equations.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/UBCMath/MATH360" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/deterministic/systems-of-equations.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Systems of Equations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification">Classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-order-transformation">First Order Transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#euler-s-method-for-systems">Euler’s Method for Systems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-solutions-with-scipy">Numerical Solutions with SciPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-stability-analysis">Linear Stability Analysis</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="systems-of-equations">
+<h1>Systems of Equations<a class="headerlink" href="#systems-of-equations" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">spi</span>
+<span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="learning-goals">
+<h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Classify systems of differential equations: order, dimension, linear, autonomous</p></li>
+<li><p>Transform higher order systems of differential equations into first order systems</p></li>
+<li><p>Compute and visualize numerical solutions of systems of differential equations</p></li>
+<li><p>Compute and classify equilibrium solutions of autonomous systems of differential equations</p></li>
+</ul>
+</section>
+<section id="classification">
+<h2>Classification<a class="headerlink" href="#classification" title="Permalink to this heading">#</a></h2>
+<p>A <strong>system of differential equations</strong> is a collection of equations involving unknown functions <span class="math notranslate nohighlight">\(y_0(t),\dots,y_{d-1}(t)\)</span> (with the same independent variable <span class="math notranslate nohighlight">\(t\)</span>) and their derivatives. The <strong>dimension</strong> of a system of differential equations is the number <span class="math notranslate nohighlight">\(d\)</span> of unknown functions <span class="math notranslate nohighlight">\(y_0,\dots,y_{d-1}\)</span> in the system. The <strong>order</strong> of a system of differential equations is the highest order derivative of any of the unknown functions appearing in the system. A system of differential equations is <strong>linear</strong> if each equation in the system is linear. A system of differential equations is <strong>autonomous</strong> if each equation in the system is autonomous.</p>
+<p>For example, the system of differential equations</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+x' &amp;= x - xy \\
+y' &amp;= xy - y
+\end{align*}
+\end{split}\]</div>
+<p>is a first order, 2-dimensional, autonomous, nonlinear system of differential equations, and the system</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+x'' &amp;= x - y \\
+y' &amp;= x - t
+\end{align*}
+\end{split}\]</div>
+<p>is a second order, 2-dimensional, nonautonomous, linear system of differential equations.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Check out <a class="reference external" href="https://www.jirka.org/diffyqs/html/sec_introtosys.html">Notes on Diffy Qs: Section 3.1</a> for more information about systems of differential equations.</p>
+</div>
+</section>
+<section id="first-order-transformation">
+<h2>First Order Transformation<a class="headerlink" href="#first-order-transformation" title="Permalink to this heading">#</a></h2>
+<p>A first order, <span class="math notranslate nohighlight">\(d\)</span>-dimensional system of differential equations is of the form</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+u_0' &amp;= f_0(t,u_0,\dots,u_{d-1}) \\
+u_1' &amp;= f_1(t,u_0,\dots,u_{d-1}) \\
+&amp; \ \ \vdots \\
+u_{d-1}' &amp;= f_{d-1}(t,u_0,\dots,u_{d-1}) \\
+\end{align*}
+\end{split}\]</div>
+<p>for some functions <span class="math notranslate nohighlight">\(f_0,\dots,f_{d-1}\)</span>. Introduce vector notation</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d \mathbf{u}}{dt} = \mathbf{f}(t,\mathbf{u})
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{u}(t) = \begin{bmatrix} u_0(t) \\ \vdots \\ u_{d-1}(t) \end{bmatrix}
+\hspace{10mm}
+\frac{d \mathbf{u}}{dt} = \begin{bmatrix} u_0'(t) \\ \vdots \\ u_{d-1}'(t) \end{bmatrix}
+\hspace{10mm}
+\mathbf{f}(t,\mathbf{u}) = \begin{bmatrix} f_0(t,u_0,\dots,u_{d-1}) \\ \vdots \\ f_{d-1}(t,u_0,\dots,u_{d-1}) \end{bmatrix}
+\end{split}\]</div>
+<p>Any system of differential equations can be written as a first order system by introducing new variables. The procedure is as follows:</p>
+<ol class="arabic simple">
+<li><p>Identify the order of each unknown function in the system.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(y\)</span> has order <span class="math notranslate nohighlight">\(n\)</span> then introduce <span class="math notranslate nohighlight">\(n-1\)</span> new variables for <span class="math notranslate nohighlight">\(y\)</span> and its derivatives: <span class="math notranslate nohighlight">\(u_0 = y, u_1 = y',\dots,u_{n-1} = y^{(n-1)}\)</span>.</p></li>
+<li><p>Rewrite the equations for <span class="math notranslate nohighlight">\(u_0',\dots,u_{n-1}'\)</span> in terms of the new variables only.</p></li>
+</ol>
+<p>For example, consider a 1-dimensional, second order, linear equation with constant coefficients</p>
+<div class="math notranslate nohighlight">
+\[
+ay'' + by' + cy = f(t) \ \ , \ \ \ a,b,c \in \mathbb{R}
+\]</div>
+<p>There is only one unknown function <span class="math notranslate nohighlight">\(y\)</span> and it has order 2 therefore we introduce <span class="math notranslate nohighlight">\(u_0 = y\)</span> and <span class="math notranslate nohighlight">\(u_1 = y'\)</span> and write</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+u_0' &amp;= u_1 \\
+u_1' &amp;= \frac{1}{a} \left( f(t) - bu_1 - cu_0 \right)
+\end{align*}
+\end{split}\]</div>
+<p>Let’s try another example. Consider the following the system</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+x'' &amp;= 1 - y \\
+y'' &amp;= 1 - x
+\end{align*}
+\end{split}\]</div>
+<p>Both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are second order therefore we introduce new variables <span class="math notranslate nohighlight">\(u_0 = x, u_1 = x', u_2 = y, u_3 = y'\)</span> and write</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+u_0' &amp;= u_1 \\
+u_1' &amp;= 1 - u_2 \\
+u_2' &amp;= u_3 \\
+u_3' &amp;= 1 - u_0
+\end{align*}
+\end{split}\]</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Check out <a class="reference external" href="https://www.jirka.org/diffyqs/html/sec_introtosys.html">Notes on Diffy Qs: Section 3.1</a> for more examples of transforming higher order systems into first order systems.</p>
+</div>
+</section>
+<section id="euler-s-method-for-systems">
+<h2>Euler’s Method for Systems<a class="headerlink" href="#euler-s-method-for-systems" title="Permalink to this heading">#</a></h2>
+<p>We have seen numerical methods for first order scalar equations. How do we apply these methods to systems? First, transform the system into a first order system and then apply the method to each equation in the system simultaneously.</p>
+<p>For example, let’s apply Euler’s method to a 2-dimensional, first order system</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+x' &amp;= f_1(t,x,y) \\
+y' &amp;= f_2(t,x,y)
+\end{align*}
+\end{split}\]</div>
+<p>Starting with initial values <span class="math notranslate nohighlight">\(x_0 = x(t_0)\)</span> and <span class="math notranslate nohighlight">\(y_0 = y(t_0)\)</span> we define the resursive sequences</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+x_{n+1} &amp;= x_n + h f_1(t_n,x_n,y_n) \\
+y_{n+1} &amp;= y_n + h f_2(t_n,x_n,y_n)
+\end{align*}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(t_n = t_0 + nh\)</span> for step size <span class="math notranslate nohighlight">\(h\)</span>. Use vector notation to write</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{u}_{n+1} = \mathbf{u}_n + h \, \mathbf{f}(t_n,\mathbf{u}_n)
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{u}_n = \begin{bmatrix} x_n \\ y_n \end{bmatrix}
+\end{split}\]</div>
+<p>Let’s write a function to implement Euler’s method for systems:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">odeEulerSys</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">u0</span><span class="p">):</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">u0</span><span class="p">)])</span>
+    <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">u0</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="p">,:]</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="p">,:])</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">u</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">odeEulerSys</span></code> to approximate the solution of the equation</p>
+<div class="math notranslate nohighlight">
+\[
+y'' + y + 1 = 0 \ , \ \ y(0)=1 \ , \ \ y'(0) = 0
+\]</div>
+<p>and compare with the exact solution</p>
+<div class="math notranslate nohighlight">
+\[
+y(t) = e^{-t/2} \cos \left( \frac{\sqrt{3}}{2} t \right) + \frac{1}{\sqrt{3}} e^{-t/2} \sin \left( \frac{\sqrt{3}}{2} t \right)
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">tf</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span><span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">],(</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">a</span><span class="p">])</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">u0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">odeEulerSys</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">u0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">u</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">tf</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">T</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">T</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">Y</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e13e65e4fb7c30c79bd6c786c8c4cb4141dfb2a061457ca6926d6bb3e8866604.png" src="../_images/e13e65e4fb7c30c79bd6c786c8c4cb4141dfb2a061457ca6926d6bb3e8866604.png" />
+</div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Check out <a class="reference external" href="https://patrickwalls.github.io/mathematicalpython/differential-equations/systems/">Mathematical Python: Systems of Equations</a> for more Python examples using Euler’s method.</p>
+</div>
+</section>
+<section id="numerical-solutions-with-scipy">
+<h2>Numerical Solutions with SciPy<a class="headerlink" href="#numerical-solutions-with-scipy" title="Permalink to this heading">#</a></h2>
+<p>Euler’s method is simple to understand but it is not accurate enough to use in practice. Higher order <a class="reference external" href="https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods">Runge-Kutta methods</a> are the standard methods used for real applications but we won’t get into how they work exactly. Instead, let’s just loosely describe a Runge-Kutta method as a “higher order Euler method” and let’s focus on how <code class="docutils literal notranslate"><span class="pre">scipy.integrate.odeint</span></code> works with systems of differential equations.</p>
+<p>The procedure to compute a numerical approximation of a solution of a system of differential equations is:</p>
+<ol class="arabic simple">
+<li><p>Write the system as a first order system <span class="math notranslate nohighlight">\(\mathbf{u}' = \mathbf{f}(\mathbf{u},t)\)</span>, <span class="math notranslate nohighlight">\(\mathbf{u}_0 = \mathbf{u}(t_0)\)</span>.</p></li>
+<li><p>Define a Python function <code class="docutils literal notranslate"><span class="pre">f(u,t)</span></code> for the right hand side <span class="math notranslate nohighlight">\(\mathbf{f}(\mathbf{u},t)\)</span> where parameter <code class="docutils literal notranslate"><span class="pre">u</span></code> is a vector such that <code class="docutils literal notranslate"><span class="pre">u[k]</span></code> corresponds to funciton <span class="math notranslate nohighlight">\(u_k(t)\)</span>. Note that the variable <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> is first and <span class="math notranslate nohighlight">\(t\)</span> is second.</p></li>
+<li><p>Define vector <code class="docutils literal notranslate"><span class="pre">t</span></code> of <span class="math notranslate nohighlight">\(t\)</span> values where <code class="docutils literal notranslate"><span class="pre">t[0]</span></code> is <span class="math notranslate nohighlight">\(t_0\)</span>. Usually <code class="docutils literal notranslate"><span class="pre">t</span> <span class="pre">=</span> <span class="pre">np.linspace(t0,tf,N+1)</span></code> or equivalently <code class="docutils literal notranslate"><span class="pre">t</span> <span class="pre">=</span> <span class="pre">np.arange(t0,tf+h,h)</span></code> where <span class="math notranslate nohighlight">\(h = (t_f - t_0)/N\)</span>.</p></li>
+<li><p>Define initial value vector <code class="docutils literal notranslate"><span class="pre">u0</span></code> corresponding to <span class="math notranslate nohighlight">\(\mathbf{u}_0 = \mathbf{u}(t_0)\)</span> where <span class="math notranslate nohighlight">\(t_0\)</span> is <code class="docutils literal notranslate"><span class="pre">t[0]</span></code>.</p></li>
+<li><p>Compute the solution <code class="docutils literal notranslate"><span class="pre">u</span> <span class="pre">=</span> <span class="pre">spi.odeint(f,u0,t)</span></code>. The output of the function is the matrix <code class="docutils literal notranslate"><span class="pre">u</span></code> of shape <code class="docutils literal notranslate"><span class="pre">(len(t),len(u0))</span></code> such that column <code class="docutils literal notranslate"><span class="pre">u[:,k]</span></code> corresponds to the values of the function <span class="math notranslate nohighlight">\(u_k(t)\)</span> from <span class="math notranslate nohighlight">\(t_0\)</span> to <span class="math notranslate nohighlight">\(t_f\)</span>, and row <code class="docutils literal notranslate"><span class="pre">u[n,:]</span></code> corresponds to the vector <span class="math notranslate nohighlight">\(\mathbf{u}(t_n) = (u_0(t_n),\dots,u_{d-1}(t_n))\)</span> at time <span class="math notranslate nohighlight">\(t_n\)</span>.</p></li>
+</ol>
+<p>For example, let’s approximate the solution of the equation</p>
+<div class="math notranslate nohighlight">
+\[
+y'' + y + 1 = 0 \ , \ \ y(0)=1 \ , \ \ y'(0) = 0
+\]</div>
+<p>and compare with the exact solution</p>
+<div class="math notranslate nohighlight">
+\[
+y(t) = e^{-t/2} \cos \left( \frac{\sqrt{3}}{2} t \right) + \frac{1}{\sqrt{3}} e^{-t/2} \sin \left( \frac{\sqrt{3}}{2} t \right)
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">tf</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">],(</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">a</span><span class="p">])</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">u0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">u0</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">u</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">tf</span><span class="p">,</span><span class="n">tf</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">T</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">T</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">Y</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0b6a4055e2e08653ed3427a806174de8ae9d71ac46b91d91d4909acf0f032aae.png" src="../_images/0b6a4055e2e08653ed3427a806174de8ae9d71ac46b91d91d4909acf0f032aae.png" />
+</div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Check out <a class="reference external" href="https://patrickwalls.github.io/mathematicalpython/differential-equations/systems/">Mathematical Python: Systems of Equations</a> for more Python examples, and <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.odeint.html">SciPy documentation</a> for more information about <code class="docutils literal notranslate"><span class="pre">scipy.integrate.odeint</span></code>.</p>
+</div>
+</section>
+<section id="linear-stability-analysis">
+<h2>Linear Stability Analysis<a class="headerlink" href="#linear-stability-analysis" title="Permalink to this heading">#</a></h2>
+<p>Consider a first order, <span class="math notranslate nohighlight">\(d\)</span>-dimensional autonomous system of differential equations</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d \mathbf{x}}{dt} = \mathbf{f}(\mathbf{x})
+\]</div>
+<p>A point <span class="math notranslate nohighlight">\(\mathbf{c} \in \mathbb{R}^d\)</span> is a <strong>critical point</strong> if <span class="math notranslate nohighlight">\(\mathbf{f}(\mathbf{c}) = \mathbf{0}\)</span>. A critical point corresponds to an <strong>equilibrium solution</strong> (also called a <strong>steady state solution</strong>)</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{x}(t) = \mathbf{c}
+\]</div>
+<p>A critical point <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> is an <strong>attractor</strong> if all solutions which start near <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> converge to <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> as <span class="math notranslate nohighlight">\(t \to \infty\)</span>. A critical point <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> is a <strong>repeller</strong> if all solutions which start near <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> diverge from <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> as <span class="math notranslate nohighlight">\(t \to \infty\)</span>. A critical point <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> is a <strong>unstable</strong> if some solutions which start near <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> converge to <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> and some diverge as <span class="math notranslate nohighlight">\(t \to \infty\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> be a critical point and let <span class="math notranslate nohighlight">\(\mathbf{J}_{\mathbf{c}}\)</span> be the Jacobian of the system at <span class="math notranslate nohighlight">\(\mathbf{c}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{J}_{\mathbf{c}} =
+\begin{bmatrix}
+\frac{\partial f_0}{\partial x_0} &amp; \cdots &amp; \frac{\partial f_0}{\partial x_{d-1}} \\
+\vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial f_{d-1}}{\partial x_0} &amp; \cdots &amp; \frac{\partial f_{d-1}}{\partial x_{d-1}}
+\end{bmatrix} _{\mathbf{x} = \mathbf{c}}
+\end{split}\]</div>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Hartman%E2%80%93Grobman_theorem">linearization theorem</a> allows us to classify critical points:</p>
+<ul class="simple">
+<li><p>if <span class="math notranslate nohighlight">\(\mathrm{Re}(\lambda) &lt; 0\)</span> for each eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span> of <span class="math notranslate nohighlight">\(\mathbf{J}_{\mathbf{c}}\)</span> then <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> is a attractor</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(\mathrm{Re}(\lambda) &gt; 0\)</span> for each eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span> of <span class="math notranslate nohighlight">\(\mathbf{J}_{\mathbf{c}}\)</span> then <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> is a repeller</p></li>
+<li><p>if some eigenvalues of <span class="math notranslate nohighlight">\(\mathbf{J}_{\mathbf{c}}\)</span> have positive real part and some have negative real part then <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> is unstable</p></li>
+</ul>
+<p>For example, let’s find and classify the critical points of the system</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+x' &amp;= 1 - y^2 \\
+y' &amp;= x - y
+\end{align*}
+\end{split}\]</div>
+<p>There are 2 critical points: <span class="math notranslate nohighlight">\((1,1)\)</span> and <span class="math notranslate nohighlight">\((-1,-1)\)</span>. Compute partial derivatives</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial f_1}{\partial x} = 0 \hspace{10mm}
+\frac{\partial f_1}{\partial y} = -2y \hspace{10mm}
+\frac{\partial f_2}{\partial x} = 1 \hspace{10mm}
+\frac{\partial f_2}{\partial y} = -1
+\]</div>
+<p>Compute eigenvalues of the Jacobians</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{J}_{(1,1)} = \begin{bmatrix} 0 &amp; -2y \\ 1 &amp; -1 \end{bmatrix}_{(1,1)} = \begin{bmatrix} 0 &amp; -2 \\ 1 &amp; -1 \end{bmatrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{J}_{(-1,-1)} = \begin{bmatrix} 0 &amp; -2y \\ 1 &amp; -1 \end{bmatrix}_{(-1,-1)} = \begin{bmatrix} 0 &amp; 2 \\ 1 &amp; -1 \end{bmatrix}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">J1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span><span class="o">-</span><span class="mf">2.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span><span class="o">-</span><span class="mf">1.</span><span class="p">]])</span>
+<span class="n">evals1</span><span class="p">,</span><span class="n">evecs1</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">J1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">evals1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.5+1.32287566j -0.5-1.32287566j]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">J2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">2.</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span><span class="o">-</span><span class="mf">1.</span><span class="p">]])</span>
+<span class="n">evals2</span><span class="p">,</span><span class="n">evecs2</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">J2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">evals2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 1.+0.j -2.+0.j]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Therefore <span class="math notranslate nohighlight">\((1,1)\)</span> is an attractor and <span class="math notranslate nohighlight">\((-1,-1)\)</span> is unstable. Let’s plot solutions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">):</span>
+    <span class="n">u0</span> <span class="o">=</span> <span class="mi">6</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">u0</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">u</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7dbe727de99ecd1921193a68c49a24c12f1093aa86baee786581178b65f419f8.png" src="../_images/7dbe727de99ecd1921193a68c49a24c12f1093aa86baee786581178b65f419f8.png" />
+</div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Check out <a class="reference external" href="https://www.jirka.org/diffyqs/html/linearization_section.html">Notes on Diffy Qs: Section 8.1</a> and <a class="reference external" href="https://www.jirka.org/diffyqs/html/nlinstability_section.html">Section 8.2</a> for more information and examples about linear classification of critical points.</p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./deterministic"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="differential-equations.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Differential Equations</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="nondimensionalization.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Nondimensionalization</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification">Classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-order-transformation">First Order Transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#euler-s-method-for-systems">Euler’s Method for Systems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-solutions-with-scipy">Numerical Solutions with SciPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-stability-analysis">Linear Stability Analysis</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UBC Math
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
