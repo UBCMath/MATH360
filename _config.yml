@@ -1,0 +1,19 @@
+title: MATH 360 Introduction to Mathematical Modelling
+author: UBC Math
+execute:
+  execute_notebooks: force # cache
+only_build_toc_files: true
+repository:
+  url: https://github.com/UBCMath/MATH360
+  branch: main
+launch_buttons:
+  jupyterhub_url: https://ubc.syzygy.ca/jupyter
+  notebook_interface: "jupyterlab"
+html:
+  home_page_in_navbar: false
+  use_repository_button: true
+sphinx:
+  config:
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# ghp-import -n -p -f _build/html

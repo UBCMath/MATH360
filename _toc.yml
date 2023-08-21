@@ -1,0 +1,23 @@
+format: jb-book
+root: README.md
+parts:
+  - caption: Modelling Process
+    chapters:
+    - file: process/process.md
+  - caption: Deterministic Models
+    chapters:
+    - file: deterministic/introduction.md
+    - file: deterministic/differential-equations.ipynb
+    - file: deterministic/systems-of-equations.ipynb
+    - file: deterministic/nondimensionalization.ipynb
+    - file: deterministic/motion.ipynb
+    - file: deterministic/mass-balance.md
+    - file: deterministic/heat-transfer.md
+  - caption: Stochastic Models
+    chapters:
+    - file: stochastic/distributions.ipynb
+  - caption: Data-Driven Models
+    chapters:
+    - file: data-driven/linear-regression.md
+    - file: data-driven/logistic-regression.md
+    - file: data-driven/gradient-descent.md
