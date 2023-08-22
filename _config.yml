@@ -1,8 +1,5 @@
-title: MATH 360 Introduction to Mathematical Modelling
+title: MATH 360
 author: UBC Math
-execute:
-  execute_notebooks: force # cache
-only_build_toc_files: true
 repository:
   url: https://github.com/UBCMath/MATH360
   branch: main
