@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'deterministic/motion/eulers-3-body';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -400,18 +402,175 @@ document.write(`
 </div>
 <section id="problem-statement">
 <h2>Problem Statement<a class="headerlink" href="#problem-statement" title="Permalink to this heading">#</a></h2>
+<p>How does a planet move under the force of gravity due to two stars fixed in space?</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Check out <a class="reference external" href="https://en.wikipedia.org/wiki/Euler%27s_three-body_problem">Wikipedia: Euler’s 3-Body Problem</a> for more information.</p>
+</div>
 </section>
 <section id="variables-and-parameters">
 <h2>Variables and Parameters<a class="headerlink" href="#variables-and-parameters" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Description</p></th>
+<th class="head text-center"><p>Symbol</p></th>
+<th class="head text-center"><p>Dimensions</p></th>
+<th class="head text-center"><p>Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>position of planet in <span class="math notranslate nohighlight">\(x\)</span>-direction</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x\)</span></p></td>
+<td class="text-center"><p>L</p></td>
+<td class="text-center"><p>dependent variable</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>position of planet in <span class="math notranslate nohighlight">\(y\)</span>-direction</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(y\)</span></p></td>
+<td class="text-center"><p>L</p></td>
+<td class="text-center"><p>dependent variable</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>time</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-center"><p>T</p></td>
+<td class="text-center"><p>independent variable</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>mass of planet</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(m_p\)</span></p></td>
+<td class="text-center"><p>M</p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>mass of star 1</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(m_1\)</span></p></td>
+<td class="text-center"><p>M</p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>mass of star 2</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(m_2\)</span></p></td>
+<td class="text-center"><p>M</p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>gravitational constant</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(G\)</span></p></td>
+<td class="text-center"><p>L<sup>3</sup>T<sup>-2</sup>M<sup>-1</sup></p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>distance of each star from the origin</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(d\)</span></p></td>
+<td class="text-center"><p>L</p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="assumptions-and-constraints">
 <h2>Assumptions and Constraints<a class="headerlink" href="#assumptions-and-constraints" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>planet moves in <span class="math notranslate nohighlight">\(xy\)</span>-plane only</p></li>
+<li><p>star 1 is located on the <span class="math notranslate nohighlight">\(x\)</span>-axis at <span class="math notranslate nohighlight">\((-d,0)\)</span></p></li>
+<li><p>star 2 is located on the <span class="math notranslate nohighlight">\(x\)</span>-axis at <span class="math notranslate nohighlight">\((+d,0)\)</span></p></li>
+</ul>
 </section>
 <section id="model-construction">
 <h2>Model Construction<a class="headerlink" href="#model-construction" title="Permalink to this heading">#</a></h2>
+<p>The unit vector that points from the planet to star 1 is</p>
+<div class="math notranslate nohighlight">
+\[
+\left( -\frac{x+d}{\sqrt{(x+d)^2 + y^2}} , -\frac{y}{\sqrt{(x+d)^2 + y^2}} \right)
+\]</div>
+<p>and the unit vector that points from the planet to star 2 is</p>
+<div class="math notranslate nohighlight">
+\[
+\left( -\frac{x-d}{\sqrt{(x-d)^2 + y^2}} , -\frac{y}{\sqrt{(x-d)^2 + y^2}} \right)
+\]</div>
+<p>The sum of the gravitational forces of both stars acting on the planet is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\mathbf{F} &amp;= \frac{Gm_pm_1}{(x+d)^2 + y^2} \left( -\frac{x+d}{\sqrt{(x+d)^2 + y^2}} , -\frac{y}{\sqrt{(x+d)^2 + y^2}} \right) \\
+&amp; \quad \quad + \ \frac{Gm_pm_2}{(x-d)^2 + y^2} \left( -\frac{x-d}{\sqrt{(x-d)^2 + y^2}} , -\frac{y}{\sqrt{(x-d)^2 + y^2}} \right)
+\end{align*}
+\end{split}\]</div>
+<p>Apply Newton’s second law of motion to get a second order, 2-dimenisional, nonlinear system of differential equations</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{d^2x}{dt^2} &amp;= -\frac{G m_1 (x+d)}{\left( (x+d)^2 + y^2 \right)^{3/2}} - \frac{G m_2 (x-d)}{\left( (x-d)^2 + y^2 \right)^{3/2}} \\
+\frac{d^2y}{dt^2} &amp;= -\frac{G m_1 y}{\left( (x+d)^2 + y^2 \right)^{3/2}} - \frac{G m_2 y}{\left( (x-d)^2 + y^2 \right)^{3/2}}
+\end{align*}
+\end{split}\]</div>
+<p>with initial conditions</p>
+<div class="math notranslate nohighlight">
+\[
+x(0) = x_0 \ , \ \ y(0) = y_0 \ , \ \ x'(0) = v_{x,0} \ , \ \ y'(0) = v_{y,0} \ , \ \ 
+\]</div>
+<p>Apply nondimensionalization procedure. Let <span class="math notranslate nohighlight">\(x = [x]x^*\)</span>, <span class="math notranslate nohighlight">\(y = [y]y^*\)</span> and <span class="math notranslate nohighlight">\(t = [t]t^*\)</span>. It will simplify the equations greatly if we choose the same scaling factor <span class="math notranslate nohighlight">\([c] = [x] = [y]\)</span> for <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>. Make the substitutions</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{[c]}{[t]^2} \frac{d^2x^*}{dt^{*2}} &amp;= -\frac{G m_1 ([c]x^* + d)}{\left( ([c]x^*+d)^2 + [c]^2y^{*2} \right)^{3/2}} - \frac{G m_2 ([c]x^*-d)}{\left( ([c]x^*-d)^2 + [c]^2y^{*2} \right)^{3/2}} \\
+\frac{[c]}{[t]^2} \frac{d^2y^*}{dt^{*2}} &amp;= -\frac{G m_1 [c]y^*}{\left( ([c]x^*+d)^2 + [c]^2y^{*2} \right)^{3/2}} - \frac{G m_2 [c]y^*}{\left( ([c]x^*-d)^2 + [c]y^{*2} \right)^{3/2}}
+\end{align*}
+\end{split}\]</div>
+<p>Divide by highest order term and simplify</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{d^2x^*}{dt^{*2}} &amp;= -\frac{G m_1 [t]^2 (x^* + d^*)}{[c]^3 \left( (x^*+d^*)^2 + y^{*2} \right)^{3/2}} - \frac{G m_2 [t]^2 (x^*-d^*)}{[c]^3 \left( (x^*-d^*)^2 + y^{*2} \right)^{3/2}} \\
+\frac{d^2y^*}{dt^{*2}} &amp;= -\frac{G m_1 [t]^2 y^*}{[c]^3 \left( (x^*+d^*)^2 + y^{*2} \right)^{3/2}} - \frac{G m_2 [t]^2 y^*}{[c]^3 \left( (x^*-d^*)^2 + y^{*2} \right)^{3/2}}
+\end{align*}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(d^* = d/[c]\)</span>. There are many choices and we choose <span class="math notranslate nohighlight">\([c] = d\)</span> and <span class="math notranslate nohighlight">\([t] = \sqrt{\frac{d^3}{Gm_1}}\)</span> and we arrive at</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{d^2x^*}{dt^{*2}} &amp;= -\frac{(x^* + 1)}{\left( (x^*+1)^2 + y^{*2} \right)^{3/2}} - \mu \frac{(x^*-1)}{\left( (x^*-1)^2 + y^{*2} \right)^{3/2}} \\
+\frac{d^2y^*}{dt^{*2}} &amp;= -\frac{y^*}{\left( (x^*+1)^2 + y^{*2} \right)^{3/2}} - \mu \frac{y^*}{\left( (x^*-1)^2 + y^{*2} \right)^{3/2}} \\
+x^*(0) &amp;= \frac{x_0}{d} \ , \ \ y^*(0) = \frac{y_0}{d} \\
+\frac{dx^*}{dt^*}(0) &amp;= v_{x,0} \sqrt{\frac{d}{Gm_1}} \ , \ \ \frac{dy^*}{dt^*}(0) = v_{y,0}\sqrt{\frac{d}{Gm_1}} \ , \ \ 
+\end{align*}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu = \frac{m_2}{m_1}\)</span>.</p>
+<p>Introduce new variables <span class="math notranslate nohighlight">\(u_0 = x^*\)</span>, <span class="math notranslate nohighlight">\(u_1 = \frac{dx}{dt^*}\)</span>, <span class="math notranslate nohighlight">\(u_2 = y\)</span>, and <span class="math notranslate nohighlight">\(u_3 = \frac{dy}{dt^*}\)</span> to find</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{du_0}{dt^*} &amp;= u_1 \\
+\frac{du_1}{dt^*} &amp;= -\frac{(u_0 + 1)}{\left( (u_0+1)^2 + u_2^2 \right)^{3/2}} - \mu \frac{(u_0-1)}{\left( (u_0-1)^2 + u_2^2 \right)^{3/2}} \\
+\frac{du_2}{dt^*} &amp;= u_3 \\
+\frac{du_3}{dt^*} &amp;= -\frac{u_2}{\left( (u_0+1)^2 + u_2^2 \right)^{3/2}} - \mu \frac{u_2}{\left( (u_0-1)^2 + u_2^2 \right)^{3/2}}
+\end{align*}
+\end{split}\]</div>
+<p>Plot some trajectories!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="o">=</span> <span class="mf">1.</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+    <span class="n">dudt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">])</span>
+    <span class="n">D1</span> <span class="o">=</span> <span class="p">((</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">D2</span> <span class="o">=</span> <span class="p">((</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">dudt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dudt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">D1</span> <span class="o">-</span> <span class="n">mu</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">D2</span>
+    <span class="n">dudt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">dudt</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">D1</span> <span class="o">-</span> <span class="n">mu</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">D2</span>
+    <span class="k">return</span> <span class="n">dudt</span>
+
+<span class="n">u0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">u0</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">u</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;r*&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;r*&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c0e13061360f41504c8619f2599fb480006f84f34391721031fe02b02a00adf6.png" src="../../_images/c0e13061360f41504c8619f2599fb480006f84f34391721031fe02b02a00adf6.png" />
+</div>
+</div>
 </section>
 <section id="analysis">
 <h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this heading">#</a></h2>
+<p><em>Under construction</em></p>
 </section>
 </section>
 
