@@ -12,6 +12,7 @@
 
 * [Notes on Diffy Qs: Differential Equations for Engineers](https://www.jirka.org/diffyqs/html/diffyqs.html)
 * [Mathematical Python](https://patrickwalls.github.io/mathematicalpython)
+* [Mathematics and Climate](https://doi.org/10.1137/1.9781611972610)
 
 ## Prerequisites
 
