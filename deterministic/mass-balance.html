@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Mass Balance &#8212; MATH 360</title>
+    <title>Mass Balance &#8212; Introduction to Mathematical Modelling</title>
   
   
   
@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Heat Transfer" href="heat-transfer.html" />
-    <link rel="prev" title="Bodies in Motion" href="motion.html" />
+    <link rel="prev" title="Euler’s 3-Body Problem" href="motion/eulers-3-body.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -137,7 +137,7 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
-    <p class="title logo__title">MATH 360</p>
+    <p class="title logo__title">Introduction to Mathematical Modelling</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -149,10 +149,20 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="differential-equations.html">Differential Equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="systems-of-equations.html">Systems of Equations</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="differential/index.html">Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="differential/equations.html">Scalar Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="differential/systems.html">Systems of Equations</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="nondimensionalization.html">Nondimensionalization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="motion.html">Bodies in Motion</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="motion/index.html">Objects in Motion</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="motion/laws-of-motion.html">Laws of Motion and Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motion/mass-spring-2d.html">2D Mass Spring System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motion/simple-pendulum.html">Simple Pendulum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motion/orbits.html">Planetary Orbits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motion/eulers-3-body.html">Euler’s 3-Body Problem</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Mass Balance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="heat-transfer.html">Heat Transfer</a></li>
 </ul>
@@ -165,6 +175,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../data-driven/linear-regression.html">Linear Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data-driven/logistic-regression.html">Logistic Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data-driven/gradient-descent.html">Gradient Descent</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendices/animations.html">Matplotlib Animations</a></li>
 </ul>
 
     </div>
@@ -365,12 +379,12 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="motion.html"
+       href="motion/eulers-3-body.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Bodies in Motion</p>
+        <p class="prev-next-title">Euler’s 3-Body Problem</p>
       </div>
     </a>
     <a class="right-next"
