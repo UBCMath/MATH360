@@ -20,15 +20,28 @@ parts:
       - file: deterministic/motion/orbits.ipynb
       - file: deterministic/motion/eulers-3-body.ipynb
     - file: deterministic/mass-balance.md
-    - file: deterministic/heat-transfer.md
+    - file: deterministic/heat/index.md
+      sections:
+      - file: deterministic/heat/balance.ipynb
+      - file: deterministic/heat/conduction.ipynb
+      - file: deterministic/heat/radiation.ipynb
+      - file: deterministic/heat/climate.ipynb
   - caption: Stochastic Models
     chapters:
     - file: stochastic/distributions.ipynb
   - caption: Data-Driven Models
     chapters:
-    - file: data-driven/linear-regression.md
-    - file: data-driven/logistic-regression.md
-    - file: data-driven/gradient-descent.md
+    - file: data-driven/introduction.md
+    - file: data-driven/linear-regression/index.md
+      sections:
+      - file: data-driven/linear-regression/linear.md
+    - file: data-driven/logistic-regression/index.md
+      sections:
+      - file: data-driven/logistic-regression/logistic-function.ipynb
+      - file: data-driven/logistic-regression/cost-regularization.ipynb
+    - file: data-driven/numerical-methods/index.md
+      sections:
+      - file: data-driven/numerical-methods/gradient.md
   - caption: Appendices
     chapters:
-    - file: appendices/animations.md
+    - file: appendices/animations.ipynb

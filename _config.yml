@@ -12,5 +12,6 @@ html:
 sphinx:
   config:
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+only_build_toc_files: false
 
 # ghp-import -n -p -f _build/html
