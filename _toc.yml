@@ -3,7 +3,8 @@ root: README.md
 parts:
   - caption: Modelling Process
     chapters:
-    - file: process/process.md
+    - file: process/overview.ipynb
+    - file: process/process.ipynb
   - caption: Deterministic Models
     chapters:
     - file: deterministic/introduction.md
@@ -17,6 +18,7 @@ parts:
       - file: deterministic/motion/laws-of-motion.ipynb
       - file: deterministic/motion/mass-spring-2d.ipynb
       - file: deterministic/motion/simple-pendulum.ipynb
+      - file: deterministic/motion/projectile.ipynb
       - file: deterministic/motion/orbits.ipynb
       - file: deterministic/motion/eulers-3-body.ipynb
     - file: deterministic/mass-balance.md
@@ -42,6 +44,8 @@ parts:
     - file: data-driven/numerical-methods/index.md
       sections:
       - file: data-driven/numerical-methods/gradient.md
-  - caption: Appendices
-    chapters:
-    - file: appendices/animations.ipynb
+#  - caption: Appendices
+#    chapters:
+#    - file: appendices/animations.ipynb
+#    - file: appendices/3d-plotting.ipynb
+#    - file: appendices/graphics.ipynb
