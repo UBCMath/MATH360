@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Thermal Radiation &#8212; Introduction to Mathematical Modelling</title>
+    <title>Projectile Motion with Drag &#8212; Introduction to Mathematical Modelling</title>
   
   
   
@@ -63,11 +63,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'deterministic/heat/radiation';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'deterministic/motion/projectile';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Global Energy Balance" href="climate.html" />
-    <link rel="prev" title="Thermal Conduction" href="conduction.html" />
+    <link rel="next" title="Planetary Orbits" href="orbits.html" />
+    <link rel="prev" title="Simple Pendulum" href="simple-pendulum.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -158,21 +158,21 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../nondimensionalization.html">Nondimensionalization</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../motion/index.html">Objects in Motion</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../motion/laws-of-motion.html">Laws of Motion and Forces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../motion/mass-spring-2d.html">2D Mass Spring System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../motion/simple-pendulum.html">Simple Pendulum</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../motion/projectile.html">Projectile Motion with Drag</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../motion/orbits.html">Planetary Orbits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../motion/eulers-3-body.html">Euler’s 3-Body Problem</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Objects in Motion</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="laws-of-motion.html">Laws of Motion and Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mass-spring-2d.html">2D Mass Spring System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simple-pendulum.html">Simple Pendulum</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Projectile Motion with Drag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="orbits.html">Planetary Orbits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eulers-3-body.html">Euler’s 3-Body Problem</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../mass-balance.html">Mass Balance</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Heat Transfer</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="balance.html">Energy Balance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="conduction.html">Thermal Conduction</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Thermal Radiation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="climate.html">Global Energy Balance</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../heat/index.html">Heat Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../heat/balance.html">Energy Balance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heat/conduction.html">Thermal Conduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heat/radiation.html">Thermal Radiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heat/climate.html">Global Energy Balance</a></li>
 </ul>
 </li>
 </ul>
@@ -256,7 +256,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/deterministic/heat/radiation.ipynb&branch=main" target="_blank"
+      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/deterministic/motion/projectile.ipynb&branch=main" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onJupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -302,7 +302,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/deterministic/heat/radiation.ipynb" target="_blank"
+      <li><a href="../../_sources/deterministic/motion/projectile.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -384,7 +384,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Thermal Radiation</h1>
+    <h1>Projectile Motion with Drag</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -394,11 +394,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Thermal Radiation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-radiation">Solar Radiation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#albedo">Albedo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stefanboltzmann-law">Stefan–Boltzmann Law</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#greenhouse-effect">Greenhouse Effect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement">Problem Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-and-parameters">Variables and Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions-and-constraints">Assumptions and Constraints</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construction">Construction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">Analysis</a></li>
 </ul>
             </nav>
         </div>
@@ -410,70 +410,176 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="thermal-radiation">
-<h1>Thermal Radiation<a class="headerlink" href="#thermal-radiation" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="projectile-motion-with-drag">
+<h1>Projectile Motion with Drag<a class="headerlink" href="#projectile-motion-with-drag" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">spi</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
-<section id="id1">
-<h2>Thermal Radiation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
-<p><strong>Thermal radiation</strong> is heat emitted as electromagnetic waves. The heat that we feel from the Sun is thermal radiation and in fact all matter (with temperature greater than 0K) emits thermal radiation. Different kinds of matter emit thermal radiation at different frequencies (or wavelengths) and higher frequency (shorter wavelengths) corresponds to higher energy. Thermal radiation is visible when the radiation is emitted with wavelengths 380 to 750 nanometers (or frequencies 400 to 790 THz). <a class="reference external" href="https://en.wikipedia.org/wiki/Thermography">Thermal imaging</a> allows us to “see” heat emitted by all matter.</p>
+<section id="problem-statement">
+<h2>Problem Statement<a class="headerlink" href="#problem-statement" title="Permalink to this heading">#</a></h2>
+<p>Construct a mathematical model of an object shot into the air and subject to the forces of drag and gravity.</p>
 </section>
-<section id="solar-radiation">
-<h2>Solar Radiation<a class="headerlink" href="#solar-radiation" title="Permalink to this heading">#</a></h2>
-<p>The <strong>solar constant</strong>  <span class="math notranslate nohighlight">\(S_0\)</span> is the thermal radiation emitted by the Sun measured per unit area per unit time at a distance equal to the distance from the Earth to the Sun. The solar constant is approximately</p>
-<div class="math notranslate nohighlight">
-\[
-S_0 = 1368 \ \text{W/m}^2
-\]</div>
-<p>In other words, <span class="math notranslate nohighlight">\(S_0\)</span> is the total solar radiation per unit area measured just outside the Earth’s atmosphere.</p>
-<p>Viewed from the Sun, the Earth is a flat disc with area <span class="math notranslate nohighlight">\(\pi R^2\)</span> (where <span class="math notranslate nohighlight">\(R\)</span> is the radius of the Earth) therefore the total energy flux arriving from the Sun at the outer edge of the Earth’s atmosphere is</p>
-<div class="math notranslate nohighlight">
-\[
-\pi R^2 S_0
-\]</div>
+<section id="variables-and-parameters">
+<h2>Variables and Parameters<a class="headerlink" href="#variables-and-parameters" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Description</p></th>
+<th class="head text-center"><p>Symbol</p></th>
+<th class="head text-center"><p>Dimensions</p></th>
+<th class="head text-center"><p>Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>position of projectile in <span class="math notranslate nohighlight">\(x\)</span>-direction</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x\)</span></p></td>
+<td class="text-center"><p>L</p></td>
+<td class="text-center"><p>dependent variable</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>position of projectile in <span class="math notranslate nohighlight">\(y\)</span>-direction</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(y\)</span></p></td>
+<td class="text-center"><p>L</p></td>
+<td class="text-center"><p>dependent variable</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>time</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-center"><p>T</p></td>
+<td class="text-center"><p>independent variable</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>mass of the projectile</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(m\)</span></p></td>
+<td class="text-center"><p>M</p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>drag coefficient</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-center"><p>MT<sup>-1</sup></p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>constant of gravity</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(g\)</span></p></td>
+<td class="text-center"><p>LT<sup>-2</sup></p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>initial velocity</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(v_0\)</span></p></td>
+<td class="text-center"><p>LT<sup>-1</sup></p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>initial angle of velocity</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\theta\)</span></p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="albedo">
-<h2>Albedo<a class="headerlink" href="#albedo" title="Permalink to this heading">#</a></h2>
-<p>Not all the thermal radiation from the Sun is absorbed by the Earth. The <strong>albedo</strong> <span class="math notranslate nohighlight">\(\alpha\)</span> is a dimensionless parameter which measures the fraction of the Sun’s radiation reflected by the Earth. The total energy flux from the Sun absorbed by the Earth is</p>
-<div class="math notranslate nohighlight">
-\[
-(1 - \alpha) \pi R^2 S_0
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(0 &lt; \alpha &lt; 1\)</span>.</p>
+<section id="assumptions-and-constraints">
+<h2>Assumptions and Constraints<a class="headerlink" href="#assumptions-and-constraints" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>projectile moves in <span class="math notranslate nohighlight">\(xy\)</span>-plane only</p></li>
+<li><p>initial position is at the origin <span class="math notranslate nohighlight">\((0,0)\)</span></p></li>
+</ul>
 </section>
-<section id="stefanboltzmann-law">
-<h2>Stefan–Boltzmann Law<a class="headerlink" href="#stefanboltzmann-law" title="Permalink to this heading">#</a></h2>
-<p>A <strong>black body</strong> is an idealized physical body that emits and absorbs thermal radiation at all frequencies.</p>
-<p>The <strong>Stefan–Boltzmann law</strong> states that the total energy <span class="math notranslate nohighlight">\(Q\)</span> radiated by a black body per unit surface area per unit time is directly proportional to <span class="math notranslate nohighlight">\(T^4\)</span>:</p>
+<section id="construction">
+<h2>Construction<a class="headerlink" href="#construction" title="Permalink to this heading">#</a></h2>
+<p>The force of drag is proportional to velocity and acts in the direction oppposite the velocity</p>
 <div class="math notranslate nohighlight">
 \[
-Q = \sigma T^4
+\mathbf{F}_d = -c \| \mathbf{x}'(t) \| \frac{\mathbf{x}'(t)}{\| \mathbf{x}'(t) \|} = -c\left( x',y' \right)
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\sigma = 5.670374419 \times 10^{-8}\)</span> W m<sup>-2</sup> K<sup>-4</sup> is the Stefan-Boltzmann constant.</p>
-<p>If we assume that the Earth is a black body with homogeneous temperature <span class="math notranslate nohighlight">\(T\)</span> then the total thermal radiation emitted by the Earth is</p>
+<p>The force of gravity acts in the veritcal direction</p>
 <div class="math notranslate nohighlight">
 \[
-4 \pi R^2 \sigma T^4
+\mathbf{F}_g = (0,-mg)
 \]</div>
+<p>Apply Newton’s second law to find the equations</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+m x'' &amp;= - cx' \\
+m y'' &amp;= - mg - cy' \\
+x(0) &amp;= y(0) = 0 \\
+x'(0) &amp;= v_0 \cos \theta \\
+y'(0) &amp;= v_0 \sin \theta
+\end{align*}
+\end{split}\]</div>
+<p>Apply the nondimensionalization procedure. Let <span class="math notranslate nohighlight">\(t = [t]t^*\)</span>, <span class="math notranslate nohighlight">\(x = [x]x^*\)</span> and <span class="math notranslate nohighlight">\(y = [y]y^*\)</span> and make the subsitution</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{m[x]}{[t]^2} \frac{d^2x^*}{dt^{*2}} &amp;= -\frac{c[x]}{[t]} \frac{dx^*}{dt^*} \\
+\frac{m[y]}{[t]^2} \frac{d^2y^*}{dt^{*2}} &amp;= -mg - \frac{c[y]}{[t]} \frac{dy^*}{dt^*} \\
+x^*(0) &amp;= y^*(0) = 0 \\
+\frac{[x]}{[t]} \frac{dx^*}{dt^*}(0) &amp;= v_0 \cos \theta \\
+\frac{[y]}{[t]} \frac{dy^*}{dt^*}(0) &amp;= v_0 \sin \theta
+\end{align*}
+\end{split}\]</div>
+<p>Divide by second derivative term and simplify</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{d^2x^*}{dt^{*2}} &amp;= -\frac{c[t]}{m} \frac{dx^*}{dt^*} \\
+\frac{d^2y^*}{dt^{*2}} &amp;= -\frac{g[t]^2}{[y]} - \frac{c[t]}{m} \frac{dy^*}{dt^*} \\
+x^*(0) &amp;= y^*(0) = 0 \\
+\frac{dx^*}{dt^*}(0) &amp;= v_0 \frac{[t]}{[x]} \cos \theta \\
+\frac{dy^*}{dt^*}(0) &amp;= v_0 \frac{[t]}{[y]} \sin \theta
+\end{align*}
+\end{split}\]</div>
+<p>Choose <span class="math notranslate nohighlight">\([t] = \frac{m}{c}\)</span> and <span class="math notranslate nohighlight">\([x] = [y] = \frac{gm^2}{c^2}\)</span> and write</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{d^2x^*}{dt^{*2}} &amp;= -\frac{dx^*}{dt^*} \\
+\frac{d^2y^*}{dt^{*2}} &amp;= -1 - \frac{dy^*}{dt^*} \\
+x^*(0) &amp;= y^*(0) = 0 \\
+\frac{dx^*}{dt^*}(0) &amp;= v^*_0 \cos \theta \\
+\frac{dy^*}{dt^*}(0) &amp;= v^*_0 \sin \theta
+\end{align*}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(v_0^* = \frac{v_0c}{gm}\)</span>. These equations are independent of each other and can be solved analytically. However, we will approximate solutions using SciPy using the first order system with <span class="math notranslate nohighlight">\(u_0 = x^*\)</span>, <span class="math notranslate nohighlight">\(u_1 = \frac{dx^*}{dt^*}\)</span>, <span class="math notranslate nohighlight">\(u_2 = y^*\)</span>, <span class="math notranslate nohighlight">\(u_3 = \frac{dy^*}{dt^*}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{du_0}{dt^*} &amp;= u_1 \\
+\frac{du_1}{dt^*} &amp;= -u_1 \\
+\frac{du_2}{dt^*} &amp;= u_3 \\
+\frac{du_3}{dt^*} &amp;= - 1 - u_3 \\
+u_0(0) &amp;= u_2(0) = 0 \\
+u_1(0) &amp;= v^*_0 \cos \theta \\
+u_3(0) &amp;= v^*_0 \sin \theta
+\end{align*}
+\end{split}\]</div>
 </section>
-<section id="greenhouse-effect">
-<h2>Greenhouse Effect<a class="headerlink" href="#greenhouse-effect" title="Permalink to this heading">#</a></h2>
-<p>The chemical composition of the Earth’s atmosphere changes how much radiation is emitted by the Earth into outer space. Earth emits thermal radiation at lower frequencies (longer wavelengths) compared to solar radiation. Gases in the atmosphere absorb longwave radiation from the Earth but not shortwave radiation from the Sun. This is known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Greenhouse_effect">greehouse effect</a>. To model the greenhouse effect, introduce a parameter <span class="math notranslate nohighlight">\(\varepsilon\)</span> which corresponds to the fraction of radiation emitted by the Earth into outer space (and <span class="math notranslate nohighlight">\(1-\varepsilon\)</span> is the fraction absorbed by the atmosphere).</p>
-<p>If we assume that the Earth and atmosphere together is a black body with homogeneous temperature <span class="math notranslate nohighlight">\(T\)</span> then the total thermal radiation emitted by the Earth into outer space is</p>
-<div class="math notranslate nohighlight">
-\[
-4 \pi R^2 \sigma \varepsilon T^4
-\]</div>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>Check out <a class="reference external" href="https://epubs.siam.org/doi/10.1137/1.9781611972610">Mathematics and Climate &gt; Chapter 2: Earth’s Energy Budget</a> for more about climate models.</p>
+<section id="analysis">
+<h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+    <span class="n">dudt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">dudt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dudt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dudt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">dudt</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">dudt</span>
+
+<span class="n">v0</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">6</span>
+<span class="n">u0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">v0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span><span class="mi">0</span><span class="p">,</span><span class="n">v0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">u0</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">u</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d56605b120d8a41963b3de40a6fcc500b70428c83a03f1c5349c89bb7ad162bc.png" src="../../_images/d56605b120d8a41963b3de40a6fcc500b70428c83a03f1c5349c89bb7ad162bc.png" />
+</div>
 </div>
 </section>
 </section>
@@ -491,7 +597,7 @@ Q = \sigma T^4
         },
         kernelOptions: {
             name: "python3",
-            path: "./deterministic/heat"
+            path: "./deterministic/motion"
         },
         predefinedOutput: true
     }
@@ -510,20 +616,20 @@ Q = \sigma T^4
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="conduction.html"
+       href="simple-pendulum.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Thermal Conduction</p>
+        <p class="prev-next-title">Simple Pendulum</p>
       </div>
     </a>
     <a class="right-next"
-       href="climate.html"
+       href="orbits.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Global Energy Balance</p>
+        <p class="prev-next-title">Planetary Orbits</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -545,11 +651,11 @@ Q = \sigma T^4
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Thermal Radiation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-radiation">Solar Radiation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#albedo">Albedo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stefanboltzmann-law">Stefan–Boltzmann Law</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#greenhouse-effect">Greenhouse Effect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement">Problem Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-and-parameters">Variables and Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions-and-constraints">Assumptions and Constraints</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construction">Construction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">Analysis</a></li>
 </ul>
   </nav></div>
 

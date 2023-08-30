@@ -61,11 +61,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'process/process';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Introduction" href="../deterministic/introduction.html" />
-    <link rel="prev" title="Introduction to Mathematical Modelling" href="../README.html" />
+    <link rel="prev" title="Overview" href="overview.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -144,6 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelling Process</span></p>
 <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelling Process</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
@@ -159,6 +162,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/laws-of-motion.html">Laws of Motion and Forces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/mass-spring-2d.html">2D Mass Spring System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/simple-pendulum.html">Simple Pendulum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/projectile.html">Projectile Motion with Drag</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/orbits.html">Planetary Orbits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/eulers-3-body.html">Euler’s 3-Body Problem</a></li>
 </ul>
@@ -195,7 +199,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../appendices/animations.html">Matplotlib Animations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/animations.html">Animations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3d-plotting.html">3D Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/graphics.html">Mathematical Graphics</a></li>
 </ul>
 
     </div>
@@ -239,6 +245,37 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="article-header-buttons">
 
 
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/process/process.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
 <a href="https://github.com/UBCMath/MATH360" target="_blank"
    class="btn btn-sm btn-source-repository-button"
    title="Source repository"
@@ -265,7 +302,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/process/process.md" target="_blank"
+      <li><a href="../_sources/process/process.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -275,7 +312,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -334,7 +371,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -350,6 +389,30 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-in-the-process">Steps in the Process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-the-problem">Identify the Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-and-parameters">Variables and Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions-and-constraints">Assumptions and Constraints</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-solutions">Build Solutions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-and-assess">Analyze and Assess</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterate">Iterate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#report-results">Report Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2a-define-variables-and-parameters">Step 2a: Define Variables and Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2b-identify-assumptions-and-constraints">Step 2b: Identify Assumptions and Constraints</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-do-the-math">Step 3: Do the Math</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-analyze-and-assess-the-solution">Step 4: Analyze and Assess the Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-iterate">Step 5: Iterate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-implement-the-model-and-report-results">Step 6: Implement the Model and Report Results</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -361,7 +424,210 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="modelling-process">
 <h1>Modelling Process<a class="headerlink" href="#modelling-process" title="Permalink to this heading">#</a></h1>
-<p><em>Under construction</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="steps-in-the-process">
+<h2>Steps in the Process<a class="headerlink" href="#steps-in-the-process" title="Permalink to this heading">#</a></h2>
+<p>The math modelling process consists of 6 main steps:</p>
+<ol class="arabic simple">
+<li><p>Identify the problem</p></li>
+<li><p>Define variables and parameters</p></li>
+<li><p>Make assumptions and identify constraints</p></li>
+<li><p>Build solutions</p></li>
+<li><p>Analyze and assess the model</p></li>
+<li><p>Report results</p></li>
+</ol>
+</section>
+<section id="identify-the-problem">
+<h2>Identify the Problem<a class="headerlink" href="#identify-the-problem" title="Permalink to this heading">#</a></h2>
+<p>Modelling problems are often open-ended in the sense that there are many different solutions, different levels of complexity, different tools that can ne applied and it’s up to us to decide how to proceed. It’s a challenge even to know where to start! To be able to begin the modelling process, we need to refine the problem to be more specific. This often takes the form of a specific research question.</p>
+<p>For example, it is too broad to say “We want to model a lithium ion battery”. It is not clear where to start or what the goal is. A more specific question we could model is: “What is the optimal form of the relationship that describes electrode kinetics?”.</p>
+<p>And sometimes the question is also too broad: “How does a sensor behave when it is placed in an electrolyte?”. Here, it is not clear exactly what we would be modelling or trying to taking into account.  A better problem statement is “What are the effects on capacitance in a sensor if the dielectric constant of the adjacent electrolyte depends on the ion concentration?”.</p>
+</section>
+<section id="variables-and-parameters">
+<h2>Variables and Parameters<a class="headerlink" href="#variables-and-parameters" title="Permalink to this heading">#</a></h2>
+<p>Real-world phenonema is very difficult to model because there are numerous variables and factors that are not controlled. We often cannot account for all of the components of the problem, and so we need to make choices about what is appropriate to include in the model.</p>
+<p>For variables, these are often related to the problem statement.  In the case of the sensor described in 1, the variables are capacitance, voltage, (electric) potential, and time. (Here, there are a host of parameter values as well).</p>
+</section>
+<section id="assumptions-and-constraints">
+<h2>Assumptions and Constraints<a class="headerlink" href="#assumptions-and-constraints" title="Permalink to this heading">#</a></h2>
+<p>Assumptions help us reduce the complexity of the model, and can help inform what variables we need to include.  There are often assumptions in each research field which are typical to make.</p>
+<p>For both examples in 1 above, one assumption that is made is that the materials used to construct the battery and the sensor are homogeneous.  This means that they have a uniform consistency with no defects.  In practice, this is certainly not true, as defects can easily make their way into the manufacturing process.</p>
+<p>One specific example: Sensors often contain an oxide layer (usually silicon dioxide, SiO<span class="math notranslate nohighlight">\(_2\)</span>, and more recently tantalum pentoxide, Ta<span class="math notranslate nohighlight">\(_2\)</span>O<span class="math notranslate nohighlight">\(_5\)</span>) to help regulate the current through the sensor.  Creating an oxide if a very poorly controlled process and it is very common to have other molecules in the oxide layer that are not e.g., silicon or oxygen.</p>
+<p>Here, we also want to identify key relationships between variables.  These usually take the form of physical laws and/or governing equations</p>
+<p>For example, capacitance is defined to be the derivative of the charge density with respect to the potential <span class="math notranslate nohighlight">\(C = \frac{d \sigma}{d \phi}.\)</span>
+- We also have well-known results from Electricity and Magnetism, Thermodynamics, and Particle Physics that can be leveraged here; namely, Gauss’ Law, Poisson’s Equation, the Boltzmann Distibution, and the Poisson-Boltzmann Equation.
+- Notice here the different areas we are pulling relationships from!</p>
+<p>When defining your variables, it can also be helpful to determine the input variables and the output variables.
+- E.g., We can define voltage and time as inputs, and Capacitance as an output.</p>
+</section>
+<section id="build-solutions">
+<h2>Build Solutions<a class="headerlink" href="#build-solutions" title="Permalink to this heading">#</a></h2>
+<p>Once we have combined our problem, assumptions, variables, and relationships together, we will reach a point where we can leverage our math tools to find a solution to the problem.</p>
+</section>
+<section id="analyze-and-assess">
+<h2>Analyze and Assess<a class="headerlink" href="#analyze-and-assess" title="Permalink to this heading">#</a></h2>
+<p>Just because we can find a solution, does NOT mean that this is a meaningful result.  We need to interpret the solution to see if it makes sense given the context of the problem. We will want to ask ourselves:</p>
+<ul class="simple">
+<li><p>Does the solution make sense in the context of the problem?</p></li>
+<li><p>Does the soltuion answer our problem statement?</p></li>
+<li><p>Are the results we obtained reasonable and practical?</p></li>
+</ul>
+<p>If it does not make sense, then we need to critically analyze the process.  Perhaps there is an algebraic error in the solution, perhaps an input is incorrect, perhaps we made an incorrect assumption. Analyzing and assessing the solution can be a difficult and tedius process.</p>
+</section>
+<section id="iterate">
+<h2>Iterate<a class="headerlink" href="#iterate" title="Permalink to this heading">#</a></h2>
+<p>Often the first attempt at modelling and achieving a physically consistent solution is not a refined solution.  Iterating over the process allows us to clarify our process and (hopefully) improve the performance of the model.</p>
+</section>
+<section id="report-results">
+<h2>Report Results<a class="headerlink" href="#report-results" title="Permalink to this heading">#</a></h2>
+<p>The last step is to then share the results of our modelling efforts.  We need to construct a clear and concise report of the model and how we implemented the model in our work.  This report is how we share our findings with our research community and make contributions to the research area.</p>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h2>
+<p>Gas prices change on a nearly daily basis, and not every gas station offers the same price for a litre of gas. The gas station selling the cheapest gas may be across town from where you are driving. Is it worth the drive across town for less expensive gas? Create a mathematical model that can be used to help understand under what conditions it is worth the drive.</p>
+<p><strong>Step 1: Identify the Problem</strong></p>
+<p>This may feel like we have been given a very broad problem.</p>
+<p>We first want to take the context here and turn it into a problem we can solve. We want to determine if it is more advantageous to buy gas at a station already on our route or should we go to a different gas station that is out of our way but has a cheaper price.</p>
+<p>Problem: Which is the cheaper cost? Buying gas at the station on our route or going out of our way to a station that has a cheaper price.</p>
+<p><strong>Step 2: Make Assumptions and Identify Variables</strong></p>
+<section id="step-2a-define-variables-and-parameters">
+<h3>Step 2a: Define Variables and Parameters<a class="headerlink" href="#step-2a-define-variables-and-parameters" title="Permalink to this heading">#</a></h3>
+<p>Variables:</p>
+<ul class="simple">
+<li><p>Let <span class="math notranslate nohighlight">\(k\)</span> be the number of kilometres between the convenient gas station (“Station A”) and the out-of-the-way station (“Station B”)</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(P_A\)</span> be the price of gas at Station A in dollars per litre</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(P_B\)</span> be the price of gas at Station B in dollars per litre</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(S\)</span> be the difference in cost between buying gas at Station B vs Station A in dollars</p>
+<ul>
+<li><p>here we are NOT including travel costs in <span class="math notranslate nohighlight">\(S\)</span></p></li>
+</ul>
+</li>
+<li><p>Let <span class="math notranslate nohighlight">\(T\)</span> be the cost to travel to and from Station B from Station A (i.e., a round trip from Station A to Station B)</p></li>
+</ul>
+<p>Fixed Variables:</p>
+<ul class="simple">
+<li><p>Let <span class="math notranslate nohighlight">\(n\)</span> be the number of litres of gas we buy</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(f_e\)</span> be the fuel economy of our vehicle in kilometers per litre</p></li>
+</ul>
+<p>Inputs: <span class="math notranslate nohighlight">\(k, P_A, P_B, n, f_e\)</span></p>
+<p>Outputs: <span class="math notranslate nohighlight">\(S, T\)</span></p>
+</section>
+<section id="step-2b-identify-assumptions-and-constraints">
+<h3>Step 2b: Identify Assumptions and Constraints<a class="headerlink" href="#step-2b-identify-assumptions-and-constraints" title="Permalink to this heading">#</a></h3>
+<p>Assumptions:</p>
+<ul class="simple">
+<li><p>There is a station out of our way that has cheaper gas</p></li>
+<li><p>We will buy a fixed amount of gas (is this realistic?)</p></li>
+<li><p>The car has a constant fuel economy</p></li>
+</ul>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>We will need to consider the added “cost” of the distance between the convenient gas station and the out-of-the-way station.</p></li>
+</ul>
+<p>Relationships:
+\begin{align*}
+S &amp; = \left(P_A - P_B\right)n \
+T &amp; = \dfrac{2kP_B}{f_e}
+\end{align*}</p>
+<p>If <span class="math notranslate nohighlight">\(S&gt;T\)</span>, then it is advantageous to go to Station B.  If <span class="math notranslate nohighlight">\(S\leq T\)</span>, then we should just go to Station A.</p>
+</section>
+<section id="step-3-do-the-math">
+<h3>Step 3: Do the Math<a class="headerlink" href="#step-3-do-the-math" title="Permalink to this heading">#</a></h3>
+<p>We want to find the values for which <span class="math notranslate nohighlight">\(S=T\)</span> or <span class="math notranslate nohighlight">\(\left(P_A - P_B\right)n=\dfrac{2kP_B}{f_e}.\)</span></p>
+<p>In our model, we will have known values for <span class="math notranslate nohighlight">\(P_B\)</span>, <span class="math notranslate nohighlight">\(P_A\)</span>, <span class="math notranslate nohighlight">\(n\)</span>.  If we rearrange to find the distance <span class="math notranslate nohighlight">\(k\)</span> that makes <span class="math notranslate nohighlight">\(S=T\)</span>, we can then compare this with the actual distance between Station A and Station B to determine which scenario is optimal.  So we want to find <span class="math notranslate nohighlight">\(k = \dfrac{f_e\left(P_A - P_B\right)n}{2P_B}\)</span></p>
+<p>Some values:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P_B = \$ 1.92\)</span> per litre</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_A = \$ 2.01\)</span> per litre</p></li>
+<li><p><span class="math notranslate nohighlight">\(n = 40\)</span> litres</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_e = 5\)</span> litres per <span class="math notranslate nohighlight">\(100\)</span> km</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P_B</span> <span class="o">=</span> <span class="mf">1.92</span>
+<span class="n">P_A</span> <span class="o">=</span> <span class="mf">2.01</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">f_e</span> <span class="o">=</span> <span class="mi">100</span><span class="o">/</span><span class="mi">5</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="n">f_e</span> <span class="o">*</span> <span class="p">((</span><span class="n">P_A</span><span class="o">-</span><span class="n">P_B</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">P_B</span><span class="p">)</span> 
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Break even distance between Station A and B is&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="s2">&quot;km&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Break even distance between Station A and B is 18.74999999999997 km
+</pre></div>
+</div>
+</div>
+</div>
+<p>Under these conditions, if Station B is less than 18.75km away, then it is worth the trip, but if it is farther than 18.75km, then we should buy gas at Station A.</p>
+</section>
+<section id="step-4-analyze-and-assess-the-solution">
+<h3>Step 4: Analyze and Assess the Solution<a class="headerlink" href="#step-4-analyze-and-assess-the-solution" title="Permalink to this heading">#</a></h3>
+<p>Does this model do a good job?</p>
+<p>Some diagnostic questions:</p>
+<ul class="simple">
+<li><p>Does the sign of the answer make sense?</p></li>
+<li><p>Does the magnitude of the answer seem reasonable?</p></li>
+<li><p>Does the model change appropriately if we increase/decrease the input variables?</p></li>
+<li><p>Are we correctly accounting for the distance between the Stations?</p></li>
+</ul>
+<p>Other questions to consider:</p>
+<ul class="simple">
+<li><p>Are the assumptions reasonable and defensible?</p></li>
+<li><p>Are the assumptions relevant?</p></li>
+<li><p>Is the model explained by our assumptions or do we need to enforce more assumptions?</p></li>
+<li><p>Are our assumptions correct?</p></li>
+<li><p>Are our results scenario dependent? (i.e., do our results change a lot or a little when we make a small change in the scenario?)</p></li>
+</ul>
+</section>
+<section id="step-5-iterate">
+<h3>Step 5: Iterate<a class="headerlink" href="#step-5-iterate" title="Permalink to this heading">#</a></h3>
+<p>This step is often tied to Step 4, where we can make improvements to the model based on our critical analysis.</p>
+<p>Suppose in 4, we find out that we are incorrectly calculating the distance between Station A and Station B.  We do not want the total distance between Station A and Station B, but rather the distance “out-of-the-way” or in other words, how far off our planned route we need to deviate to go to Station B.</p>
+<p>Let’s introduce a new variable <span class="math notranslate nohighlight">\(d_s\)</span>, which will account for the shared distance between Station A and Station B. This is the portion of the distance we will already travel (in the direction of Station B from Station A) on our planned route.</p>
+<p>Suppose <span class="math notranslate nohighlight">\(d_s = 5.7\)</span>km for our scenario.</p>
+<p>Then the distance we want to find is <span class="math notranslate nohighlight">\(d_t = k-d_s\)</span>, where <span class="math notranslate nohighlight">\(d_t\)</span> is the total distance out-of-our-way.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d_s</span> <span class="o">=</span> <span class="mf">5.7</span> 
+
+<span class="n">d_t</span> <span class="o">=</span> <span class="n">k</span><span class="o">-</span><span class="n">d_s</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Break even distance between Station A and B is&quot;</span><span class="p">,</span> <span class="n">d_t</span><span class="p">,</span> <span class="s2">&quot;km&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Break even distance between Station A and B is 13.049999999999972 km
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our revised condition is 13 km!</p>
+</section>
+<section id="step-6-implement-the-model-and-report-results">
+<h3>Step 6: Implement the Model and Report Results<a class="headerlink" href="#step-6-implement-the-model-and-report-results" title="Permalink to this heading">#</a></h3>
+<p>Now that we have completed the first 5 components of the process, we now want to prepare a report to share our results.  The report should contain a detailed description of:</p>
+<ul class="simple">
+<li><p>the problem</p></li>
+<li><p>the assumptions</p></li>
+<li><p>the variables</p></li>
+<li><p>the values used in calculations</p></li>
+<li><p>any relevant plots/diagrams</p></li>
+<li><p>any conclusions drawn from the analysis</p></li>
+</ul>
+<p>Remark: Here, we may also want to consider the driver’s preference.  For some drivers, they will not want to drive significantly out of their way to save a minimal amount of money.  Some will be okay with paying more for the convenience factor.  A more complex model may want to look at how this aspect influence the model.</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -396,12 +662,12 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../README.html"
+       href="overview.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Introduction to Mathematical Modelling</p>
+        <p class="prev-next-title">Overview</p>
       </div>
     </a>
     <a class="right-next"
@@ -422,6 +688,36 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-in-the-process">Steps in the Process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-the-problem">Identify the Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-and-parameters">Variables and Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions-and-constraints">Assumptions and Constraints</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-solutions">Build Solutions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-and-assess">Analyze and Assess</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterate">Iterate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#report-results">Report Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2a-define-variables-and-parameters">Step 2a: Define Variables and Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2b-identify-assumptions-and-constraints">Step 2b: Identify Assumptions and Constraints</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-do-the-math">Step 3: Do the Math</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-analyze-and-assess-the-solution">Step 4: Analyze and Assess the Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-iterate">Step 5: Iterate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-implement-the-model-and-report-results">Step 6: Implement the Model and Report Results</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

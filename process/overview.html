@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Probability Distributions &#8212; Introduction to Mathematical Modelling</title>
+    <title>Overview &#8212; Introduction to Mathematical Modelling</title>
   
   
   
@@ -61,11 +61,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'stochastic/distributions';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'process/overview';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Introduction" href="../data-driven/introduction.html" />
-    <link rel="prev" title="Global Energy Balance" href="../deterministic/heat/climate.html" />
+    <link rel="next" title="Modelling Process" href="process.html" />
+    <link rel="prev" title="Introduction to Mathematical Modelling" href="../README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -143,9 +145,9 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelling Process</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../process/overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../process/process.html">Modelling Process</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="process.html">Modelling Process</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
 <ul class="nav bd-sidenav">
@@ -175,8 +177,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Stochastic Models</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Probability Distributions</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../stochastic/distributions.html">Probability Distributions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data-Driven Models</span></p>
 <ul class="nav bd-sidenav">
@@ -254,7 +256,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/stochastic/distributions.ipynb&branch=main" target="_blank"
+      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/process/overview.ipynb&branch=main" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onJupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -300,7 +302,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/stochastic/distributions.ipynb" target="_blank"
+      <li><a href="../_sources/process/overview.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -369,7 +371,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -380,11 +384,27 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Probability Distributions</h1>
+    <h1>Overview</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-mathematical-model">What is a Mathematical Model?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-models">Types of Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#components-of-a-model">Components of a Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-mixing">Example: Mixing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#things-to-consider">Things to Consider</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-modelling">Mathematical Modelling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-modelling-process">Mathematical Modelling Process</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -394,9 +414,160 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="probability-distributions">
-<h1>Probability Distributions<a class="headerlink" href="#probability-distributions" title="Permalink to this heading">#</a></h1>
-<p><em>Under construction</em></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h1>
+<section id="what-is-a-mathematical-model">
+<h2>What is a Mathematical Model?<a class="headerlink" href="#what-is-a-mathematical-model" title="Permalink to this heading">#</a></h2>
+<p>A <strong>mathematical model</strong> is a mathematical representation of a system used to make predictions and provide insight about a real-world scenario. <strong>Mathematical modelling</strong> is the process of constructing, simulating and evaluating a mathematical model.</p>
+<p>A mathematical model could be take many different forms such as:</p>
+<ul class="simple">
+<li><p>an explicit <strong>function</strong> <span class="math notranslate nohighlight">\(y = f(x)\)</span> which computes an output <span class="math notranslate nohighlight">\(y\)</span> from an input variable <span class="math notranslate nohighlight">\(x\)</span></p></li>
+<li><p>a set of <strong>differential equations</strong></p></li>
+<li><p>a <strong>probability distribution</strong></p></li>
+<li><p>a function <span class="math notranslate nohighlight">\(y = f(x; \theta)\)</span> with <strong>parameters</strong> <span class="math notranslate nohighlight">\(\theta\)</span> computed to fit come observed data</p></li>
+</ul>
+<p>Why do we construct mathematical models?</p>
+<ul class="simple">
+<li><p>Observation/Insight/Introspection</p></li>
+<li><p>Simulation</p></li>
+<li><p>Prediction</p></li>
+</ul>
+<p>Modelling is a tool that is leveraged by many research fields to aid in observation analysis and make predictions about future scenarios.  It can often be costly to conduct experiments under multiple different settings, so leveraging a mathematical modelling is a way to try to predict what would happen under a given set-up and to identify which experimental set-ups would be a higher priority to pursue.</p>
+<p>Models can have a wide range of complexity! More complex does not necessarily mean better – we can sometimes work with more simplistic models to achieve good results.  In many instances, we often start with models that do not have a lot of complexity included and “build the model up” until we arrive at a model that had a good balance of complexity and accounting for the observed phenonema.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Check out the following resources to get started with mathematical modelling:</p>
+<ul class="simple">
+<li><p><em>Chapter 1: What is Mathematical Modelling?</em> in <a class="reference external" href="https://www.sciencedirect.com/book/9780122265518/principles-of-mathematical-modeling">Principles of Mathematical Modeling</a> by Dym</p></li>
+<li><p><a class="reference external" href="https://m3challenge.siam.org/resources/modeling-handbook">Math Modeling: Getting Started and Getting Solutions</a> by Bliss, Fowler and Galluzzo</p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=_1BFNNvg2ec&amp;list=PLf_ipOSbWC87nFTi6MaB4begv56yPKsOJ">What is Math Modeling?</a> by the Society for Industrial and Applied Mathematics (SIAM)</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Mathematical_model">Wikipedia: Mathematical Model</a></p></li>
+</ul>
+</div>
+</section>
+<section id="types-of-models">
+<h2>Types of Models<a class="headerlink" href="#types-of-models" title="Permalink to this heading">#</a></h2>
+<p><strong>Deterministic models</strong> predict future based on current information and do not include randomness. These kinds of models often take the from of systems of differential equations.</p>
+<p><strong>Stochastic models</strong> include randomness and are based on probability distributions.</p>
+<p><strong>Data-driven models</strong> look for patterns in observed data to predict the output of a system.</p>
+</section>
+<section id="components-of-a-model">
+<h2>Components of a Model<a class="headerlink" href="#components-of-a-model" title="Permalink to this heading">#</a></h2>
+<p>Mathematical models consist of a variety of components, and not all models contain the same pieces.  Some common building blocks of mathematical models are:</p>
+<ul class="simple">
+<li><p>variables</p>
+<ul>
+<li><p>quantities we either do not know the value of</p></li>
+</ul>
+</li>
+<li><p>constants</p>
+<ul>
+<li><p>quantities we know the value of (this may be measured from experiements or come from data)</p></li>
+</ul>
+</li>
+<li><p>calibration parameters</p>
+<ul>
+<li><p>quantities that we can use as “tuning” parameters where the value can be varied to help with model fitting</p></li>
+</ul>
+</li>
+<li><p>inputs</p>
+<ul>
+<li><p>quantities we put in to the model</p></li>
+</ul>
+</li>
+<li><p>outputs</p>
+<ul>
+<li><p>quantities we extract from the model</p></li>
+</ul>
+</li>
+<li><p>data</p>
+<ul>
+<li><p>information from observed scenarios</p></li>
+</ul>
+</li>
+<li><p>noise</p>
+<ul>
+<li><p>a measure of “error” which may come from inaccurate measurements, inaccurate modelling, numerical implementation, etc</p></li>
+</ul>
+</li>
+<li><p>random parameters</p>
+<ul>
+<li><p>a parameter that has “randomness”, meaning that it may take on different values in each iteration (we will talk more about this when we arrive at Stochastic Models)</p></li>
+</ul>
+</li>
+</ul>
+<p>These building blocks are typically tied to the observations we can make from the scenario we are interested in and what phenomena we would like to make predictions about.</p>
+</section>
+<section id="example-mixing">
+<h2>Example: Mixing<a class="headerlink" href="#example-mixing" title="Permalink to this heading">#</a></h2>
+<p>Let’s suppose we have a tank that contains <span class="math notranslate nohighlight">\(1500\)</span> L of water and <span class="math notranslate nohighlight">\(20\)</span>kg of salt.  Fresh water is being poured into the tank at a rate of <span class="math notranslate nohighlight">\(15\)</span>L/min and the solution drains at a rate of <span class="math notranslate nohighlight">\(10\)</span>L/min.   Assuming the tank stays perfectly mixed, we can model the rate of change of the mass of salt, <span class="math notranslate nohighlight">\(M\)</span>, through the differential equation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{dM}{dt} &amp; = (\textrm{rate in} ) - (\textrm{rate out})\\
+&amp; = 0 \cdot(15) - \frac{M}{1500+5t} \cdot (10) \\
+&amp; = 0 - \frac{M}{1500+5t} \cdot (10) \\
+&amp; = - \frac{10M}{1500+5t}.
+\end{align*}
+\end{split}\]</div>
+<p>In this example, we have:</p>
+<ul class="simple">
+<li><p>variables of <span class="math notranslate nohighlight">\(M\)</span> and <span class="math notranslate nohighlight">\(t\)</span></p></li>
+<li><p>constants of the volume of the tank, the rate of fresh water added, and the rate of solution draining</p></li>
+<li><p>inputs of the volume of the tank, the rate of fresh water added, and the rate of solution draining, as well as the time <span class="math notranslate nohighlight">\(t\)</span></p></li>
+<li><p>outputs of the mass of salt, as a function of the time.</p></li>
+</ul>
+</section>
+<section id="things-to-consider">
+<h2>Things to Consider<a class="headerlink" href="#things-to-consider" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Dimensions</p></li>
+</ol>
+<ul class="simple">
+<li><p>All models should be consistent with their dimensions.</p></li>
+<li><p>For example, if we are writing the sum of forces for a system, then all of the terms should have the same force units.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Complexity</p></li>
+</ol>
+<ul class="simple">
+<li><p>Determining what the focus of the model is drives the modelling process.</p></li>
+<li><p>What level detail for the model is tied closely to this.</p></li>
+<li><p>For example, if we are interested in modelling how a rocket is launched, we may not want (or need) to include the drag effects of each individual air molecule.</p></li>
+<li><p>This is sometimes refered to as abstraction.</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Scaling</p></li>
+</ol>
+<ul class="simple">
+<li><p>This typically ties in to complexity as well.</p></li>
+<li><p>Often modellers will talk about the micro scale and the macro scale.</p></li>
+<li><p>For example, we can consider the particle level to be a micro scale and the rocket as a whole as the macro scale.</p></li>
+<li><p>It is very difficult to couple both macro and micro scale effects together, as they often have very different magnitudes, timescales, etc.</p></li>
+</ul>
+<p>For example, if we look at our mixing problem above, we have:</p>
+<ol class="arabic simple">
+<li><p>Dimensions: the equation has units of kg/min, and if we look at both the left-hand and right-hand sides, the units do match.</p></li>
+<li><p>Compexity: we have a first order differential equation which can be solved by the methods of separation of variables. Since we are interested in only tracking the salt concentration and the model directly quantifies this through a conservation of mass relation, we have a good level of complexity.</p></li>
+<li><p>Scaling: we only have one time scale upon which our model equation is built upon.</p></li>
+</ol>
+<section id="mathematical-modelling">
+<h3>Mathematical Modelling<a class="headerlink" href="#mathematical-modelling" title="Permalink to this heading">#</a></h3>
+<p>In many real world contexts, distilling a context down in to something that we can model mathematically and then implementing the model can be challenging.  It can be helpful to have a process to guide us in how to work through a mathematical modelling problem.  We will be following the Mathematical Modelling Process outlined by SIAM.</p>
+</section>
+<section id="mathematical-modelling-process">
+<h3>Mathematical Modelling Process<a class="headerlink" href="#mathematical-modelling-process" title="Permalink to this heading">#</a></h3>
+<p>The math modelling process consists of 6 main components.  Today, we will focus on the first component:</p>
+<ol class="arabic simple">
+<li><p><strong>Identify the Problem</strong> Modelling problems are often open-ended.  To be able to begin the modelling process, we need to refine the problem to be more specific.  This often takes the form of a specific research question.</p>
+<ul class="simple">
+<li><p>E.g., it is too broad to say “We want to model a lithium ion battery”.  It is not clear where to start or what contextualization is needed for this.  A more specific question we could model is “What is the optimal form of the relationship that describes electrode kinetics?”.</p></li>
+<li><p>E.g., Sometimes the question is also too broad: “How does a sensor behave when it is placed in an electrolyte?”.  Here, it is not clear exactly what we would be modelling or trying to taking into account.  A better problem statement is “What are the effects on capacitance in a sensor if the dielectric constant of the adjacent electrolyte depends on the ion concentration?”.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -412,7 +583,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./stochastic"
+            path: "./process"
         },
         predefinedOutput: true
     }
@@ -431,20 +602,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../deterministic/heat/climate.html"
+       href="../README.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Global Energy Balance</p>
+        <p class="prev-next-title">Introduction to Mathematical Modelling</p>
       </div>
     </a>
     <a class="right-next"
-       href="../data-driven/introduction.html"
+       href="process.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introduction</p>
+        <p class="prev-next-title">Modelling Process</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -457,6 +628,28 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-mathematical-model">What is a Mathematical Model?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-models">Types of Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#components-of-a-model">Components of a Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-mixing">Example: Mixing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#things-to-consider">Things to Consider</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-modelling">Mathematical Modelling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-modelling-process">Mathematical Modelling Process</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
