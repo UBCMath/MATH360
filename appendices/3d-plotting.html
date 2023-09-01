@@ -64,8 +64,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'appendices/3d-plotting';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Mathematical Graphics" href="graphics.html" />
-    <link rel="prev" title="Animations" href="animations.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -144,19 +142,23 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelling Process</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../process/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../process/overview.html">What is a Mathematical Model?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../process/process.html">Modelling Process</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../deterministic/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deterministic/overview.html">Overview</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/differential/index.html">Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../deterministic/differential/equations.html">Scalar Equations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../deterministic/differential/systems.html">Systems of Equations</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../deterministic/nondimensionalization.html">Nondimensionalization</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/motion/index.html">Objects in Motion</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/nondimensionalization/index.html">Nondimensionalization</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/nondimensionalization/dimensions.html">Dimensions and Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/nondimensionalization/scaling.html">Scaling</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/motion/index.html">Objects in Motion</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/laws-of-motion.html">Laws of Motion and Forces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/mass-spring-2d.html">2D Mass Spring System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/simple-pendulum.html">Simple Pendulum</a></li>
@@ -165,8 +167,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/eulers-3-body.html">Euler’s 3-Body Problem</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../deterministic/mass-balance.html">Mass Balance</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/heat/index.html">Heat Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/mass/index.html">Mass Balance</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/mass/conservation.html">Conservation of Mass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/mass/action.html">Chemical Kinetics</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/heat/index.html">Heat Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../deterministic/heat/balance.html">Energy Balance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../deterministic/heat/conduction.html">Thermal Conduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../deterministic/heat/radiation.html">Thermal Radiation</a></li>
@@ -176,30 +182,25 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Stochastic Models</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../stochastic/overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../stochastic/distributions.html">Probability Distributions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data-Driven Models</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../data-driven/introduction.html">Introduction</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/linear-regression/index.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1"><a class="reference internal" href="../data-driven/overview.html">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/linear-regression/index.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../data-driven/linear-regression/linear.html">Linear Regression</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/logistic-regression/index.html">Logistic Regression</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/logistic-regression/index.html">Logistic Regression</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../data-driven/logistic-regression/logistic-function.html">Logistic Function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../data-driven/logistic-regression/cost-regularization.html">Cost and Regularization</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/numerical-methods/index.html">Numerical Methods</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/numerical-methods/index.html">Numerical Methods</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../data-driven/numerical-methods/gradient.html">Gradient Descent</a></li>
 </ul>
 </li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="animations.html">Animations</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">3D Plotting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="graphics.html">Mathematical Graphics</a></li>
 </ul>
 
     </div>
@@ -458,24 +459,6 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="animations.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Animations</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="graphics.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Mathematical Graphics</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div></div>
   
 </div>

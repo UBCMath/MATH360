@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Nondimensionalization &#8212; Introduction to Mathematical Modelling</title>
+    <title>Scaling &#8212; Introduction to Mathematical Modelling</title>
   
   
   
@@ -19,55 +19,55 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'deterministic/nondimensionalization';</script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Objects in Motion" href="motion/index.html" />
-    <link rel="prev" title="Systems of Equations" href="differential/systems.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'deterministic/nondimensionalization/scaling';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Objects in Motion" href="../motion/index.html" />
+    <link rel="prev" title="Dimensions and Units" href="dimensions.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -95,7 +95,7 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="../search.html"
+      action="../../search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -133,7 +133,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
   
 
-<a class="navbar-brand logo" href="../README.html">
+<a class="navbar-brand logo" href="../../README.html">
   
   
   
@@ -146,62 +146,65 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelling Process</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../process/overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../process/process.html">Modelling Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../process/overview.html">What is a Mathematical Model?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../process/process.html">Modelling Process</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="differential/index.html">Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="differential/equations.html">Scalar Equations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="differential/systems.html">Systems of Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../differential/index.html">Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../differential/equations.html">Scalar Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../differential/systems.html">Systems of Equations</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Nondimensionalization</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="motion/index.html">Objects in Motion</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="motion/laws-of-motion.html">Laws of Motion and Forces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="motion/mass-spring-2d.html">2D Mass Spring System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="motion/simple-pendulum.html">Simple Pendulum</a></li>
-<li class="toctree-l2"><a class="reference internal" href="motion/projectile.html">Projectile Motion with Drag</a></li>
-<li class="toctree-l2"><a class="reference internal" href="motion/orbits.html">Planetary Orbits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="motion/eulers-3-body.html">Euler’s 3-Body Problem</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Nondimensionalization</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dimensions.html">Dimensions and Units</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Scaling</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="mass-balance.html">Mass Balance</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="heat/index.html">Heat Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="heat/balance.html">Energy Balance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="heat/conduction.html">Thermal Conduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="heat/radiation.html">Thermal Radiation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="heat/climate.html">Global Energy Balance</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../motion/index.html">Objects in Motion</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../motion/laws-of-motion.html">Laws of Motion and Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../motion/mass-spring-2d.html">2D Mass Spring System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../motion/simple-pendulum.html">Simple Pendulum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../motion/projectile.html">Projectile Motion with Drag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../motion/orbits.html">Planetary Orbits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../motion/eulers-3-body.html">Euler’s 3-Body Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mass/index.html">Mass Balance</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mass/conservation.html">Conservation of Mass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mass/action.html">Chemical Kinetics</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../heat/index.html">Heat Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../heat/balance.html">Energy Balance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heat/conduction.html">Thermal Conduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heat/radiation.html">Thermal Radiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heat/climate.html">Global Energy Balance</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Stochastic Models</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../stochastic/distributions.html">Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stochastic/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stochastic/distributions.html">Probability Distributions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data-Driven Models</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../data-driven/introduction.html">Introduction</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/linear-regression/index.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../data-driven/linear-regression/linear.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-driven/overview.html">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../data-driven/linear-regression/index.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data-driven/linear-regression/linear.html">Linear Regression</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/logistic-regression/index.html">Logistic Regression</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../data-driven/logistic-regression/logistic-function.html">Logistic Function</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../data-driven/logistic-regression/cost-regularization.html">Cost and Regularization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../data-driven/logistic-regression/index.html">Logistic Regression</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data-driven/logistic-regression/logistic-function.html">Logistic Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data-driven/logistic-regression/cost-regularization.html">Cost and Regularization</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/numerical-methods/index.html">Numerical Methods</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../data-driven/numerical-methods/gradient.html">Gradient Descent</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../data-driven/numerical-methods/index.html">Numerical Methods</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data-driven/numerical-methods/gradient.html">Gradient Descent</a></li>
 </ul>
 </li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../appendices/animations.html">Animations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../appendices/3d-plotting.html">3D Plotting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../appendices/graphics.html">Mathematical Graphics</a></li>
 </ul>
 
     </div>
@@ -256,7 +259,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/deterministic/nondimensionalization.ipynb&branch=main" target="_blank"
+      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/deterministic/nondimensionalization/scaling.ipynb&branch=main" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onJupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -265,7 +268,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_jupyterhub.svg">
+    <img src="../../_static/images/logo_jupyterhub.svg">
   </span>
 <span class="btn__text-container">JupyterHub</span>
 </a>
@@ -302,7 +305,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/deterministic/nondimensionalization.ipynb" target="_blank"
+      <li><a href="../../_sources/deterministic/nondimensionalization/scaling.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -384,7 +387,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Nondimensionalization</h1>
+    <h1>Scaling</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -394,16 +397,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensions-and-units">Dimensions and Units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensional-homogeneity">Dimensional Homogeneity</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nondimensionalization-and-scaling">Nondimensionalization and Scaling</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-spring-equation">Mass Spring Equation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-equation">Logistic Equation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lotka-volterra-equations">Lotka-Volterra Equations</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-example">Simple Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nondimensionalization-procedure">Nondimensionalization Procedure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-derivatives">Scaling Derivatives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-spring-equation">Mass Spring Equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-equation">Logistic Equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lotka-volterra-equations">Lotka-Volterra Equations</a></li>
 </ul>
             </nav>
         </div>
@@ -415,8 +414,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="nondimensionalization">
-<h1>Nondimensionalization<a class="headerlink" href="#nondimensionalization" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="scaling">
+<h1>Scaling<a class="headerlink" href="#scaling" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -426,200 +425,8 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="learning-goals">
-<h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Identify dimensions and units of variables and parameters in a mathematical model</p></li>
-<li><p>Apply nondimensionalization process to a mathematical model</p></li>
-<li><p>Interpret dimensionless parameters in a nondimensionalized mathematical model</p></li>
-</ul>
-</section>
-<section id="dimensions-and-units">
-<h2>Dimensions and Units<a class="headerlink" href="#dimensions-and-units" title="Permalink to this heading">#</a></h2>
-<p>All physical quantities are expressed in terms of <strong>base quantities</strong> and <strong>standard international (SI) units</strong>:</p>
-<table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-center"><p>Base Quantity</p></th>
-<th class="head text-center"><p>Symbol</p></th>
-<th class="head text-center"><p>SI Unit</p></th>
-<th class="head text-center"><p>SI Unit Symbol</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-center"><p>time</p></td>
-<td class="text-center"><p>T</p></td>
-<td class="text-center"><p>second</p></td>
-<td class="text-center"><p>s</p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>length</p></td>
-<td class="text-center"><p>L</p></td>
-<td class="text-center"><p>meter</p></td>
-<td class="text-center"><p>m</p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>mass</p></td>
-<td class="text-center"><p>M</p></td>
-<td class="text-center"><p>kilogram</p></td>
-<td class="text-center"><p>kg</p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>temperature</p></td>
-<td class="text-center"><p><span class="math notranslate nohighlight">\(\Theta\)</span></p></td>
-<td class="text-center"><p>kelvin</p></td>
-<td class="text-center"><p>K</p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>electric current</p></td>
-<td class="text-center"><p>I</p></td>
-<td class="text-center"><p>ampere</p></td>
-<td class="text-center"><p>A</p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>amount of substance</p></td>
-<td class="text-center"><p>N</p></td>
-<td class="text-center"><p>mole</p></td>
-<td class="text-center"><p>mol</p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>luminous intensity</p></td>
-<td class="text-center"><p>J</p></td>
-<td class="text-center"><p>candela</p></td>
-<td class="text-center"><p>cd</p></td>
-</tr>
-</tbody>
-</table>
-<p>All other physical quantities are called <strong>derived quantities</strong> because they are expressed in terms of base quantities. The <strong>dimensions</strong> of a physical quantity refers to its expression in terms of the base quantities.  For example, common derived quantities are:</p>
-<table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-center"><p>Physical Quantity</p></th>
-<th class="head text-center"><p>Dimensions</p></th>
-<th class="head text-center"><p>Base SI Units</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-center"><p>velocity</p></td>
-<td class="text-center"><p>L T<sup>-1</sup></p></td>
-<td class="text-center"><p>m s<sup>-1</sup></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>acceleration</p></td>
-<td class="text-center"><p>L T<sup>-2</sup></p></td>
-<td class="text-center"><p>m s<sup>-2</sup></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>area</p></td>
-<td class="text-center"><p>L<sup>2</sup></p></td>
-<td class="text-center"><p>m<sup>2</sup></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>volume</p></td>
-<td class="text-center"><p>L<sup>3</sup></p></td>
-<td class="text-center"><p>m<sup>3</sup></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>density</p></td>
-<td class="text-center"><p>M L<sup>-3</sup></p></td>
-<td class="text-center"><p>kg m<sup>-3</sup></p></td>
-</tr>
-</tbody>
-</table>
-<p>Some derived quantities have their own SI units:</p>
-<table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-center"><p>Physical Quantity</p></th>
-<th class="head text-center"><p>Dimensions</p></th>
-<th class="head text-center"><p>SI Unit</p></th>
-<th class="head text-center"><p>SI Unit Symbol</p></th>
-<th class="head text-center"><p>Base SI Units</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-center"><p>force</p></td>
-<td class="text-center"><p>M L T<sup>-2</sup></p></td>
-<td class="text-center"><p>newton</p></td>
-<td class="text-center"><p>N</p></td>
-<td class="text-center"><p>kg m s<sup>-2</sup></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>pressure</p></td>
-<td class="text-center"><p>M L<sup>-1</sup> T<sup>-2</sup></p></td>
-<td class="text-center"><p>pascal</p></td>
-<td class="text-center"><p>Pa</p></td>
-<td class="text-center"><p>kg m<sup>-1</sup> s<sup>-2</sup></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>energy</p></td>
-<td class="text-center"><p>M L<sup>2</sup> T<sup>-2</sup></p></td>
-<td class="text-center"><p>joule</p></td>
-<td class="text-center"><p>J</p></td>
-<td class="text-center"><p>kg m<sup>2</sup> s<sup>-2</sup></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>power</p></td>
-<td class="text-center"><p>M L<sup>2</sup> T<sup>-3</sup></p></td>
-<td class="text-center"><p>watt</p></td>
-<td class="text-center"><p>W</p></td>
-<td class="text-center"><p>kg m<sup>2</sup> s<sup>-3</sup></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>frequency</p></td>
-<td class="text-center"><p>T<sup>-1</sup></p></td>
-<td class="text-center"><p>hertz</p></td>
-<td class="text-center"><p>Hz</p></td>
-<td class="text-center"><p>s<sup>-1</sup></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>angle</p></td>
-<td class="text-center"><p>1</p></td>
-<td class="text-center"><p>radian</p></td>
-<td class="text-center"><p>rad</p></td>
-<td class="text-center"><p>1</p></td>
-</tr>
-</tbody>
-</table>
-<p>Note that an angle is a ratio of lengths, arc length over radius, therefore its dimensions are L L<sup>-1</sup> = 1. This is an example of a <strong>dimensionless quantity</strong>.</p>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>Check out <a class="reference external" href="https://en.wikipedia.org/wiki/International_System_of_Quantities">Wikipedia: International System of Quantities</a> for more information about dimensions and units.</p>
-</div>
-</section>
-<section id="dimensional-homogeneity">
-<h2>Dimensional Homogeneity<a class="headerlink" href="#dimensional-homogeneity" title="Permalink to this heading">#</a></h2>
-<p>An equation is <strong>dimensionally homogeneous</strong> if the expressions on both sides of the equation have the same dimensions. During the mathematical modelling process we should always check that the equations in our models are dimensionally homogeneous.</p>
-<p>For example, consider the mass-spring-damper equation derived from Newton’s second law of motion:</p>
-<div class="math notranslate nohighlight">
-\[
-m x'' + c x' + k x = F(t)
-\]</div>
-<p>Each term in the equation is a force therefore each side of the equation has dimensions M L T<sup>-2</sup> and the equation is dimensionally homogeneous.</p>
-<p>Let’s find the dimensions of the variables and parameters in the mass-spring-damper equation:</p>
-<table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-center"><p>Variable/Parameter</p></th>
-<th class="head text-center"><p>Symbol</p></th>
-<th class="head text-center"><p>Dimensions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-center"><p>position</p></td>
-<td class="text-center"><p><span class="math notranslate nohighlight">\(x\)</span></p></td>
-<td class="text-center"><p>L</p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>velocity</p></td>
-<td class="text-center"><p><span class="math notranslate nohighlight">\(x'\)</span></p></td>
-<td class="text-center"><p>L T<sup>-1</sup></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>acceleration</p></td>
-<td class="text-center"><p><span class="math notranslate nohighlight">\(x''\)</span></p></td>
-<td class="text-center"><p>L T<sup>-2</sup></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>mass</p></td>
-<td class="text-center"><p><span class="math notranslate nohighlight">\(m\)</span></p></td>
-<td class="text-center"><p>M</p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>damping coefficient</p></td>
-<td class="text-center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-center"><p>M T<sup>-1</sup></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>spring coefficient</p></td>
-<td class="text-center"><p><span class="math notranslate nohighlight">\(k\)</span></p></td>
-<td class="text-center"><p>M T<sup>-2</sup></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>external force</p></td>
-<td class="text-center"><p><span class="math notranslate nohighlight">\(F(t)\)</span></p></td>
-<td class="text-center"><p>M L T<sup>-2</sup></p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="nondimensionalization-and-scaling">
-<h2>Nondimensionalization and Scaling<a class="headerlink" href="#nondimensionalization-and-scaling" title="Permalink to this heading">#</a></h2>
+<section id="simple-example">
+<h2>Simple Example<a class="headerlink" href="#simple-example" title="Permalink to this heading">#</a></h2>
 <p>Consider a simple model of exponential growth where a population <span class="math notranslate nohighlight">\(P\)</span> starts with <span class="math notranslate nohighlight">\(P(0) = P_0\)</span> and increases at a rate proportional to its size. The model is described by the differential equation</p>
 <div class="math notranslate nohighlight">
 \[
@@ -636,12 +443,15 @@ P = P_0 P^* \hspace{10mm} t = \frac{t^*}{r}
 \frac{dP^*}{dt^*} = P^* \ , \ \ P^*(0) = 1 
 \]</div>
 <p>Therefore the parameters <span class="math notranslate nohighlight">\(P_0\)</span> and <span class="math notranslate nohighlight">\(r\)</span> only affect the scale of the variables in the solution <span class="math notranslate nohighlight">\(P(t)\)</span> and do not change the intrinic behaviour of the system, and so we can study the model without specifying values for <span class="math notranslate nohighlight">\(P_0\)</span> and <span class="math notranslate nohighlight">\(r\)</span>. Furthermore, the scaling factors tell us that we should measure population as multiples of the initial value <span class="math notranslate nohighlight">\(P_0\)</span> and time as multiples of <span class="math notranslate nohighlight">\(r^{-1}\)</span>.</p>
+</section>
+<section id="nondimensionalization-procedure">
+<h2>Nondimensionalization Procedure<a class="headerlink" href="#nondimensionalization-procedure" title="Permalink to this heading">#</a></h2>
 <p>The goals of <strong>nondimensionalization</strong> are:</p>
 <ol class="arabic simple">
 <li><p>To simplify a mathematical model by reducing the number of parameters in the model.</p></li>
 <li><p>To identify key properties of a mathematical model in terms of dimensionless variables and parameters.</p></li>
 </ol>
-<p>Nondimensionalization is all about choosing a <strong>scaling</strong> factor <span class="math notranslate nohighlight">\([x]\)</span> (also called <strong>charactersitic unit</strong>) for each variable <span class="math notranslate nohighlight">\(x\)</span>. The <strong>steps in the nondimensionalization process</strong> are:</p>
+<p>Nondimensionalization is all about choosing a <strong>scaling</strong> factor <span class="math notranslate nohighlight">\([x]\)</span> (also called <strong>charactersitic unit</strong>) for each variable <span class="math notranslate nohighlight">\(x\)</span>. The <strong>nondimensionalization procedure</strong> is:</p>
 <ol class="arabic simple">
 <li><p>Identify all the independent and dependent variables.</p></li>
 <li><p>Replace each variable <span class="math notranslate nohighlight">\(x\)</span> with a quantity <span class="math notranslate nohighlight">\(x = [x]x^*\)</span> where <span class="math notranslate nohighlight">\([x]\)</span> is a scaling factor to be determined and <span class="math notranslate nohighlight">\(x^*\)</span> is dimensionless.</p></li>
@@ -654,6 +464,9 @@ P = P_0 P^* \hspace{10mm} t = \frac{t^*}{r}
 \[
 [P] = P_0 \hspace{20mm} [t] = \frac{1}{r}
 \]</div>
+</section>
+<section id="scaling-derivatives">
+<h2>Scaling Derivatives<a class="headerlink" href="#scaling-derivatives" title="Permalink to this heading">#</a></h2>
 <p>Let’s take a closer look at how differential equations transform with scaling. Let <span class="math notranslate nohighlight">\(t\)</span> be the independent variable and let <span class="math notranslate nohighlight">\(x\)</span> be a dependent variable. Introduce scaling factors <span class="math notranslate nohighlight">\([x]\)</span> and <span class="math notranslate nohighlight">\([t]\)</span> and dimensionless variables <span class="math notranslate nohighlight">\(x^*\)</span> and <span class="math notranslate nohighlight">\(t^*\)</span> where</p>
 <div class="math notranslate nohighlight">
 \[
@@ -673,10 +486,8 @@ x = [x] x^* \ \ \ \text{and} \ \ \ t = [t] t^*
 \frac{d^n x}{dt^n} = \frac{[x]}{[t]^n} \frac{d^n x^*}{dt^{*n}}
 \]</div>
 </section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
 <section id="mass-spring-equation">
-<h3>Mass Spring Equation<a class="headerlink" href="#mass-spring-equation" title="Permalink to this heading">#</a></h3>
+<h2>Mass Spring Equation<a class="headerlink" href="#mass-spring-equation" title="Permalink to this heading">#</a></h2>
 <p>Apply the nondimensionalization process to the mass-spring equation:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -711,7 +522,7 @@ x^*(t^*) = \cos(t^*) \ \ \Rightarrow \ \ x(t) = x_0 \cos( \omega_0 t)
 <p>where <span class="math notranslate nohighlight">\(\omega_0 = \sqrt{k/m} = 1/[t]\)</span> is the <strong>natural frequency</strong> and the initial value <span class="math notranslate nohighlight">\(x_0\)</span> is the <strong>amplitude</strong> of the system. There are no parameters remaining in the nondimensionalized equation therefore the parameters <span class="math notranslate nohighlight">\(m\)</span>, <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(x_0\)</span> do not change the behaviour of the system but simply change the scale of the variables <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(t\)</span>.</p>
 </section>
 <section id="logistic-equation">
-<h3>Logistic Equation<a class="headerlink" href="#logistic-equation" title="Permalink to this heading">#</a></h3>
+<h2>Logistic Equation<a class="headerlink" href="#logistic-equation" title="Permalink to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Logistic_function">logistic equation</a> models the growth of a population <span class="math notranslate nohighlight">\(P\)</span> at rate <span class="math notranslate nohighlight">\(r\)</span> limited by a capacity <span class="math notranslate nohighlight">\(K\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -755,12 +566,12 @@ x^*(t^*) = \cos(t^*) \ \ \Rightarrow \ \ x(t) = x_0 \cos( \omega_0 t)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a371630787d9666ebce53520a08275537af0bb2db0fdfd8c1cc3b16f91f0d23f.png" src="../_images/a371630787d9666ebce53520a08275537af0bb2db0fdfd8c1cc3b16f91f0d23f.png" />
+<img alt="../../_images/a371630787d9666ebce53520a08275537af0bb2db0fdfd8c1cc3b16f91f0d23f.png" src="../../_images/a371630787d9666ebce53520a08275537af0bb2db0fdfd8c1cc3b16f91f0d23f.png" />
 </div>
 </div>
 </section>
 <section id="lotka-volterra-equations">
-<h3>Lotka-Volterra Equations<a class="headerlink" href="#lotka-volterra-equations" title="Permalink to this heading">#</a></h3>
+<h2>Lotka-Volterra Equations<a class="headerlink" href="#lotka-volterra-equations" title="Permalink to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations">Lotka-Volterra equations</a> model the population dynamics of a predator-prey system:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -822,7 +633,7 @@ x^*(t^*) = \cos(t^*) \ \ \Rightarrow \ \ x(t) = x_0 \cos( \omega_0 t)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ff1b8d13158226015e6663288dc7b940f8bb6bc383a23f80343f5e9e302f3960.png" src="../_images/ff1b8d13158226015e6663288dc7b940f8bb6bc383a23f80343f5e9e302f3960.png" />
+<img alt="../../_images/ff1b8d13158226015e6663288dc7b940f8bb6bc383a23f80343f5e9e302f3960.png" src="../../_images/ff1b8d13158226015e6663288dc7b940f8bb6bc383a23f80343f5e9e302f3960.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -840,10 +651,9 @@ x^*(t^*) = \cos(t^*) \ \ \Rightarrow \ \ x(t) = x_0 \cos( \omega_0 t)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/891fc89eeb2a2d4775b0411e6aaf34075c2efa3c6790825919c1e4348d8de061.png" src="../_images/891fc89eeb2a2d4775b0411e6aaf34075c2efa3c6790825919c1e4348d8de061.png" />
+<img alt="../../_images/891fc89eeb2a2d4775b0411e6aaf34075c2efa3c6790825919c1e4348d8de061.png" src="../../_images/891fc89eeb2a2d4775b0411e6aaf34075c2efa3c6790825919c1e4348d8de061.png" />
 </div>
 </div>
-</section>
 </section>
 </section>
 
@@ -860,7 +670,7 @@ x^*(t^*) = \cos(t^*) \ \ \Rightarrow \ \ x(t) = x_0 \cos( \omega_0 t)
         },
         kernelOptions: {
             name: "python3",
-            path: "./deterministic"
+            path: "./deterministic/nondimensionalization"
         },
         predefinedOutput: true
     }
@@ -879,16 +689,16 @@ x^*(t^*) = \cos(t^*) \ \ \Rightarrow \ \ x(t) = x_0 \cos( \omega_0 t)
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="differential/systems.html"
+       href="dimensions.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Systems of Equations</p>
+        <p class="prev-next-title">Dimensions and Units</p>
       </div>
     </a>
     <a class="right-next"
-       href="motion/index.html"
+       href="../motion/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
@@ -914,16 +724,12 @@ x^*(t^*) = \cos(t^*) \ \ \Rightarrow \ \ x(t) = x_0 \cos( \omega_0 t)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensions-and-units">Dimensions and Units</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensional-homogeneity">Dimensional Homogeneity</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nondimensionalization-and-scaling">Nondimensionalization and Scaling</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-spring-equation">Mass Spring Equation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-equation">Logistic Equation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lotka-volterra-equations">Lotka-Volterra Equations</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-example">Simple Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nondimensionalization-procedure">Nondimensionalization Procedure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-derivatives">Scaling Derivatives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-spring-equation">Mass Spring Equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-equation">Logistic Equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lotka-volterra-equations">Lotka-Volterra Equations</a></li>
 </ul>
   </nav></div>
 
@@ -971,8 +777,8 @@ By UBC Math
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

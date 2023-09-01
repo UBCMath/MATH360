@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Heat Transfer &#8212; Introduction to Mathematical Modelling</title>
+    <title>Dimensions and Units &#8212; Introduction to Mathematical Modelling</title>
   
   
   
@@ -61,11 +61,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'deterministic/heat/index';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'deterministic/nondimensionalization/dimensions';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Energy Balance" href="balance.html" />
-    <link rel="prev" title="Chemical Kinetics" href="../mass/action.html" />
+    <link rel="next" title="Scaling" href="scaling.html" />
+    <link rel="prev" title="Nondimensionalization" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -155,9 +157,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../differential/systems.html">Systems of Equations</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../nondimensionalization/index.html">Nondimensionalization</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../nondimensionalization/dimensions.html">Dimensions and Units</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../nondimensionalization/scaling.html">Scaling</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Nondimensionalization</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Dimensions and Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scaling.html">Scaling</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../motion/index.html">Objects in Motion</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -174,11 +176,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../mass/action.html">Chemical Kinetics</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Heat Transfer</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="balance.html">Energy Balance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="conduction.html">Thermal Conduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="radiation.html">Thermal Radiation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="climate.html">Global Energy Balance</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../heat/index.html">Heat Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../heat/balance.html">Energy Balance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heat/conduction.html">Thermal Conduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heat/radiation.html">Thermal Radiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heat/climate.html">Global Energy Balance</a></li>
 </ul>
 </li>
 </ul>
@@ -246,6 +248,37 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="article-header-buttons">
 
 
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/deterministic/nondimensionalization/dimensions.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
 <a href="https://github.com/UBCMath/MATH360" target="_blank"
    class="btn btn-sm btn-source-repository-button"
    title="Source repository"
@@ -272,7 +305,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/deterministic/heat/index.md" target="_blank"
+      <li><a href="../../_sources/deterministic/nondimensionalization/dimensions.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -282,7 +315,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -341,7 +374,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -352,11 +387,21 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Heat Transfer</h1>
+    <h1>Dimensions and Units</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#base-quantities">Base Quantities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensions-of-physical-quantities">Dimensions of Physical Quantities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensional-homogeneity">Dimensional Homogeneity</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -366,11 +411,201 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="heat-transfer">
-<h1>Heat Transfer<a class="headerlink" href="#heat-transfer" title="Permalink to this heading">#</a></h1>
-<p><em>Under construction</em></p>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="dimensions-and-units">
+<h1>Dimensions and Units<a class="headerlink" href="#dimensions-and-units" title="Permalink to this heading">#</a></h1>
+<section id="base-quantities">
+<h2>Base Quantities<a class="headerlink" href="#base-quantities" title="Permalink to this heading">#</a></h2>
+<p>All physical quantities are expressed in terms of <strong>base quantities</strong> and <strong>standard international (SI) units</strong>:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Base Quantity</p></th>
+<th class="head text-center"><p>Symbol</p></th>
+<th class="head text-center"><p>SI Unit</p></th>
+<th class="head text-center"><p>SI Unit Symbol</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>time</p></td>
+<td class="text-center"><p>T</p></td>
+<td class="text-center"><p>second</p></td>
+<td class="text-center"><p>s</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>length</p></td>
+<td class="text-center"><p>L</p></td>
+<td class="text-center"><p>meter</p></td>
+<td class="text-center"><p>m</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>mass</p></td>
+<td class="text-center"><p>M</p></td>
+<td class="text-center"><p>kilogram</p></td>
+<td class="text-center"><p>kg</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>temperature</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\Theta\)</span></p></td>
+<td class="text-center"><p>kelvin</p></td>
+<td class="text-center"><p>K</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>electric current</p></td>
+<td class="text-center"><p>I</p></td>
+<td class="text-center"><p>ampere</p></td>
+<td class="text-center"><p>A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>amount of substance</p></td>
+<td class="text-center"><p>N</p></td>
+<td class="text-center"><p>mole</p></td>
+<td class="text-center"><p>mol</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>luminous intensity</p></td>
+<td class="text-center"><p>J</p></td>
+<td class="text-center"><p>candela</p></td>
+<td class="text-center"><p>cd</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dimensions-of-physical-quantities">
+<h2>Dimensions of Physical Quantities<a class="headerlink" href="#dimensions-of-physical-quantities" title="Permalink to this heading">#</a></h2>
+<p>All other physical quantities are called <strong>derived quantities</strong> because they are expressed in terms of base quantities. The <strong>dimensions</strong> of a physical quantity refers to its expression in terms of the base quantities.  For example, common derived quantities are:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Physical Quantity</p></th>
+<th class="head text-center"><p>Dimensions</p></th>
+<th class="head text-center"><p>Base SI Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>velocity</p></td>
+<td class="text-center"><p>L T<sup>-1</sup></p></td>
+<td class="text-center"><p>m s<sup>-1</sup></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>acceleration</p></td>
+<td class="text-center"><p>L T<sup>-2</sup></p></td>
+<td class="text-center"><p>m s<sup>-2</sup></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>area</p></td>
+<td class="text-center"><p>L<sup>2</sup></p></td>
+<td class="text-center"><p>m<sup>2</sup></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>volume</p></td>
+<td class="text-center"><p>L<sup>3</sup></p></td>
+<td class="text-center"><p>m<sup>3</sup></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>density</p></td>
+<td class="text-center"><p>M L<sup>-3</sup></p></td>
+<td class="text-center"><p>kg m<sup>-3</sup></p></td>
+</tr>
+</tbody>
+</table>
+<p>Some derived quantities have their own SI units:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Physical Quantity</p></th>
+<th class="head text-center"><p>Dimensions</p></th>
+<th class="head text-center"><p>SI Unit</p></th>
+<th class="head text-center"><p>SI Unit Symbol</p></th>
+<th class="head text-center"><p>Base SI Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>force</p></td>
+<td class="text-center"><p>M L T<sup>-2</sup></p></td>
+<td class="text-center"><p>newton</p></td>
+<td class="text-center"><p>N</p></td>
+<td class="text-center"><p>kg m s<sup>-2</sup></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>pressure</p></td>
+<td class="text-center"><p>M L<sup>-1</sup> T<sup>-2</sup></p></td>
+<td class="text-center"><p>pascal</p></td>
+<td class="text-center"><p>Pa</p></td>
+<td class="text-center"><p>kg m<sup>-1</sup> s<sup>-2</sup></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>energy</p></td>
+<td class="text-center"><p>M L<sup>2</sup> T<sup>-2</sup></p></td>
+<td class="text-center"><p>joule</p></td>
+<td class="text-center"><p>J</p></td>
+<td class="text-center"><p>kg m<sup>2</sup> s<sup>-2</sup></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>molar concentration</p></td>
+<td class="text-center"><p>N L<sup>-3</sup></p></td>
+<td class="text-center"><p>molar</p></td>
+<td class="text-center"><p>M</p></td>
+<td class="text-center"><p>N m<sup>-3</sup></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>power</p></td>
+<td class="text-center"><p>M L<sup>2</sup> T<sup>-3</sup></p></td>
+<td class="text-center"><p>watt</p></td>
+<td class="text-center"><p>W</p></td>
+<td class="text-center"><p>kg m<sup>2</sup> s<sup>-3</sup></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>frequency</p></td>
+<td class="text-center"><p>T<sup>-1</sup></p></td>
+<td class="text-center"><p>hertz</p></td>
+<td class="text-center"><p>Hz</p></td>
+<td class="text-center"><p>s<sup>-1</sup></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>angle</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>radian</p></td>
+<td class="text-center"><p>rad</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<p>Note that an angle is a ratio of lengths, arc length over radius, therefore its dimensions are L L<sup>-1</sup> = 1. This is an example of a <strong>dimensionless quantity</strong>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Check out <a class="reference external" href="https://en.wikipedia.org/wiki/International_System_of_Quantities">Wikipedia: International System of Quantities</a> for more information about dimensions and units.</p>
 </div>
+</section>
+<section id="dimensional-homogeneity">
+<h2>Dimensional Homogeneity<a class="headerlink" href="#dimensional-homogeneity" title="Permalink to this heading">#</a></h2>
+<p>An equation is <strong>dimensionally homogeneous</strong> if the expressions on both sides of the equation have the same dimensions. During the mathematical modelling process we should always check that the equations in our models are dimensionally homogeneous.</p>
+<p>For example, consider the mass-spring-damper equation derived from Newton’s second law of motion:</p>
+<div class="math notranslate nohighlight">
+\[
+m x'' + c x' + k x = F(t)
+\]</div>
+<p>Each term in the equation is a force therefore each side of the equation has dimensions M L T<sup>-2</sup> and the equation is dimensionally homogeneous.</p>
+<p>Let’s find the dimensions of the variables and parameters in the mass-spring-damper equation:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Variable/Parameter</p></th>
+<th class="head text-center"><p>Symbol</p></th>
+<th class="head text-center"><p>Dimensions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>position</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x\)</span></p></td>
+<td class="text-center"><p>L</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>velocity</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x'\)</span></p></td>
+<td class="text-center"><p>L T<sup>-1</sup></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>acceleration</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x''\)</span></p></td>
+<td class="text-center"><p>L T<sup>-2</sup></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>mass</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(m\)</span></p></td>
+<td class="text-center"><p>M</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>damping coefficient</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-center"><p>M T<sup>-1</sup></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>spring coefficient</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(k\)</span></p></td>
+<td class="text-center"><p>M T<sup>-2</sup></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>external force</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(F(t)\)</span></p></td>
+<td class="text-center"><p>M L T<sup>-2</sup></p></td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -386,7 +621,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./deterministic/heat"
+            path: "./deterministic/nondimensionalization"
         },
         predefinedOutput: true
     }
@@ -405,20 +640,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../mass/action.html"
+       href="index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Chemical Kinetics</p>
+        <p class="prev-next-title">Nondimensionalization</p>
       </div>
     </a>
     <a class="right-next"
-       href="balance.html"
+       href="scaling.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Energy Balance</p>
+        <p class="prev-next-title">Scaling</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -431,6 +666,22 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#base-quantities">Base Quantities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensions-of-physical-quantities">Dimensions of Physical Quantities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensional-homogeneity">Dimensional Homogeneity</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

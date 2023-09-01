@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>MATH 360 Introduction to Mathematical Modelling &#8212; Introduction to Mathematical Modelling</title>
+    <title>Conservation of Mass &#8212; Introduction to Mathematical Modelling</title>
   
   
   
@@ -63,9 +63,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'data-driven/logistic-regression/lecture21_prelecture';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'deterministic/mass/conservation';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Chemical Kinetics" href="action.html" />
+    <link rel="prev" title="Mass Balance" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -148,37 +150,37 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../process/process.html">Modelling Process</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../deterministic/overview.html">Overview</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../deterministic/differential/index.html">Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../deterministic/differential/equations.html">Scalar Equations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../deterministic/differential/systems.html">Systems of Equations</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../differential/index.html">Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../differential/equations.html">Scalar Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../differential/systems.html">Systems of Equations</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../deterministic/nondimensionalization/index.html">Nondimensionalization</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../deterministic/nondimensionalization/dimensions.html">Dimensions and Units</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../deterministic/nondimensionalization/scaling.html">Scaling</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nondimensionalization/index.html">Nondimensionalization</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nondimensionalization/dimensions.html">Dimensions and Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nondimensionalization/scaling.html">Scaling</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../deterministic/motion/index.html">Objects in Motion</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../deterministic/motion/laws-of-motion.html">Laws of Motion and Forces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../deterministic/motion/mass-spring-2d.html">2D Mass Spring System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../deterministic/motion/simple-pendulum.html">Simple Pendulum</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../deterministic/motion/projectile.html">Projectile Motion with Drag</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../deterministic/motion/orbits.html">Planetary Orbits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../deterministic/motion/eulers-3-body.html">Euler’s 3-Body Problem</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../motion/index.html">Objects in Motion</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../motion/laws-of-motion.html">Laws of Motion and Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../motion/mass-spring-2d.html">2D Mass Spring System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../motion/simple-pendulum.html">Simple Pendulum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../motion/projectile.html">Projectile Motion with Drag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../motion/orbits.html">Planetary Orbits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../motion/eulers-3-body.html">Euler’s 3-Body Problem</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../deterministic/mass/index.html">Mass Balance</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../deterministic/mass/conservation.html">Conservation of Mass</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../deterministic/mass/action.html">Chemical Kinetics</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Mass Balance</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Conservation of Mass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="action.html">Chemical Kinetics</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../deterministic/heat/index.html">Heat Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../deterministic/heat/balance.html">Energy Balance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../deterministic/heat/conduction.html">Thermal Conduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../deterministic/heat/radiation.html">Thermal Radiation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../deterministic/heat/climate.html">Global Energy Balance</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../heat/index.html">Heat Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../heat/balance.html">Energy Balance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heat/conduction.html">Thermal Conduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heat/radiation.html">Thermal Radiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heat/climate.html">Global Energy Balance</a></li>
 </ul>
 </li>
 </ul>
@@ -189,18 +191,18 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data-Driven Models</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../linear-regression/index.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../linear-regression/linear.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-driven/overview.html">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../data-driven/linear-regression/index.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data-driven/linear-regression/linear.html">Linear Regression</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">Logistic Regression</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="logistic-function.html">Logistic Function</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cost-regularization.html">Cost and Regularization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../data-driven/logistic-regression/index.html">Logistic Regression</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data-driven/logistic-regression/logistic-function.html">Logistic Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data-driven/logistic-regression/cost-regularization.html">Cost and Regularization</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../numerical-methods/index.html">Numerical Methods</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../numerical-methods/gradient.html">Gradient Descent</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../data-driven/numerical-methods/index.html">Numerical Methods</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data-driven/numerical-methods/gradient.html">Gradient Descent</a></li>
 </ul>
 </li>
 </ul>
@@ -257,7 +259,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/data-driven/logistic-regression/lecture21_prelecture.ipynb&branch=main" target="_blank"
+      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/deterministic/mass/conservation.ipynb&branch=main" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onJupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -303,7 +305,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/data-driven/logistic-regression/lecture21_prelecture.ipynb" target="_blank"
+      <li><a href="../../_sources/deterministic/mass/conservation.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -385,7 +387,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>MATH 360 Introduction to Mathematical Modelling</h1>
+    <h1>Conservation of Mass</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -395,13 +397,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prelecture-activities">Prelecture Activities</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reflections">Reflections</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tasks">Tasks</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-balance-equation">Mass Balance Equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dilution">Dilution</a></li>
 </ul>
             </nav>
         </div>
@@ -413,43 +410,91 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="math-360-introduction-to-mathematical-modelling">
-<h1>MATH 360 Introduction to Mathematical Modelling<a class="headerlink" href="#math-360-introduction-to-mathematical-modelling" title="Permalink to this heading">#</a></h1>
-<section id="learning-goals">
-<h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="conservation-of-mass">
+<h1>Conservation of Mass<a class="headerlink" href="#conservation-of-mass" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">spi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="mass-balance-equation">
+<h2>Mass Balance Equation<a class="headerlink" href="#mass-balance-equation" title="Permalink to this heading">#</a></h2>
+<p>The <strong>law of conservation of mass</strong> states that the mass of a closed system does not change. This implies that mass cannot be created or destroyed. Conservation of mass implies the <strong>balance equation</strong> for an open system</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dM}{dt} = Q_{in} - Q_{out}
+\]</div>
+<p>where:</p>
 <ul class="simple">
-<li><p>Summarize properties of the logistic function and the weight and bias parameters</p></li>
-<li><p>Compare and contrast cost functions for logistic regression models such as mean least squares and cross entropy</p></li>
-<li><p>Implement regularization terms in cost functions and tune regularization parameters</p></li>
-<li><p>Approximate optimal model parameters for logistic regression models using <code class="docutils literal notranslate"><span class="pre">sklearn</span></code></p></li>
+<li><p><span class="math notranslate nohighlight">\(M(t)\)</span> is the mass of the system over time <span class="math notranslate nohighlight">\(t\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Q_{in}\)</span> is the mass flow rate into the system with dimensions MT<sup>-1<sup></p></li>
+<li><p><span class="math notranslate nohighlight">\(Q_{out}\)</span> is the mass flow rate out of the system with dimensions MT<sup>-1<sup></p></li>
 </ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Check out <a class="reference external" href="https://en.wikipedia.org/wiki/Conservation_of_mass">Wikipedia: Conservation of Mass</a> for more information.</p>
+</div>
 </section>
-<section id="prelecture-activities">
-<h2>Prelecture Activities<a class="headerlink" href="#prelecture-activities" title="Permalink to this heading">#</a></h2>
-<section id="readings">
-<h3>Readings<a class="headerlink" href="#readings" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Logistic_regression">Wikipedia: Logistic Regression</a></p></li>
-<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression">Scikit-learn: Logistic Regression</a></p></li>
-</ul>
-</section>
-<section id="reflections">
-<h3>Reflections<a class="headerlink" href="#reflections" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>What is the logistic function? What do the weight <span class="math notranslate nohighlight">\(W\)</span> and bias <span class="math notranslate nohighlight">\(b\)</span> parameters represent?</p></li>
-<li><p>What is logistic regression? How is it different/similar compared to linear regression?</p></li>
-<li><p>What is mean least squares? What is cross-entropy? How are they different?</p></li>
-</ul>
-</section>
-<section id="tasks">
-<h3>Tasks<a class="headerlink" href="#tasks" title="Permalink to this heading">#</a></h3>
-<p>Let <span class="math notranslate nohighlight">\(\sigma(x) = \displaystyle \frac{1}{1 + e^{-x}}\)</span> be the logistic function.</p>
-<ul class="simple">
-<li><p>Determine the values <span class="math notranslate nohighlight">\(\sigma(0)\)</span> and <span class="math notranslate nohighlight">\(\sigma'(0)\)</span>.</p></li>
-<li><p>Show that <span class="math notranslate nohighlight">\(\sigma'(x) = \sigma(x)(1 - \sigma(x))\)</span>.</p></li>
-<li><p>Sketch the graph of the logistic function <span class="math notranslate nohighlight">\(\sigma(x)\)</span>.</p></li>
-</ul>
-</section>
+<section id="dilution">
+<h2>Dilution<a class="headerlink" href="#dilution" title="Permalink to this heading">#</a></h2>
+<p>A tank contains a salt water solution. To dilute the solution, pure water is pumped into the tank, mized and the solution is drained from the tank at the same rate. How does the concentration of the solution change over time?</p>
+<p>Let’s define the variables and parameters in the model:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Description</p></th>
+<th class="head text-center"><p>Symbol</p></th>
+<th class="head text-center"><p>Dimensions</p></th>
+<th class="head text-center"><p>Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>mass of salt in the tank</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(M\)</span></p></td>
+<td class="text-center"><p>M</p></td>
+<td class="text-center"><p>dependent variable</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>time</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-center"><p>T</p></td>
+<td class="text-center"><p>independent variable</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>initial mass of salt in the tank</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(M_0\)</span></p></td>
+<td class="text-center"><p>M</p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>flow rate of fluid in/out of the tank</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(Q\)</span></p></td>
+<td class="text-center"><p>L<sup>3</sup>T<sup>-1</sup></p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>volume of solution</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(V_0\)</span></p></td>
+<td class="text-center"><p>L<sup>3</sup></p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+</tbody>
+</table>
+<p>Apply the mass balance equation to get</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dM}{dt} = -\frac{MQ}{V} \ , \ \ M(0) = M_0
+\]</div>
+<p>Apply the nondimensionalization procedure. Let <span class="math notranslate nohighlight">\(t = [t]t^*\)</span> and <span class="math notranslate nohighlight">\(M = [M]M^*\)</span> and make the substitution</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{[M]}{[t]} \frac{dM^*}{dt^*} = -\frac{[M]M^* Q}{V} \ , \ \ [M]M^*(0) = M_0
+\]</div>
+<p>Choose <span class="math notranslate nohighlight">\([t] = \frac{V}{Q}\)</span> and <span class="math notranslate nohighlight">\([M] = M_0\)</span> and write</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dM^*}{dt^*} = -M^* \ , \ \ M^*(0) = 1
+\]</div>
+<p>Solve the equation to find <span class="math notranslate nohighlight">\(M^*(t) = e^{-t^*}\)</span>. Equivalently, <span class="math notranslate nohighlight">\(M(t) = M_0e^{-Qt/V}\)</span>.</p>
 </section>
 </section>
 
@@ -466,7 +511,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./data-driven/logistic-regression"
+            path: "./deterministic/mass"
         },
         predefinedOutput: true
     }
@@ -484,6 +529,24 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Mass Balance</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="action.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chemical Kinetics</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -502,13 +565,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prelecture-activities">Prelecture Activities</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reflections">Reflections</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tasks">Tasks</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-balance-equation">Mass Balance Equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dilution">Dilution</a></li>
 </ul>
   </nav></div>
 
