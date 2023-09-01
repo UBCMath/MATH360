@@ -7,12 +7,15 @@ parts:
     - file: process/process.ipynb
   - caption: Deterministic Models
     chapters:
-    - file: deterministic/introduction.md
+    - file: deterministic/overview.md
     - file: deterministic/differential/index.md    
       sections:
       - file: deterministic/differential/equations.ipynb
       - file: deterministic/differential/systems.ipynb
-    - file: deterministic/nondimensionalization.ipynb
+    - file: deterministic/nondimensionalization/index.md
+      sections:
+      - file: deterministic/nondimensionalization/dimensions.ipynb
+      - file: deterministic/nondimensionalization/scaling.ipynb
     - file: deterministic/motion/index.md
       sections:
       - file: deterministic/motion/laws-of-motion.ipynb
@@ -21,7 +24,10 @@ parts:
       - file: deterministic/motion/projectile.ipynb
       - file: deterministic/motion/orbits.ipynb
       - file: deterministic/motion/eulers-3-body.ipynb
-    - file: deterministic/mass-balance.md
+    - file: deterministic/mass/index.md
+      sections:
+      - file: deterministic/mass/conservation.ipynb
+      - file: deterministic/mass/action.md
     - file: deterministic/heat/index.md
       sections:
       - file: deterministic/heat/balance.ipynb
@@ -30,10 +36,11 @@ parts:
       - file: deterministic/heat/climate.ipynb
   - caption: Stochastic Models
     chapters:
+    - file: stochastic/overview.md
     - file: stochastic/distributions.ipynb
   - caption: Data-Driven Models
     chapters:
-    - file: data-driven/introduction.md
+    - file: data-driven/overview.md
     - file: data-driven/linear-regression/index.md
       sections:
       - file: data-driven/linear-regression/linear.md
