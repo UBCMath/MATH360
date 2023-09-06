@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelling Process</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../process/overview.html">What is a Mathematical Model?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../process/overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../process/process.html">Modelling Process</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
@@ -173,7 +173,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../mass/index.html">Mass Balance</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../mass/conservation.html">Conservation of Mass</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../mass/action.html">Chemical Kinetics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mass/chemical.html">Chemical Kinetics</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../heat/index.html">Heat Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -397,7 +397,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#newton-s-second-law-of-motion">Newton’s Second Law of Motion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#newton-s-law-of-gravity">Newton’s Law of Gravity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spring-force">Spring Force</a></li>
@@ -428,14 +427,6 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="learning-goals">
-<h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Apply Newton’s second law to construct mathematical models of objects in motion</p></li>
-<li><p>Apply nondimensionalization process and interpret dimensionless parameters</p></li>
-<li><p>Compute numerical solutions of systems of differential equations</p></li>
-</ul>
-</section>
 <section id="newton-s-second-law-of-motion">
 <h2>Newton’s Second Law of Motion<a class="headerlink" href="#newton-s-second-law-of-motion" title="Permalink to this heading">#</a></h2>
 <p><strong>Newton’s second law of motion</strong> states that the change in an object’s momentum is proprotional to the force acting on it. In other words, if an object has mass <span class="math notranslate nohighlight">\(m\)</span> and position <span class="math notranslate nohighlight">\(\mathbf{p}(t) = (x(t),y(t),z(t))\)</span> then</p>
@@ -491,7 +482,7 @@ F_s = kx
 </section>
 <section id="drag-and-damping-forces">
 <h2>Drag and Damping Forces<a class="headerlink" href="#drag-and-damping-forces" title="Permalink to this heading">#</a></h2>
-<p><strong>Stokes law</strong> states that the force exerted on an object moving through a fluid is proportional to the speed of the object. In other words, the drag force equation is</p>
+<p><strong>Stokes’ law</strong> states that the force exerted on an object moving through a fluid is proportional to the speed of the object. In other words, the drag force equation is</p>
 <div class="math notranslate nohighlight">
 \[
 F_d = c v
@@ -612,7 +603,6 @@ m x'' + cx' + kx = F(t)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#newton-s-second-law-of-motion">Newton’s Second Law of Motion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#newton-s-law-of-gravity">Newton’s Law of Gravity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spring-force">Spring Force</a></li>

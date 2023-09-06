@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelling Process</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../process/overview.html">What is a Mathematical Model?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../process/overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../process/process.html">Modelling Process</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
@@ -173,7 +173,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../mass/index.html">Mass Balance</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../mass/conservation.html">Conservation of Mass</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../mass/action.html">Chemical Kinetics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mass/chemical.html">Chemical Kinetics</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../heat/index.html">Heat Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -399,6 +399,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-example">Simple Example</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nondimensionalization-procedure">Nondimensionalization Procedure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-conventions">Scaling Conventions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-derivatives">Scaling Derivatives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-spring-equation">Mass Spring Equation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-equation">Logistic Equation</a></li>
@@ -464,6 +465,14 @@ P = P_0 P^* \hspace{10mm} t = \frac{t^*}{r}
 \[
 [P] = P_0 \hspace{20mm} [t] = \frac{1}{r}
 \]</div>
+</section>
+<section id="scaling-conventions">
+<h2>Scaling Conventions<a class="headerlink" href="#scaling-conventions" title="Permalink to this heading">#</a></h2>
+<p>There is usually more than one way to nondimensinalize an equation therefore we need to use our judgement and communicate clearly the choices we make. Here are a few general rules to guide our choices:</p>
+<ol class="arabic simple">
+<li><p>Scale variables to first simplify equations and then choose scaling factors to simplify initial conditions.</p></li>
+<li><p>Choose the same scaling factor for spatial variables if there is no reason to treat different directions differently.</p></li>
+</ol>
 </section>
 <section id="scaling-derivatives">
 <h2>Scaling Derivatives<a class="headerlink" href="#scaling-derivatives" title="Permalink to this heading">#</a></h2>
@@ -726,6 +735,7 @@ x^*(t^*) = \cos(t^*) \ \ \Rightarrow \ \ x(t) = x_0 \cos( \omega_0 t)
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-example">Simple Example</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nondimensionalization-procedure">Nondimensionalization Procedure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-conventions">Scaling Conventions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-derivatives">Scaling Derivatives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-spring-equation">Mass Spring Equation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-equation">Logistic Equation</a></li>

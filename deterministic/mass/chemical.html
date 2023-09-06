@@ -63,7 +63,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'deterministic/mass/action';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'deterministic/mass/chemical';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Heat Transfer" href="../heat/index.html" />
@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelling Process</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../process/overview.html">What is a Mathematical Model?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../process/overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../process/process.html">Modelling Process</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
@@ -259,7 +259,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/deterministic/mass/action.ipynb&branch=main" target="_blank"
+      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/deterministic/mass/chemical.ipynb&branch=main" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onJupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -305,7 +305,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/deterministic/mass/action.ipynb" target="_blank"
+      <li><a href="../../_sources/deterministic/mass/chemical.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -400,6 +400,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stoichiometry">Stoichiometry</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concentration-and-reaction-rate">Concentration and Reaction Rate</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-mass-action">Law of Mass Action</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enzyme-kinetics">Enzyme Kinetics</a></li>
 </ul>
             </nav>
         </div>
@@ -448,12 +449,17 @@ CH_4 + 2 O_2 \rightarrow CO_2 + 2 H_2O
 \[
 c_1 R_1 + \cdots + c_n R_n \rightarrow P
 \]</div>
-<p>then the rate of the reaction is</p>
+<p>then the <strong>reaction rate</strong> is</p>
 <div class="math notranslate nohighlight">
 \[
 k R_1^{c_1} \cdots R_n^{c_n} 
 \]</div>
-<p>where we use the notation <span class="math notranslate nohighlight">\(R_1,\dots,R_n\)</span> to denote the concentrations of the reactants and <span class="math notranslate nohighlight">\(k\)</span> is the <strong>reaction coefficient</strong>. Note that the reaction coefficient <span class="math notranslate nohighlight">\(k\)</span> has dimensions (NL<sup>-3</sup>)<sup>1 - r</sup>T<sup>-1</sup> where <span class="math notranslate nohighlight">\(r = c_1 + \cdots + c_n\)</span>. The law of mass action gives rise to a differential equation for each reactant</p>
+<p>where we use the notation <span class="math notranslate nohighlight">\(R_1,\dots,R_n\)</span> to denote the concentrations of the reactants and <span class="math notranslate nohighlight">\(k\)</span> is the <strong>reaction coefficient</strong>. Note that the reaction coefficient <span class="math notranslate nohighlight">\(k\)</span> has dimensions (NL<sup>-3</sup>)<sup>1 - r</sup>T<sup>-1</sup> where <span class="math notranslate nohighlight">\(r = c_1 + \cdots + c_n\)</span>. We use the following notation to denote a chemical reaction with coefficient <span class="math notranslate nohighlight">\(k\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+c_1 R_1 + \cdots + c_n R_n \overset{k}{\rightarrow} P
+\]</div>
+<p>The law of mass action gives rise to a differential equation for each reactant</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{dR_i}{dt} = c_i k R_1^{c_1} \cdots R_n^{c_n} \ , \ \ i=1,\dots,n
@@ -461,6 +467,86 @@ k R_1^{c_1} \cdots R_n^{c_n}
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p>Check out <a class="reference external" href="https://epubs.siam.org/doi/book/10.1137/1.9781611972504">A Primer on Mathematical Models in Biology &gt; Chapter 2: Introduction to Biochemical Kinetics</a> for more examples and information.</p>
+</div>
+</section>
+<section id="enzyme-kinetics">
+<h2>Enzyme Kinetics<a class="headerlink" href="#enzyme-kinetics" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Enzyme">Enzymes</a> are proteins that act as biological catalysts by accelerating chemical reactions. Suppose an enzyme <span class="math notranslate nohighlight">\(E\)</span> catalyzes the transformation of a substrate <span class="math notranslate nohighlight">\(S\)</span> into a product <span class="math notranslate nohighlight">\(P\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+E + S \underset{k_{-1}}{\overset{k_1}{\rightleftharpoons}} C \overset{k_2}{\rightarrow} E + P
+\]</div>
+<p>The diagram above states that:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(S\)</span> combine with rate coefficient <span class="math notranslate nohighlight">\(k_1\)</span> to produce the enzyme-substrate complex <span class="math notranslate nohighlight">\(C\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C\)</span> is reversible and decomposes into <span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(S\)</span> with rate coefficient <span class="math notranslate nohighlight">\(k_{-1}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C\)</span> transforms back into the enzyme <span class="math notranslate nohighlight">\(E\)</span> and product <span class="math notranslate nohighlight">\(P\)</span> with rate coefficient <span class="math notranslate nohighlight">\(k_2\)</span></p></li>
+</ul>
+<p>Apply the law of mass action to derive the system of differential equations for the concentrations of each molecule:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{dE}{dt} &amp;= - k_1 ES + k_{-1} C + k_2 C \\
+\frac{dS}{dt} &amp;= -k_1 ES + k_{-1} C \\
+\frac{dC}{dt} &amp;= k_1 ES - k_{-1} C - k_2 C\\
+\frac{dP}{dt} &amp;= k_2 C
+\end{align*}
+\end{split}\]</div>
+<p>Apply the nondimensionalization procedure. Let <span class="math notranslate nohighlight">\(E = [E]E^*\)</span>, <span class="math notranslate nohighlight">\(S = [S]S^*\)</span>, <span class="math notranslate nohighlight">\(C = [C]C^*\)</span> and <span class="math notranslate nohighlight">\(P = [P]P^*\)</span> and make the substitution:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{[E]}{[t]} \frac{dE^*}{dt^*} &amp;= - k_1 [E][S]E^*S^* + \left( k_{-1} + k_2 \right)[C] C^* \\
+\frac{[S]}{[t]} \frac{dS^*}{dt^*} &amp;= -k_1 [E][S]E^*S^* + k_{-1}[C]C^* \\
+\frac{[C]}{[t]} \frac{dC^*}{dt^*} &amp;= k_1 [E][S]E^*S^* - \left( k_{-1} + k_2 \right) [C]C^* \\
+\frac{[P]}{[t]} \frac{dP^*}{dt^*} &amp;= k_2[C]C^*
+\end{align*}
+\end{split}\]</div>
+<p>Divide by the derivative term and write</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{dE^*}{dt^*} &amp;= - k_1 [t][S]E^*S^* + \left( k_{-1} + k_2 \right) \frac{[C][t]}{[E]}C^* \\
+\frac{dS^*}{dt^*} &amp;= -k_1 [t][E]E^*S^* + \frac{k_{-1}[C][t]}{[S]} C^* \\
+\frac{dC^*}{dt^*} &amp;= \frac{k_1 [E][S][t]}{[C]}E^*S^* - \left( k_{-1} + k_2 \right) [t]C^* \\
+\frac{dP^*}{dt^*} &amp;= \frac{k_2[C][t]}{[P]}C^*
+\end{align*}
+\end{split}\]</div>
+<p>Choose the scaling factors</p>
+<div class="math notranslate nohighlight">
+\[
+[t] = \frac{1}{k_{-1} + k_2} \hspace{20mm} [E] = [S] = [C] = \frac{k_{-1} + k_2}{k_1} \hspace{20mm} [P] = \frac{k_2}{k_1}
+\]</div>
+<p>and write</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{dE^*}{dt^*} &amp;= -E^*S^* + C^* \\
+\frac{dS^*}{dt^*} &amp;= -E^*S^* + \kappa \, C^* \\
+\frac{dC^*}{dt^*} &amp;= E^*S^* - C^* \\
+\frac{dP^*}{dt^*} &amp;= C^*
+\end{align*}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\kappa = \frac{k_{-1}}{k_{-1} + k_2}\)</span>.</p>
+<p>Plot some solutions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+<span class="c1"># E = u[0], S = u[1], C = u[2], P = u[3]</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="o">-</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">k</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">u0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">u0</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">u</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">,</span><span class="n">u</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">t</span><span class="p">,</span><span class="n">u</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span><span class="n">t</span><span class="p">,</span><span class="n">u</span><span class="p">[:,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Enzyme E&#39;</span><span class="p">,</span><span class="s1">&#39;Substrate S&#39;</span><span class="p">,</span><span class="s1">&#39;Compositie C&#39;</span><span class="p">,</span><span class="s1">&#39;Product P&#39;</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/33ef6cc4a1cc5b6cd61fed7fce0c79140f2c14662816c39b5707ea821b5dbedf.png" src="../../_images/33ef6cc4a1cc5b6cd61fed7fce0c79140f2c14662816c39b5707ea821b5dbedf.png" />
+</div>
 </div>
 </section>
 </section>
@@ -535,6 +621,7 @@ k R_1^{c_1} \cdots R_n^{c_n}
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stoichiometry">Stoichiometry</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concentration-and-reaction-rate">Concentration and Reaction Rate</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-mass-action">Law of Mass Action</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enzyme-kinetics">Enzyme Kinetics</a></li>
 </ul>
   </nav></div>
 

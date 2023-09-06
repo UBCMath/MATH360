@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'deterministic/mass/conservation';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Chemical Kinetics" href="action.html" />
+    <link rel="next" title="Chemical Kinetics" href="chemical.html" />
     <link rel="prev" title="Mass Balance" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelling Process</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../process/overview.html">What is a Mathematical Model?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../process/overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../process/process.html">Modelling Process</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
@@ -173,7 +173,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Mass Balance</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Conservation of Mass</a></li>
-<li class="toctree-l2"><a class="reference internal" href="action.html">Chemical Kinetics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chemical.html">Chemical Kinetics</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../heat/index.html">Heat Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -399,6 +399,8 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-balance-equation">Mass Balance Equation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dilution">Dilution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#withdrawing-from-a-pension">Withdrawing from a Pension</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-tank-system">Two Tank System</a></li>
 </ul>
             </nav>
         </div>
@@ -426,11 +428,11 @@ document.write(`
 <p>The <strong>law of conservation of mass</strong> states that the mass of a closed system does not change. This implies that mass cannot be created or destroyed. Conservation of mass implies the <strong>balance equation</strong> for an open system</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{dM}{dt} = Q_{in} - Q_{out}
+\frac{dM}{dt} = Q_{\text{in}} - Q_{\text{out}}
 \]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(M(t)\)</span> is the mass of the system over time <span class="math notranslate nohighlight">\(t\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(M(t)\)</span> is the mass in the system over time <span class="math notranslate nohighlight">\(t\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(Q_{in}\)</span> is the mass flow rate into the system with dimensions MT<sup>-1<sup></p></li>
 <li><p><span class="math notranslate nohighlight">\(Q_{out}\)</span> is the mass flow rate out of the system with dimensions MT<sup>-1<sup></p></li>
 </ul>
@@ -441,7 +443,7 @@ document.write(`
 </section>
 <section id="dilution">
 <h2>Dilution<a class="headerlink" href="#dilution" title="Permalink to this heading">#</a></h2>
-<p>A tank contains a salt water solution. To dilute the solution, pure water is pumped into the tank, mized and the solution is drained from the tank at the same rate. How does the concentration of the solution change over time?</p>
+<p>A tank contains a salt water solution. To dilute the solution, pure water is pumped into the tank and mixed. The solution is drained from the tank at the same rate as water is pumped into the tank. How does the concentration of the solution change over time?</p>
 <p>Let’s define the variables and parameters in the model:</p>
 <table class="table">
 <thead>
@@ -479,7 +481,7 @@ document.write(`
 </tr>
 </tbody>
 </table>
-<p>Apply the mass balance equation to get</p>
+<p>Note that the rate of salt flowing out of the tank is <span class="math notranslate nohighlight">\(\frac{MQ}{V}\)</span>. Apply the mass balance equation to get</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{dM}{dt} = -\frac{MQ}{V} \ , \ \ M(0) = M_0
@@ -495,6 +497,186 @@ document.write(`
 \frac{dM^*}{dt^*} = -M^* \ , \ \ M^*(0) = 1
 \]</div>
 <p>Solve the equation to find <span class="math notranslate nohighlight">\(M^*(t) = e^{-t^*}\)</span>. Equivalently, <span class="math notranslate nohighlight">\(M(t) = M_0e^{-Qt/V}\)</span>.</p>
+</section>
+<section id="withdrawing-from-a-pension">
+<h2>Withdrawing from a Pension<a class="headerlink" href="#withdrawing-from-a-pension" title="Permalink to this heading">#</a></h2>
+<p>The concept of mass transfer is very general! Consider the problem of withdrawing from a pension. A pension is a financial asset that earns interest and a retiree will withdraw funds from the pension for living expenses. Create a mathematical model of a retiree living on a pension.</p>
+<p>Let’s define the variables and parameters in the model:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Description</p></th>
+<th class="head text-center"><p>Symbol</p></th>
+<th class="head text-center"><p>Dimensions</p></th>
+<th class="head text-center"><p>Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>total value of the pension</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(M\)</span></p></td>
+<td class="text-center"><p>N</p></td>
+<td class="text-center"><p>dependent variable</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>time</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-center"><p>T</p></td>
+<td class="text-center"><p>independent variable</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>rate of return</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(r\)</span></p></td>
+<td class="text-center"><p>T<sup>-1</sup></p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>rate of withdrawal</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(w\)</span></p></td>
+<td class="text-center"><p>NT<sup>-1</sup></p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+</tbody>
+</table>
+<p>Assume that the rate of return and rate of withdrawal are constant. Apply the mass balance equation to get</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dM}{dt} = rM - w \ , \ \ M(0) = M_0
+\]</div>
+<p>Apply the nondimensionalization procedure. Let <span class="math notranslate nohighlight">\(t = [t]t^*\)</span> and <span class="math notranslate nohighlight">\(M = [M]M^*\)</span> and make the substitution</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{[M]}{[t]} \frac{dM^*}{dt^*} = r[M]M^* - w \ , \ \ [M]M^*(0) = M_0
+\]</div>
+<p>Divide by the derivative coefficient</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dM^*}{dt^*} = r[t]M^* - \frac{w[t]}{[M]} \ , \ \ M^*(0) = \frac{M_0}{[M]}
+\]</div>
+<p>Choose <span class="math notranslate nohighlight">\([t] = 1/r\)</span> and <span class="math notranslate nohighlight">\([M] = w/r\)</span> and write</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dM^*}{dt^*} = M^* - 1 \ , \ \ M^*(0) = M_0^*
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(M_0^* = \frac{rM_0}{w}\)</span>.</p>
+<p>Solve the equation to find <span class="math notranslate nohighlight">\(M^*(t) = (M_0^* - 1)e^{t^*} + 1\)</span>. Equivalently,</p>
+<div class="math notranslate nohighlight">
+\[
+M(t) = \left( \frac{rM_0}{w} - 1 \right) e^{rt} + 1
+\]</div>
+</section>
+<section id="two-tank-system">
+<h2>Two Tank System<a class="headerlink" href="#two-tank-system" title="Permalink to this heading">#</a></h2>
+<p>Suppose two tanks are connected such that solution from each tank flows into the other at the same rate. Now suppose salt water solution is pumped into the first tank at a constant rate and solution from the second tank is pumped out of the tank and removed from the system at the same rate so that the total volume of solution in the two-tank system reamins constant. Create a mathematical model of the salt concentration in both tanks.</p>
+<p>Let’s define the variables and parameters in the model:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Description</p></th>
+<th class="head text-center"><p>Symbol</p></th>
+<th class="head text-center"><p>Dimensions</p></th>
+<th class="head text-center"><p>Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>mass of salt tank 1</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(M_1\)</span></p></td>
+<td class="text-center"><p>M</p></td>
+<td class="text-center"><p>dependent variable</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>mass of salt tank 2</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(M_2\)</span></p></td>
+<td class="text-center"><p>M</p></td>
+<td class="text-center"><p>dependent variable</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>time</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-center"><p>T</p></td>
+<td class="text-center"><p>independent variable</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>salt concentration of solution flowing into tank 1</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(C\)</span></p></td>
+<td class="text-center"><p>M L<sup>-3</sup></p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>flow rate of solution into tank 1</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(Q_1\)</span></p></td>
+<td class="text-center"><p>L<sup>3</sup>T<sup>-1</sup></p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>flow rate of solution from tank 1 to tank 2</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(Q_0\)</span></p></td>
+<td class="text-center"><p>L<sup>3</sup>T<sup>-1</sup></p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>volume of solution in tank 1</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(V_1\)</span></p></td>
+<td class="text-center"><p>L<sup>3</sup></p></td>
+<td class="text-center"><p>parameter</p></td>
+</tr>
+</tbody>
+</table>
+<p>Apply the mass balance equation to each tank to derive the equations</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{dM_1}{dt} &amp;= C Q_1 + \frac{M_2 Q_0}{V_2} - \frac{M_1 Q_0}{V_1} \\
+\frac{dM_2}{dt} &amp;= \frac{M_1 Q_0}{V_1} - \frac{M_2 Q_0}{V_2} - \frac{M_2 Q_1}{V_2}
+\end{align*}
+\end{split}\]</div>
+<p>Apply the nondimensionalization procedure. Let <span class="math notranslate nohighlight">\(t = [t]t^*\)</span>, <span class="math notranslate nohighlight">\(M_1 = [M_1]M_1^*\)</span> and <span class="math notranslate nohighlight">\(M_2 = [M_2]M_2^*\)</span> and make the substitution</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{[M_1]}{[t]} \frac{dM_1^*}{dt^*} &amp;= C Q_1 + \frac{[M_2] M_2^* Q_0}{V_2} - \frac{[M_1] M_1^* Q_0}{V_1} \\
+\frac{[M_2]}{[t]} \frac{dM_2^*}{dt^*} &amp;= \frac{[M_1]M_1^* Q_0}{V_1} - \frac{[M_2]M_2^* Q_0}{V_2} - \frac{[M_2]M_2^* Q_1}{V_2}
+\end{align*}
+\end{split}\]</div>
+<p>Divide by the derivative coefficient in each equation</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{dM_1^*}{dt^*} &amp;= \frac{C Q_1 [t]}{[M_1]} + \frac{[t] [M_2] M_2^* Q_0}{[M_1] V_2} - \frac{[t] M_1^* Q_0}{V_1} \\
+\frac{dM_2^*}{dt^*} &amp;= \frac{[t] [M_1] M_1^* Q_0}{[M_2] V_1} - \frac{[t]M_2^* Q_0}{V_2} - \frac{[t]M_2^* Q_1}{V_2}
+\end{align*}
+\end{split}\]</div>
+<p>There are 3 unknowns and 6 coefficients and so there are many choices. Let’s choose</p>
+<div class="math notranslate nohighlight">
+\[
+[t] = \frac{\sqrt{V_1 V_2}}{Q_0}
+\hspace{10mm}
+[M_1] = \frac{CQ_1 \sqrt{V_1V_2}}{Q_0}
+\hspace{10mm}
+[M_2] = \frac{CQ_1 V_2}{Q_0}
+\]</div>
+<p>and then define the dimensionless parameters</p>
+<div class="math notranslate nohighlight">
+\[
+\nu = \sqrt{\frac{V_2}{V_1}}
+\hspace{20mm}
+\rho = \frac{Q_1}{Q_0}
+\]</div>
+<p>Write the system in terms of the new dimensionless variables and parameters to get</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{dM_1^*}{dt^*} &amp;= 1 + M_2^* - \nu M_1^* \\
+\frac{dM_2^*}{dt^*} &amp;= M_1^* - \left(\frac{1 + \rho}{\nu} \right) M_2^*
+\end{align*}
+\end{split}\]</div>
+<p>Plot some solutions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nu</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span> <span class="o">+</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">nu</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">rho</span><span class="p">)</span><span class="o">/</span><span class="n">nu</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">u0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">u0</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">u</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">,</span><span class="n">u</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Tank 1&#39;</span><span class="p">,</span><span class="s1">&#39;Tank 2&#39;</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/71d7db0a7c2eee2c5a280331e58768a03d6b532287dd985f84c289d95d2eba39.png" src="../../_images/71d7db0a7c2eee2c5a280331e58768a03d6b532287dd985f84c289d95d2eba39.png" />
+</div>
+</div>
 </section>
 </section>
 
@@ -539,7 +721,7 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="action.html"
+       href="chemical.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
@@ -567,6 +749,8 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-balance-equation">Mass Balance Equation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dilution">Dilution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#withdrawing-from-a-pension">Withdrawing from a Pension</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-tank-system">Two Tank System</a></li>
 </ul>
   </nav></div>
 

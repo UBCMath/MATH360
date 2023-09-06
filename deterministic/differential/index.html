@@ -144,7 +144,7 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelling Process</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../process/overview.html">What is a Mathematical Model?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../process/overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../process/process.html">Modelling Process</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
@@ -171,7 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../mass/index.html">Mass Balance</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../mass/conservation.html">Conservation of Mass</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../mass/action.html">Chemical Kinetics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mass/chemical.html">Chemical Kinetics</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../heat/index.html">Heat Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -381,14 +381,19 @@ document.write(`
 <h1>Differential Equations<a class="headerlink" href="#differential-equations" title="Permalink to this heading">#</a></h1>
 <section id="big-ideas">
 <h2>Big Ideas<a class="headerlink" href="#big-ideas" title="Permalink to this heading">#</a></h2>
-<p>Deterministic models are often described by systems of <strong>differential equations</strong>. We can apply <strong>analytical methods</strong> to solve differential equations in special cases such as <strong>first order separable equations</strong> and <strong>second order constant coefficient equations</strong>. We use <strong>SciPy</strong> to <strong>approximate solutions</strong> of any system of differential equations. A computational approach to mathematical modelling allows us to spend more time <strong>simulating models</strong> as opposed to studying analytical methods. Every higher order system of differential equations is equivalent to a first order system in higher dimensions therefore <strong>numerical methods</strong> are designed for first order systems and we <strong>transform higher order systems</strong> into <strong>first order systems</strong> to apply numerical methods.</p>
+<ul class="simple">
+<li><p><strong>Deterministic models</strong> are often described by systems of <strong>differential equations</strong>.</p></li>
+<li><p>Apply <strong>analytical methods</strong> to solve differential equations in special cases such as <strong>first order separable equations</strong> and <strong>second order constant coefficient equations</strong>.</p></li>
+<li><p>Use <strong>SciPy</strong> to <strong>approximate solutions</strong> of any system of differential equations. A computational approach to mathematical modelling allows us to spend more time <strong>simulating models</strong> as opposed to studying analytical methods.</p></li>
+<li><p>Every higher order system of differential equations is equivalent to a first order system in higher dimensions therefore <strong>numerical methods</strong> are designed for first order systems and we <strong>transform higher order systems</strong> into <strong>first order systems</strong> to apply numerical methods.</p></li>
+</ul>
 </section>
 <section id="learning-goals">
 <h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Classify differential equations: order, dimension, separable, linear, autonomous, homogeneous</p></li>
-<li><p>Apply analytical methods to find solutions of first order separable equations</p></li>
-<li><p>Apply analytical methods to find solutions of homogeneous second order equations with constant coefficients</p></li>
+<li><p>Apply analytical methods to solve first order separable equations</p></li>
+<li><p>Apply analytical methods to solve homogeneous second order equations with constant coefficients</p></li>
 <li><p>Transform higher order systems of differential equations into first order systems</p></li>
 <li><p>Compute and visualize numerical solutions of differential equations</p></li>
 </ul>

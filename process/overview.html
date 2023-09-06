@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>What is a Mathematical Model? &#8212; Introduction to Mathematical Modelling</title>
+    <title>Overview &#8212; Introduction to Mathematical Modelling</title>
   
   
   
@@ -144,7 +144,7 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelling Process</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">What is a Mathematical Model?</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="process.html">Modelling Process</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
@@ -171,7 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/mass/index.html">Mass Balance</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../deterministic/mass/conservation.html">Conservation of Mass</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../deterministic/mass/action.html">Chemical Kinetics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/mass/chemical.html">Chemical Kinetics</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/heat/index.html">Heat Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -372,7 +372,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -383,11 +385,21 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>What is a Mathematical Model?</h1>
+    <h1>Overview</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-mathematical-model">What is a Mathematical Model?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline-of-the-modelling-process">Outline of the Modelling Process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-models">Types of Models</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -397,24 +409,46 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="what-is-a-mathematical-model">
-<h1>What is a Mathematical Model?<a class="headerlink" href="#what-is-a-mathematical-model" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h1>
+<section id="what-is-a-mathematical-model">
+<h2>What is a Mathematical Model?<a class="headerlink" href="#what-is-a-mathematical-model" title="Permalink to this heading">#</a></h2>
 <p>A <strong>mathematical model</strong> is a mathematical representation of a system used to make predictions and provide insight about a real-world scenario, and <strong>mathematical modelling</strong> is the process of constructing, simulating and evaluating mathematical models.</p>
-<p>Why do we construct mathematical models? It can often be costly (or impossible!) to conduct experiments to study a real-world problem and so a mathematical model is a way to describe the behaviour of system and predict outcomes using mathematical equations and computer simulations.</p>
-<p>Models can have a wide range of complexity! More complex does not necessarily mean better and we can sometimes work with more simplistic models to achieve good results. In many instances, we often start with a simple model and then build-up the complexity until the model accurately describes the real-world application.</p>
-<p>There are several kinds of mathematical models:</p>
-<p><strong>Deterministic models</strong> predict future based on current information and do not include randomness. These kinds of models often take the from of <strong>systems of differential equations</strong> which describe the evolution of a system over time.</p>
-<p><strong>Stochastic models</strong> include randomness and are based on <strong>probability distributions</strong> and <strong>stochastic processes</strong>.</p>
-<p><strong>Data-driven models</strong> look for patterns in observed data to predict the output of a system. These kinds of models often take the form of <strong>functions with parameters</strong> computed to fit observed data.</p>
+<p>Why do we construct mathematical models? It can often be costly (or impossible!) to conduct experiments to study a real-world problem and so a mathematical model is a way to describe the behaviour of a system and <strong>predict outcomes</strong> using <strong>mathematical equations</strong> and <strong>computer simulations</strong>.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p>Check out the following resources to get started with mathematical modelling:</p>
 <ul class="simple">
-<li><p><em>Chapter 1: What is Mathematical Modelling?</em> in <a class="reference external" href="https://www.sciencedirect.com/book/9780122265518/principles-of-mathematical-modeling">Principles of Mathematical Modeling</a> by Dym</p></li>
-<li><p><a class="reference external" href="https://www.youtube.com/watch?v=_1BFNNvg2ec&amp;list=PLf_ipOSbWC87nFTi6MaB4begv56yPKsOJ">What is Math Modeling?</a> by the Society for Industrial and Applied Mathematics (SIAM)</p></li>
+<li><p><em>Chapter 1: What is Mathematical Modelling?</em> in <a class="reference external" href="https://www.sciencedirect.com/book/9780122265518/principles-of-mathematical-modeling">Principles of Mathematical Modeling</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=_1BFNNvg2ec&amp;list=PLf_ipOSbWC87nFTi6MaB4begv56yPKsOJ">What is Math Modeling?</a></p></li>
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Mathematical_model">Wikipedia: Mathematical Model</a></p></li>
 </ul>
 </div>
+</section>
+<section id="outline-of-the-modelling-process">
+<h2>Outline of the Modelling Process<a class="headerlink" href="#outline-of-the-modelling-process" title="Permalink to this heading">#</a></h2>
+<p>Mathematical modelling involves observing some real-world phenomenon and formulating a mathematical representation of the system. But how do we even know where to start? Or how to find a solution? The <strong>modelling process</strong> is a systematic approach:</p>
+<ol class="arabic simple">
+<li><p>Clearly state the problem</p></li>
+<li><p>Identify variables and parameters</p></li>
+<li><p>Make assumptions and identify constraints</p></li>
+<li><p>Build solutions</p></li>
+<li><p>Analyze and assess</p></li>
+<li><p>Report the results</p></li>
+</ol>
+<p>Models can have a wide range of <strong>complexity</strong>! More complex does not necessarily mean better and we can sometimes work with more simplistic models to achieve good results. In many instances, we often start with a simple model and then build-up the complexity by <strong>iterating</strong> through the steps in modelling process until the model accurately describes the real-world application.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Check out <a class="reference external" href="https://m3challenge.siam.org/resources/modeling-handbook">Math Modeling: Getting Started and Getting Solutions</a> to read more about the modelling process.</p>
+</div>
+</section>
+<section id="types-of-models">
+<h2>Types of Models<a class="headerlink" href="#types-of-models" title="Permalink to this heading">#</a></h2>
+<p>There are <em>many</em> different types of mathematical models! In this course we focus on the following:</p>
+<p><strong>Deterministic models</strong> predict future based on current information and do not include randomness. These kinds of models often take the from of <strong>systems of differential equations</strong> which describe the evolution of a system over time.</p>
+<p><strong>Stochastic models</strong> include randomness and are based on <strong>probability distributions</strong> and <strong>stochastic processes</strong>.</p>
+<p><strong>Data-driven models</strong> look for patterns in observed data to predict the output of a system. These kinds of models often take the form of <strong>functions with parameters</strong> computed to fit observed data.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -475,6 +509,22 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-mathematical-model">What is a Mathematical Model?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline-of-the-modelling-process">Outline of the Modelling Process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-models">Types of Models</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
