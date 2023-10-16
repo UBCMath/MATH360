@@ -1,0 +1,1250 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Monte Carlo Methods &#8212; Introduction to Mathematical Modelling</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stochastic/Lecture_12_monte_carlo_methods_1';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction to Mathematical Modelling</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelling Process</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../process/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../process/process.html">Modelling Process</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../deterministic/overview.html">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/differential/index.html">Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/differential/equations.html">Scalar Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/differential/systems.html">Systems of Equations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/nondimensionalization/index.html">Nondimensionalization</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/nondimensionalization/dimensions.html">Dimensions and Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/nondimensionalization/scaling.html">Scaling</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/motion/index.html">Objects in Motion</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/laws-of-motion.html">Laws of Motion and Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/mass-spring-2d.html">2D Mass Spring System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/simple-pendulum.html">Simple Pendulum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/projectile.html">Projectile Motion with Drag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/orbits.html">Planetary Orbits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/eulers-3-body.html">Euler’s 3-Body Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/heat/index.html">Heat Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/heat/balance.html">Energy Balance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/heat/conduction.html">Thermal Conduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/heat/radiation.html">Thermal Radiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/heat/climate.html">Global Energy Balance</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/mass/index.html">Mass Balance</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/mass/conservation.html">Conservation of Mass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/mass/chemical.html">Chemical Kinetics</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Stochastic Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="random.html">Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributions.html">Probability Distributions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data-Driven Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../data-driven/overview.html">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/linear-regression/index.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data-driven/linear-regression/linear.html">Linear Regression</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/logistic-regression/index.html">Logistic Regression</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data-driven/logistic-regression/logistic-function.html">Logistic Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data-driven/logistic-regression/cost-regularization.html">Cost and Regularization</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/numerical-methods/index.html">Numerical Methods</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data-driven/numerical-methods/gradient.html">Gradient Descent</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/stochastic/Lecture_12_monte_carlo_methods_1.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/UBCMath/MATH360" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/stochastic/Lecture_12_monte_carlo_methods_1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Monte Carlo Methods</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-class">Last Class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-today">Goals for Today</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-lecture-activities">Pre-Lecture Activities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-value">Expected Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance">Variance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-large-numbers">Law of Large Numbers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unknown-probability-density-function">Unknown Probability Density Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monte-carlo">Monte Carlo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-flipping-a-coin">Example - Flipping a Coin</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#check-your-understanding">Check your understanding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tasks">Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monte-carlo-key-points">Monte Carlo Key Points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rolling-a-die">Rolling a Die</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dice-sum">Dice Sum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rolling-a-die-monte-carlo">Rolling a Die – Monte Carlo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transit-travel-time">Transit Travel Time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transit-travel-time-2">Transit Travel Time 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-density-function">Kernel Density Function</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="monte-carlo-methods">
+<h1>Monte Carlo Methods<a class="headerlink" href="#monte-carlo-methods" title="Permalink to this heading">#</a></h1>
+<section id="last-class">
+<h2>Last Class<a class="headerlink" href="#last-class" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Probability overview and introduction to Monte Carlo simulation</p></li>
+</ul>
+</section>
+<section id="goals-for-today">
+<h2>Goals for Today<a class="headerlink" href="#goals-for-today" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Define Monte Carlo Methods and state advantages/disadvantes of the methodology</p></li>
+<li><p>Implement and analyze Monte Carlo Methods in a variety of examples</p></li>
+</ul>
+</section>
+<section id="pre-lecture-activities">
+<h2>Pre-Lecture Activities<a class="headerlink" href="#pre-lecture-activities" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Read: Section 1.1 and 1.3 from <em>Monte Carlo Methods</em> by Malvin Kalos and Paula Whitlock.  An online pdf of the book is available for free through the UBC Library, as well as the definition of Expected Value below.</p></li>
+</ul>
+</section>
+<section id="expected-value">
+<h2>Expected Value<a class="headerlink" href="#expected-value" title="Permalink to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> be a random variable with probability distribution <span class="math notranslate nohighlight">\(f(x)\)</span>.  The <strong>mean</strong> or <strong>expected value</strong> of <span class="math notranslate nohighlight">\(X\)</span> is
+\begin{align*}
+\mu &amp;= \mathbb{E}(x)\
+&amp;= \sum\limits_{i}x_if(x_i)
+\end{align*}
+if <span class="math notranslate nohighlight">\(X\)</span> is discrete and
+\begin{align*}
+\mu &amp;= \mathbb{E}(x)\
+&amp;= \int\limits_{-\infty}^{\infty} xf(x)
+\end{align*}
+if <span class="math notranslate nohighlight">\(X\)</span> is continuous.</p>
+<p><strong>Example:</strong> Let’s suppose we are flipping a fair coin twice.  The outcomes at <span class="math notranslate nohighlight">\(TT, HT, TH\)</span>, and <span class="math notranslate nohighlight">\(HH\)</span>, with each outcome having a probability of <span class="math notranslate nohighlight">\(\frac{1}{4}\)</span> (Recall here, that the probability of each outcome is the number of times it occurs divideded by the total number of outcomes).</p>
+<p>The expected number of heads, <span class="math notranslate nohighlight">\(X\)</span> is then:
+\begin{align*}
+\mathbb{E}(X) &amp; = \sum\limits_{i}x_if(x_i)\
+&amp; = (\textrm{number of heads in 0 heads})(\textrm{probability of 0 heads}) + (\textrm{number of heads in 1 head})(\textrm{probability of 1 head}) + (\textrm{number of heads in 2 heads})(\textrm{probability of 2 heads})\
+&amp; = 0\cdot \left( \frac{1}{4} \right) + 1\cdot \left( \frac{1}{4} + \frac{1}{4} \right) + 2\cdot \left( \frac{1}{4} \right)\
+&amp; = 1.
+\end{align*}
+Therefore if we were to toss a coin twice over and over again, on average, we would expect to get 1 head.</p>
+<p>We have a similar definition for expectation when we take out random variable <span class="math notranslate nohighlight">\(X\)</span> and input it into a function <span class="math notranslate nohighlight">\(g\)</span>. Suppose we have a random variable <span class="math notranslate nohighlight">\(X\)</span> with probability distribution <span class="math notranslate nohighlight">\(f(x)\)</span>.  The expected value of the random variable <span class="math notranslate nohighlight">\(g(X)\)</span> is:
+\begin{align*}
+\mu &amp;= \mathbb{E}(g(x))\
+&amp;= \sum\limits_{i}g(x_i)f(x_i)
+\end{align*}
+if <span class="math notranslate nohighlight">\(X\)</span> is discrete and
+\begin{align*}
+\mu &amp;= \mathbb{E}(g(x))\
+&amp;= \int\limits_{-\infty}^{\infty} g(x)f(x) , dx
+\end{align*}
+if <span class="math notranslate nohighlight">\(X\)</span> is continuous.</p>
+<p><strong>Example:</strong> Let <span class="math notranslate nohighlight">\(X\)</span> be a random variable with the density function <span class="math notranslate nohighlight">\(f(x) = \frac{x^2}{3}\)</span> for <span class="math notranslate nohighlight">\(-1&lt;x&lt;2\)</span> (and 0 everywhere else).  Find the expected value of <span class="math notranslate nohighlight">\(g(X) = 4X+3\)</span>.</p>
+<p>\begin{align*}
+\mathbb{E}(g(x)) &amp;= \int\limits_{-\infty}^{\infty} g(x)f(x) , dx \
+&amp; = \int\limits_{-1}^2 \left(4x+3\right) \left( \frac{x^2}{3} \right) , dx\
+&amp; =  \frac{1}{3} \int\limits_{-1}^2 \left( 4x^3 + 3x^2 \right) , dx\
+&amp; = 8
+\end{align*}</p>
+<p>Therefore, on average, the expected value is 8.</p>
+</section>
+<section id="variance">
+<h2>Variance<a class="headerlink" href="#variance" title="Permalink to this heading">#</a></h2>
+<p>From last class, we know that the variance gives a measure of the amount of spread in data in relation to the expected value and is the square of the standard deviation. However, it does have a mathematical definition, which can be useful for calculations.  Suppose <span class="math notranslate nohighlight">\(X\)</span> is a random variable with probability density given by <span class="math notranslate nohighlight">\(f(x)\)</span>.  The variance is given by:
+\begin{align*}
+\textrm{Var}(X) &amp;= \mathbb{E}((x-\mu)^2)\
+&amp;= \sum\limits_{i}(x_i-\mu)^2f(x_i)
+\end{align*}
+if <span class="math notranslate nohighlight">\(X\)</span> is discrete and
+\begin{align*}
+\textrm{Var}(X) &amp; = \mathbb{E}((x-\mu)^2) \
+&amp; = \int (x-\mu)^2 f(x) , dx\
+\end{align*}
+if <span class="math notranslate nohighlight">\(X\)</span> is continuous.</p>
+<p><strong>Example:</strong> Let’s go back to the flipping a fair coin twice example from above.</p>
+<p>The variance in the number of heads, <span class="math notranslate nohighlight">\(X\)</span>, is then:
+\begin{align*}
+\textrm{Var}(X) &amp;= \mathbb{E}((x-\mu)^2)\
+&amp;= \sum\limits_{i}(x_i-\mu)^2f(x_i) \
+&amp; = (0-1)^2\cdot \left( \frac{1}{4} \right) + (1-1)^2\cdot \left( \frac{1}{4} + \frac{1}{4} \right) + (2-1)^2\cdot \left( \frac{1}{4} \right)\
+&amp; = \frac{1}{2}.
+\end{align*}
+Therefore if we were to toss a coin twice over and over again, we would expect a variance of <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<section id="law-of-large-numbers">
+<h3>Law of Large Numbers<a class="headerlink" href="#law-of-large-numbers" title="Permalink to this heading">#</a></h3>
+<p>The Law of Large Numbers says that the average of a sequence of random variables of a known distribution will converge to its expectation as the number of samples goes to infinity.</p>
+<p>In other words, if we perform a large number of trials, then the average of these results should be close to the expected outcome.  As we increase the number of trials, the average of our results tend towards the expected value.</p>
+<p>Recall here that in statistics terminology, expectation is the average.</p>
+</section>
+</section>
+<section id="unknown-probability-density-function">
+<h2>Unknown Probability Density Function<a class="headerlink" href="#unknown-probability-density-function" title="Permalink to this heading">#</a></h2>
+<p>So far, all of the examples we have discussed today have random variables with a known probability distribution.  In practice, we rarely know the probability density function.  This can be for a number of reasons: we may not know all of the possible outcomes, we may have multiple random variables each with their own distribution that are combined through a function <span class="math notranslate nohighlight">\(f(X,Y,Z,...)\)</span>, we may know the distribution of the random variable <span class="math notranslate nohighlight">\(X\)</span> yet not the distribution of <span class="math notranslate nohighlight">\(f(X)\)</span>, etc. We will typically have access to a <em>sample</em> of observations, from which we want to determine a probability distribution.</p>
+<p>The process of determining the probability density is generally referrred to as Probability Density Estimation, as we want to leverage the observations in the sample we have to “estimate” the general probability density of the population.
+<strong>Note</strong>: there is a similar concept called Kernel Density Estimation, where we are looking to estimate the probability density function of a dataset.  You may see these terms sometimes interchangeably used.</p>
+<p>As we have seen in the examples in class today, a first step can be to produce a histogram of the sample data to “see” if the data takes on a known distribution. In addition to the uniform, normal, and exponential distributions discussed in class, some popular alternative distributions (both continuous and discrete) are:</p>
+<ul class="simple">
+<li><p>Weibull</p></li>
+<li><p>Chi-squared</p></li>
+<li><p>Log-normal</p></li>
+<li><p>Beta</p></li>
+<li><p>Binomial</p></li>
+<li><p>Poisson</p></li>
+<li><p>Geometric</p></li>
+<li><p>Hypergeometric.
+If the data does not “look” like a known distribution, we may try to fit the model to estimate the population’s probability distribution.</p></li>
+</ul>
+<p>The goal here is to generate a probability distribution, so that we have access to the probability of all possible outcomes of the population.  Once we know this, we are able to determine the probability of certain events occuring and make predictions based on an associated context.</p>
+<section id="monte-carlo">
+<h3>Monte Carlo<a class="headerlink" href="#monte-carlo" title="Permalink to this heading">#</a></h3>
+<p>In the case that our scenario has multiple random variables each with their own distribution that are combined through a function <span class="math notranslate nohighlight">\(f(X,Y,Z,...)\)</span> or that we know the distribution of the random variable <span class="math notranslate nohighlight">\(X\)</span> yet not the distribution of <span class="math notranslate nohighlight">\(f(X)\)</span>, Monte Carlo can be leveraged to generate a sample space to visualize the probability distirbution.  Once we have a probability distribution, we can see if that distribution “looks” like a known distribution or we can try to fit the distribution of the Monte Carlo simulations using a <strong>Kernel Density Function optimization</strong> (the latter is outside the scope of MATH 360, but there are some packages in python that can be leveraged to fit a probability density distribution to a probability density function). We will however look at how we can form a <strong>Kernel Density Function</strong> from data – See next class!</p>
+<p><strong>Remark</strong> One of our main goals with probabilistic modelling will be to recover the probability distribution of a given system. The probability distribution contains a wealth of information about the scenario that can then be leveraged to determine, for example, how often certain events will happen or under what conditions a certain threshold will be met.</p>
+<p>Unfortunately for many systems, the probability distribution is unknown, however, we may know the distribution of certain peieces in the scenario that can be leveraged to deduce the probability distribution of the overall model.  Monte Carlo gives us a systematic way to simulate probability distributions of models.</p>
+</section>
+<section id="example-flipping-a-coin">
+<h3>Example - Flipping a Coin<a class="headerlink" href="#example-flipping-a-coin" title="Permalink to this heading">#</a></h3>
+<p>Write a Monte Carlo method to model a coin flip.</p>
+<p>What should the average be as we add more and more coin flips?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we will simulate a coin flip and then run a monte carlo simulation</span>
+
+<span class="c1"># use head = 0</span>
+<span class="c1"># and tail = 1</span>
+<span class="k">def</span> <span class="nf">coin</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> 
+
+<span class="n">flips_mc</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">average_flip_mc</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">def</span> <span class="nf">monte_carlo_coin</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="c1"># flip coin </span>
+        <span class="n">flip</span> <span class="o">=</span> <span class="n">coin</span><span class="p">()</span> <span class="c1">#flip the coin</span>
+        <span class="n">flips_mc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">flip</span><span class="p">)</span> <span class="c1">#store flip</span>
+        <span class="n">flip_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">flips_mc</span><span class="p">)</span> <span class="c1">#average the flips</span>
+        <span class="n">average_flip_mc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">flip_avg</span><span class="p">)</span> <span class="c1">#store average</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot output for n</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="n">monte_carlo_coin</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1">#plot the average of the coin flips -- we should have that the Monte Carlo tends to 0.5 as we add more flips</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">average_flip_mc</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;flip number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;average of all flips&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># plot output for n</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">monte_carlo_coin</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1">#plot the average of the coin flips -- we should have that the Monte Carlo tends to 0.5 as we add more flips</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">average_flip_mc</span><span class="p">)</span>
+
+<span class="nn">Cell In[1], line 14,</span> in <span class="ni">monte_carlo_coin</span><span class="nt">(n)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="k">def</span> <span class="nf">monte_carlo_coin</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>         <span class="c1"># flip coin </span>
+<span class="ne">---&gt; </span><span class="mi">14</span>         <span class="n">flip</span> <span class="o">=</span> <span class="n">coin</span><span class="p">()</span> <span class="c1">#flip the coin</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span>         <span class="n">flips_mc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">flip</span><span class="p">)</span> <span class="c1">#store flip</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span>         <span class="n">flip_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">flips_mc</span><span class="p">)</span> <span class="c1">#average the flips</span>
+
+<span class="nn">Cell In[1], line 6,</span> in <span class="ni">coin</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">def</span> <span class="nf">coin</span><span class="p">():</span>
+<span class="ne">----&gt; </span><span class="mi">6</span>     <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;random&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Remarks:</p>
+<ol class="arabic simple">
+<li><p>Notice here that for small <span class="math notranslate nohighlight">\(n\)</span> values, we have a more oscillatory behaviour in the average value.</p></li>
+<li><p>As we increase the <span class="math notranslate nohighlight">\(n\)</span> value, the average flip value tends towards <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>, which is our expected value.</p></li>
+</ol>
+</section>
+</section>
+<section id="check-your-understanding">
+<h2>Check your understanding<a class="headerlink" href="#check-your-understanding" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Monte Carlo is sometimes referred to as a method for repeated sampling – we use computers to simulate an event multiple times. Why would this type of computational framework be useful for researchers?</p></li>
+<li><p>In the reading, it is mentioned that “the rate of convergence is slow” for Monte Carlo.  This means that we require a large number of simulations to achieve an “accurate result”.  While this is a disadvantage from a computational standpoint, why might this be advantages from a statistical standpoint?</p></li>
+<li><p>What is the expected value for rolling a pair of (fair) dice and summing the result? (e.g., if we role a 3 and a 4, the outcome of the roll would be 3+4=7).</p></li>
+</ol>
+</section>
+<section id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Roll a pair of dice 20 times and write down the sum.  Then organize the data into 2 arrays in python: one with the sum (e.g., roll = [2,3,4,5,6,7,8,9,10,11,12]) and one with the frequency you observed rolling the dice.  Make a histogram of the sums. Is the distribution what you expect to see? Why or why not?  If not, what could you do to make the distribution “look” like what you expect to see (It may help to determine the probability of each sum occuring).</p>
+<ul class="simple">
+<li><p>Please bring your python arrays to class with you!</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>End of Pre-lecture Material</strong></p>
+</section>
+<section id="monte-carlo-key-points">
+<h2>Monte Carlo Key Points<a class="headerlink" href="#monte-carlo-key-points" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A method of repeated sampling that can be leveraged for a variety of applications</p>
+<ul>
+<li><p>simulating an event multiple times</p></li>
+<li><p>predict a range of outcomes for future events</p></li>
+<li><p>sensitivity analysis of a numerical scheme</p></li>
+</ul>
+</li>
+<li><p>converges quite slow - on the order of <span class="math notranslate nohighlight">\(\mathcal{O}\left(\frac{1}{\sqrt{n}}\right)\)</span></p>
+<ul>
+<li><p>require a lot of simulations to get accurate results</p></li>
+<li><p>number of simulations depends on context and numerical scheme</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import packages</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;packages imported&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>packages imported
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="rolling-a-die">
+<h2>Rolling a Die<a class="headerlink" href="#rolling-a-die" title="Permalink to this heading">#</a></h2>
+<p>Form a group of 4-6 and combine your data together.</p>
+<p>Generate a plot with the sum on the horizontal axis and the frequency on the vertical. Then calculate the probability of each sum occuring and plot the probability distribution.</p>
+<p>Then answer the following questions:</p>
+<ul class="simple">
+<li><p>How do the frequency and probability distribution plots look?</p></li>
+<li><p>Does the data look how you would expect?</p></li>
+<li><p>If not, why do you think the data does not look like you expect?</p></li>
+</ul>
+</section>
+<section id="dice-sum">
+<h2>Dice Sum<a class="headerlink" href="#dice-sum" title="Permalink to this heading">#</a></h2>
+<p>Now, simulate rolling two dice and tracking the sum.  Write a code to simulate 200 dice rolls.</p>
+<p>How does the distribution compare with your group’s distribution?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#define a function to roll dice and add sum</span>
+
+<span class="k">def</span> <span class="nf">sum_dice</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#create a function that generates 200 dice rolls</span>
+<span class="n">number</span> <span class="o">=</span> <span class="mi">199</span>  <span class="c1">##remember that python index starts at 0</span>
+
+<span class="n">rolls</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="n">roll</span> <span class="o">=</span> <span class="n">sum_dice</span><span class="p">()</span>
+    <span class="n">rolls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">roll</span><span class="p">)</span>
+    
+<span class="c1">#print the average roll value</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rolls</span><span class="p">))</span>
+    
+<span class="c1">#plot rolls</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rolls</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;roll number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;dice sum&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">#turn into probability distribution</span>
+<span class="n">buckets</span> <span class="o">=</span> <span class="mi">11</span> <span class="c1">#make 11 bins between - one for each discrete sum 2 through 12</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">rolls</span><span class="p">,</span> <span class="n">buckets</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability Distribution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Roll sum&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.78391959798995
+</pre></div>
+</div>
+<img alt="../_images/20aafa39f610250879fd9fe47a20f635c8d7887961ee4ec74e6c39d8b0639bf8.png" src="../_images/20aafa39f610250879fd9fe47a20f635c8d7887961ee4ec74e6c39d8b0639bf8.png" />
+<img alt="../_images/198dfc8b5b7685d2a1f4a22ec0452e3cf856b102e2619ef9aa6891d58e58e3e3.png" src="../_images/198dfc8b5b7685d2a1f4a22ec0452e3cf856b102e2619ef9aa6891d58e58e3e3.png" />
+</div>
+</div>
+</section>
+<section id="rolling-a-die-monte-carlo">
+<h2>Rolling a Die – Monte Carlo<a class="headerlink" href="#rolling-a-die-monte-carlo" title="Permalink to this heading">#</a></h2>
+<p>In your groups, write a Monte Carlo code to simulate rolling a pair of dice 500 times and generate the same plots as activity 1.</p>
+<p>Then answer the following questions:</p>
+<ul class="simple">
+<li><p>Do the plots look how you would expect?</p></li>
+<li><p>What happens when you increase the number of Monte Carlo simulations?</p>
+<ul>
+<li><p>Why do you think you are seeing this effect?</p></li>
+</ul>
+</li>
+<li><p>What are the advantages and disadvantages of using a Monte Carlo simulation in this context?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rolls_mc</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">rolls_average_mc</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">def</span> <span class="nf">monte_carlo</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="c1"># roll dice</span>
+        <span class="n">roll</span> <span class="o">=</span> <span class="n">sum_dice</span><span class="p">()</span>
+        <span class="n">rolls_mc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">roll</span><span class="p">)</span>
+        
+        <span class="n">roll_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rolls_mc</span><span class="p">)</span>
+        <span class="n">rolls_average_mc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">roll_avg</span><span class="p">)</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">monte_carlo</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+
+<span class="c1">#plot the roll average</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rolls_average_mc</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;roll number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;average of all rolls&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">#plot the individual rolls -- this is typically not a helpful plot, but can be when testing small n values</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rolls_mc</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;roll number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;roll value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8a872cc8d45bdcf43967e0daf8cd95e884ced1951675e100a342341bdf59a4d9.png" src="../_images/8a872cc8d45bdcf43967e0daf8cd95e884ced1951675e100a342341bdf59a4d9.png" />
+<img alt="../_images/9d85de625a3c8ce6171380936090712cb613762f3b631fb301f36f4cdc238437.png" src="../_images/9d85de625a3c8ce6171380936090712cb613762f3b631fb301f36f4cdc238437.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#turn into probability distribution</span>
+<span class="n">buckets</span> <span class="o">=</span> <span class="mi">11</span> <span class="c1">#make 11 bins between - one for each discrete sum</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">rolls_mc</span><span class="p">,</span> <span class="n">buckets</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability Distribution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Roll sum&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/058eec3cb9f8600cf09fc338d2b1875ea9eb0dd1db64f652c9188b54d60a8eff.png" src="../_images/058eec3cb9f8600cf09fc338d2b1875ea9eb0dd1db64f652c9188b54d60a8eff.png" />
+</div>
+</div>
+<p>Notice here how our visualization of the Monte Carlo simulations appears to give us a Normal distribution. Let’s try to fit it using the Normal’s probability density function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot a normal distribution on the data </span>
+<span class="n">mean_roll</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rolls_mc</span><span class="p">)</span>
+<span class="n">std_roll</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">rolls_mc</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span> <span class="c1">#here we use 2 to 12 since these are the possible outcomes for the sum of dice rolls</span>
+
+<span class="c1"># if you would prefer to explicitly use the normal distribution function uncomment the following line </span>
+<span class="c1"># normal_dist = 1 / (std_roll*np.sqrt(2*np.pi)) * np.exp(-0.5* ((x-mean_roll)/std_roll)**2)</span>
+<span class="n">normal_dist</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mean_roll</span><span class="p">,</span><span class="n">std_roll</span><span class="p">)</span>
+
+<span class="c1">#calculate exact variance; exact mean is 7</span>
+<span class="c1">#by definition st deviation is sqrt(variance-(expected value^2))</span>
+<span class="n">var</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">36</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">)</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">12</span><span class="p">)</span><span class="o">+</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">9</span><span class="p">)</span><span class="o">+</span><span class="mi">6</span><span class="o">*</span><span class="mi">6</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">36</span><span class="p">)</span><span class="o">+</span><span class="mi">7</span><span class="o">*</span><span class="mi">7</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">+</span><span class="mi">8</span><span class="o">*</span><span class="mi">8</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">36</span><span class="p">)</span><span class="o">+</span><span class="mi">9</span><span class="o">*</span><span class="mi">9</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">9</span><span class="p">)</span><span class="o">+</span><span class="mi">10</span><span class="o">*</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">12</span><span class="p">)</span><span class="o">+</span><span class="mi">11</span><span class="o">*</span><span class="mi">11</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">)</span><span class="o">+</span><span class="mi">12</span><span class="o">*</span><span class="mi">12</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">36</span><span class="p">)</span>
+<span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="o">-</span><span class="mi">7</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="n">exact_normal_dist</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="n">std</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">rolls_mc</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="c1">#call the histogram from the previous block</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">normal_dist</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;cyan&quot;</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;numerical distribution&quot;</span><span class="p">)</span> <span class="c1"># plot the probability distribution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">exact_normal_dist</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="n">linestyle</span> <span class="o">=</span> <span class="s2">&quot;dashed&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;exact distribution&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;probability distribution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0a47b9f92296c31eefb068c0efeb1646a16641727f2a360bc83654080eb6a655.png" src="../_images/0a47b9f92296c31eefb068c0efeb1646a16641727f2a360bc83654080eb6a655.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">mean_roll</span><span class="p">,</span><span class="n">std_roll</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7.0655, 2.457073411601696]
+</pre></div>
+</div>
+</div>
+</div>
+<p>How can we make the numerical and exact distributions coincide?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### run more simulations to get a better result!</span>
+<span class="n">monte_carlo</span><span class="p">(</span><span class="mi">7000</span><span class="p">)</span>
+
+<span class="c1">#plot roll average</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rolls_average_mc</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;roll number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;average of all rolls&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">#plot distribtution</span>
+<span class="n">mean_roll</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rolls_mc</span><span class="p">)</span>
+<span class="n">std_roll</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">rolls_mc</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span> <span class="c1">#here we use 2 to 12 since these are the possible outcomes for the sum of dice rolls</span>
+
+<span class="c1"># if you would prefer to explicitly use the normal distribution function uncomment the following line </span>
+<span class="c1"># normal_dist = 1 / (std_roll*np.sqrt(2*np.pi)) * np.exp(-0.5* ((x-mean_roll)/std_roll)**2)</span>
+<span class="n">normal_dist</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mean_roll</span><span class="p">,</span><span class="n">std_roll</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">rolls_mc</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="c1">#call the histogram from the previous block</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">normal_dist</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;cyan&quot;</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;numerical distribution&quot;</span><span class="p">)</span> <span class="c1"># plot the probability distribution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">exact_normal_dist</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="n">linestyle</span> <span class="o">=</span> <span class="s2">&quot;dashed&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;exact distribution&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;probability distribution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5544eae252e97603643cca7c556bc00d45bca917c16dc116d8864138f3ebf69d.png" src="../_images/5544eae252e97603643cca7c556bc00d45bca917c16dc116d8864138f3ebf69d.png" />
+<img alt="../_images/24fb8377f360720ffe57be52e3a322e8e1369deb9403b27ae79076383be921a0.png" src="../_images/24fb8377f360720ffe57be52e3a322e8e1369deb9403b27ae79076383be921a0.png" />
+</div>
+</div>
+<p><strong>Note</strong>: Here, we performed our Kernel Density/Probability Density estimation by first visualizing the outcomes and noticing that it appeared to be Normally distribution.  In this case, there was no need to “fit” the data using a fitting algorithm.  We will see in the coming days, that this is not always the case, and that we may need to employ some additional fitting techniques to determine what the probability density is.</p>
+<p>In all of the examples above, we need a large number of samples to “see” the expected (or average) value for our simulations.  Monte Carlo Method works because it leverages the Law of Large Numbers.</p>
+</section>
+<section id="transit-travel-time">
+<h2>Transit Travel Time<a class="headerlink" href="#transit-travel-time" title="Permalink to this heading">#</a></h2>
+<p>Let’s suppose we have to take two buses to reach UBC campus from where we live.  The first bus ride is an average of 11 minutes, with a variance of 2 minutes, and the second bus ride is an average of 20 minutes, with a variance of 4 minutes.  Let’s further assume that each bus trip is normally distributed.</p>
+<p>Calculate the probability that the time to reach campus is less than 30 minutes.</p>
+<p>Solution:</p>
+<p>Let <span class="math notranslate nohighlight">\(X_1\)</span> be normally distributed with <span class="math notranslate nohighlight">\(\mu=11\)</span> and <span class="math notranslate nohighlight">\(\sigma^2 = 2\)</span> and <span class="math notranslate nohighlight">\(X_2\)</span> be normally distributed with <span class="math notranslate nohighlight">\(\mu = 20\)</span> and <span class="math notranslate nohighlight">\(\sigma^2 = 4.\)</span></p>
+<p>The total time is then defined through the random variable <span class="math notranslate nohighlight">\(Y\)</span>, which is the sum of the two bus components: <span class="math notranslate nohighlight">\(Y = X_1 + X_2.\)</span>  Interestingly, we can actually solve this problem by hand, however, we will simulate it using Monte Carlo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#number of Monte Carlo simulations</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">20000</span> 
+
+<span class="c1">#bus distributions</span>
+<span class="n">X1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+<span class="n">X2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># total bus time</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">X1</span> <span class="o">+</span> <span class="n">X2</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span><span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of first bus ride&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span><span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of second bus ride&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="n">bins</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="c1">#cut off for question</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of total bus ride&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e383d7b4a704db9263399054e5ce0ace4edef2d8d766526917fe7a08fbe076a6.png" src="../_images/e383d7b4a704db9263399054e5ce0ace4edef2d8d766526917fe7a08fbe076a6.png" />
+<img alt="../_images/173c59fc431bcf9c34e912e308b7a8e9000fcce2f9a1fde16598fbe9b1a6cc64.png" src="../_images/173c59fc431bcf9c34e912e308b7a8e9000fcce2f9a1fde16598fbe9b1a6cc64.png" />
+<img alt="../_images/88612ac2121894cd67a07a11cf2e28301f2f814830ea35d178500cd47a26bafb.png" src="../_images/88612ac2121894cd67a07a11cf2e28301f2f814830ea35d178500cd47a26bafb.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculation of probability that bus trip is less than 30 minutes</span>
+
+<span class="n">prob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Y</span> <span class="o">&lt;</span> <span class="mi">30</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>34.465 %
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Remark:</strong>
+Algebraically, we can show that the sum of two Normal distributions, is in fact also normal.  In fact, for <span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_2\)</span>, we can expect that <span class="math notranslate nohighlight">\(Y=X_1+X_2\)</span> will also be Normal with mean <span class="math notranslate nohighlight">\(\mu_Y = \mu_{X_1} + \mu_{X_2}\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^2_Y = \sigma^2_{X_1} + \sigma^2_{X_2}.\)</span></p>
+<p>For the bus example, this means that for the overall trip we should expect that the response <span class="math notranslate nohighlight">\(Y\)</span> is normally distributed with an average of <span class="math notranslate nohighlight">\(31\)</span> and a variance of <span class="math notranslate nohighlight">\(6\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="n">bins</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span> <span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="mi">31</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="c1">##normal curve</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of total bus ride&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6efcca40d900d18163fe5afdf37bfc593fabeb627d177f75433c5200fe772e93.png" src="../_images/6efcca40d900d18163fe5afdf37bfc593fabeb627d177f75433c5200fe772e93.png" />
+</div>
+</div>
+<p>By plotting the normal curve with a mean of <span class="math notranslate nohighlight">\(31\)</span> and variance of <span class="math notranslate nohighlight">\(6\)</span> on top of our distribution, we see that we have a fairly good approximation from our Monte Carlo simulations.  We could make this better by adding more Monte Carlo simulations to the scenario.</p>
+</section>
+<section id="transit-travel-time-2">
+<h2>Transit Travel Time 2<a class="headerlink" href="#transit-travel-time-2" title="Permalink to this heading">#</a></h2>
+<p>In groups of 3-4, consider the following scenario.</p>
+<p>Let’s again suppose we have to take two buses to reach UBC campus from where we live.  The first bus ride is an average of 11 minutes, with a variance of 2 minutes, and the second bus ride is an average of 20 minutes, with a variance of 4 minutes.  Let’s further assume that each bus trip is normally distributed.</p>
+<p>Between getting off of the first bus and getting on the second bus, we have to wait an average of 5 minutes.  Assume that the wait time is exponentially distributed.</p>
+<p>Calculate the probability that the time to reach campus is less than 30 minutes.</p>
+<p>Solution:</p>
+<p>Let <span class="math notranslate nohighlight">\(X_1\)</span> be normally distributed with <span class="math notranslate nohighlight">\(\mu=11\)</span> and <span class="math notranslate nohighlight">\(\sigma^2 = 2\)</span> and <span class="math notranslate nohighlight">\(X_2\)</span> be normally distributed with <span class="math notranslate nohighlight">\(\mu = 20\)</span> and <span class="math notranslate nohighlight">\(\sigma^2 = 4.\)</span></p>
+<p>Let <span class="math notranslate nohighlight">\(X_3\)</span> be exponentially distributed with <span class="math notranslate nohighlight">\(\mu = \frac{1}{\lambda} \implies 5 = \frac{1}{\lambda}\)</span>.  Therefore, the rate parameter, <span class="math notranslate nohighlight">\(\lambda\)</span>, is <span class="math notranslate nohighlight">\(\lambda = \frac{1}{5}\)</span>.</p>
+<p>The total time is then defined through the random variable <span class="math notranslate nohighlight">\(Y\)</span>, which is the sum of the three components: <span class="math notranslate nohighlight">\(Y = X_1 + X_2 + X_3.\)</span></p>
+<p><strong>Remark</strong> Since this example contains an exponentially distributed portion, we are not able to algebraically determine the probability distribution of <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#number of Monte Carlo simulations</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">20000</span> 
+
+<span class="c1">#bus distributions</span>
+<span class="n">X1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+<span class="n">X2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+<span class="n">X3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">5</span> <span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># total bus time</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">X1</span> <span class="o">+</span> <span class="n">X2</span> <span class="o">+</span> <span class="n">X3</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span><span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of first bus ride&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span><span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of second bus ride&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">X3</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span><span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of wait between bus rides&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="n">bins</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="c1">#cut off for question</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of total bus ride&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e4ed443921b7626ef74302d8d4393b486482b876c1faca14d5e89733c290cb32.png" src="../_images/e4ed443921b7626ef74302d8d4393b486482b876c1faca14d5e89733c290cb32.png" />
+<img alt="../_images/a39f328b9b8bb78902fc1e1687e6cb016b57318ae25c89c3cb3b4213057e1b4d.png" src="../_images/a39f328b9b8bb78902fc1e1687e6cb016b57318ae25c89c3cb3b4213057e1b4d.png" />
+<img alt="../_images/a07b5373ffab0776f91cae24bf22783526c547762de8a85f0afa16c1e50aefc5.png" src="../_images/a07b5373ffab0776f91cae24bf22783526c547762de8a85f0afa16c1e50aefc5.png" />
+<img alt="../_images/7afe1c5240cb78c739ea2ab283221904066bffe180feb66a399a347ccefb3914.png" src="../_images/7afe1c5240cb78c739ea2ab283221904066bffe180feb66a399a347ccefb3914.png" />
+</div>
+</div>
+<p>The distibution of <span class="math notranslate nohighlight">\(Y\)</span> in this example looks quite different than the distribution we saw in the previous example.  It appears to perhaps be exponentially distributed, but we are not able to algebraically determine this.  From this point, if we would like, we could try to fit the distribution or we can utilize the results from our Monte Carlo simulations to determine some statisitical quantities.  The question in the example asks us to do the latter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculation of probability that bus trip is less than 30 minutes</span>
+
+<span class="n">prob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Y</span> <span class="o">&lt;</span> <span class="mi">30</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.525 %
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="kernel-density-function">
+<h2>Kernel Density Function<a class="headerlink" href="#kernel-density-function" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s numerically find the resulting distribution for Y</span>
+<span class="c1"># we will use the KDEplot function from the seaborn package</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># instantiate and fit the KDE model</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="n">bins</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> 
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ff0218da2ac7a16dce15a550a6d97d767ef175cb95ab9acd8be74a8e330cda45.png" src="../_images/ff0218da2ac7a16dce15a550a6d97d767ef175cb95ab9acd8be74a8e330cda45.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s numerically find the resulting distribution for Y</span>
+<span class="c1"># we will use the gaussian_kde function from the scipy.stats package</span>
+
+<span class="n">KDE</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">gaussian_kde</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+
+<span class="n">x_pts_KDE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">y_pts_KDE</span> <span class="o">=</span> <span class="n">KDE</span><span class="p">(</span><span class="n">x_pts_KDE</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="n">bins</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts_KDE</span><span class="p">,</span><span class="n">y_pts_KDE</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0665b13228cf24748b1f52acb27f1cb5cae926ee63a3e1783d673260580a48cc.png" src="../_images/0665b13228cf24748b1f52acb27f1cb5cae926ee63a3e1783d673260580a48cc.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Let&#39;s numerically calculate the mean of our fitted distribution</span>
+<span class="c1">## and the variance</span>
+<span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">integrate</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">x_pts_KDE</span><span class="o">*</span><span class="n">y_pts_KDE</span><span class="p">,</span><span class="n">x_pts_KDE</span><span class="p">)</span>
+
+<span class="n">variance</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">trapz</span><span class="p">((</span><span class="n">x_pts_KDE</span><span class="o">-</span><span class="n">mean</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">y_pts_KDE</span><span class="p">,</span><span class="n">x_pts_KDE</span><span class="p">)</span>
+
+<span class="p">[</span><span class="n">mean</span><span class="p">,</span><span class="n">variance</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[30.974843575715322, 6.042471921796727]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./stochastic"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-class">Last Class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-today">Goals for Today</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-lecture-activities">Pre-Lecture Activities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-value">Expected Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance">Variance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-large-numbers">Law of Large Numbers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unknown-probability-density-function">Unknown Probability Density Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monte-carlo">Monte Carlo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-flipping-a-coin">Example - Flipping a Coin</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#check-your-understanding">Check your understanding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tasks">Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monte-carlo-key-points">Monte Carlo Key Points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rolling-a-die">Rolling a Die</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dice-sum">Dice Sum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rolling-a-die-monte-carlo">Rolling a Die – Monte Carlo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transit-travel-time">Transit Travel Time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transit-travel-time-2">Transit Travel Time 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-density-function">Kernel Density Function</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UBC Math
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

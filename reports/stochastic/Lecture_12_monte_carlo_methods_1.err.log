@@ -1,0 +1,55 @@
+Traceback (most recent call last):
+  File "/Users/patrickwalls/anaconda3/envs/jb/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/patrickwalls/anaconda3/envs/jb/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/patrickwalls/anaconda3/envs/jb/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+  File "/Users/patrickwalls/anaconda3/envs/jb/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/Users/patrickwalls/anaconda3/envs/jb/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/Users/patrickwalls/anaconda3/envs/jb/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/patrickwalls/anaconda3/envs/jb/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# plot output for n
+
+n = 10000
+
+monte_carlo_coin(n)
+
+#plot the average of the coin flips -- we should have that the Monte Carlo tends to 0.5 as we add more flips
+plt.plot(average_flip_mc)
+plt.axhline(y=0.5, color='r', linestyle=':')
+plt.xlabel('flip number')
+plt.ylabel('average of all flips')
+plt.show()
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[2], line 5[0m
+[1;32m      1[0m [38;5;66;03m# plot output for n[39;00m
+[1;32m      3[0m n [38;5;241m=[39m [38;5;241m10000[39m
+[0;32m----> 5[0m [43mmonte_carlo_coin[49m[43m([49m[43mn[49m[43m)[49m
+[1;32m      7[0m [38;5;66;03m#plot the average of the coin flips -- we should have that the Monte Carlo tends to 0.5 as we add more flips[39;00m
+[1;32m      8[0m plt[38;5;241m.[39mplot(average_flip_mc)
+
+Cell [0;32mIn[1], line 14[0m, in [0;36mmonte_carlo_coin[0;34m(n)[0m
+[1;32m     11[0m [38;5;28;01mdef[39;00m [38;5;21mmonte_carlo_coin[39m(n):
+[1;32m     12[0m     [38;5;28;01mfor[39;00m i [38;5;129;01min[39;00m [38;5;28mrange[39m(n):
+[1;32m     13[0m         [38;5;66;03m# flip coin [39;00m
+[0;32m---> 14[0m         flip [38;5;241m=[39m [43mcoin[49m[43m([49m[43m)[49m [38;5;66;03m#flip the coin[39;00m
+[1;32m     15[0m         flips_mc[38;5;241m.[39mappend(flip) [38;5;66;03m#store flip[39;00m
+[1;32m     16[0m         flip_avg [38;5;241m=[39m np[38;5;241m.[39mmean(flips_mc) [38;5;66;03m#average the flips[39;00m
+
+Cell [0;32mIn[1], line 6[0m, in [0;36mcoin[0;34m()[0m
+[1;32m      5[0m [38;5;28;01mdef[39;00m [38;5;21mcoin[39m():
+[0;32m----> 6[0m     [38;5;28;01mreturn[39;00m [43mrandom[49m[38;5;241m.[39mrandint([38;5;241m0[39m,[38;5;241m1[39m)
+
+[0;31mNameError[0m: name 'random' is not defined
+

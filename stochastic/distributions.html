@@ -61,11 +61,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stochastic/distributions';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Overview" href="../data-driven/overview.html" />
-    <link rel="prev" title="Overview" href="overview.html" />
+    <link rel="prev" title="Probability Distributions" href="random.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -185,6 +187,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Stochastic Models</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="random.html">Probability Distributions</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Probability Distributions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data-Driven Models</span></p>
@@ -372,7 +375,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -388,6 +393,42 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-concepts-in-probability">Basic Concepts in Probability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology">Terminology</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability">Probability</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variable">Random Variable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-density-functions">Probability density functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uniform-distribution">Uniform Distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normal-distribution">Normal Distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exponential-distribution">Exponential Distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-probability-distribution">Cumulative Probability Distribution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#central-limit-theorem">Central Limit Theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-your-understanding-questions">Check your understanding questions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tasks">Tasks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forming-a-probability-distribution">Forming a probability distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Uniform Distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Normal Distribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-distribution">Cumulative Distribution</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exponential Distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-class-activity-3">In class activity 3</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -399,7 +440,523 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="probability-distributions">
 <h1>Probability Distributions<a class="headerlink" href="#probability-distributions" title="Permalink to this heading">#</a></h1>
-<p><em>Under construction</em></p>
+<section id="learning-goals">
+<h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Define random variable, probability distributions, and cumulative distributions</p></li>
+<li><p>Generate a probability distribution from data</p></li>
+</ul>
+</section>
+<section id="basic-concepts-in-probability">
+<h2>Basic Concepts in Probability<a class="headerlink" href="#basic-concepts-in-probability" title="Permalink to this heading">#</a></h2>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Random_variable">random variable</a> is …</p>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_distribution">probability distribution</a> is</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson distribution</a> is</p>
+<p>A <strong>population</strong> is … A <strong>sample space</strong> is …</p>
+<p>For example, all students registered in 3rd year math courses is a population and the subset of students taking math 360 is a sample from that population.</p>
+<p><strong>Probability</strong> allows us to go from the population to the sample: that is, probability allows us to draw conclusions about the characteristics of a hypothetical subset taken from the population, based on the features of the population.  For example, if we know that the average math grade in our population of students taking 3rd year math courses is a B+.  We could then suggest that the average math grade of students taking math 360 is a B+.</p>
+<p><strong>Statistics</strong> allows us to go from the sample to the population: that is, statistics allows us to draw conclusions about the characteristics of the population with (inferential) statistics.  For example, if we calculated the average math grade of students in math 360, we could use this value to infer the average math grade of all students registered in 3rd year math courses (there are ways of rigorously showing such an inference, but that is outside the scope of math 360).</p>
+<p>Statistics one of the most commonly misused areas of mathematics and is often used to misrepresent data. (Check out the wikipedia article: <a class="reference external" href="https://en.wikipedia.org/wiki/Misuse_of_statistics">misuse of statistics</a>).</p>
+</section>
+<section id="terminology">
+<h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this heading">#</a></h2>
+<p>Some preliminary definitions to get us started:</p>
+<ul class="simple">
+<li><p>Experiment: a process that generates a set of data. E.g., flipping a coin.  In this experiement, there are two possible outcomes – heads or tails.</p></li>
+<li><p>Outcome: something that can happen in an experiment.  E.g., heads is a possible outcome from flipping a coin.</p></li>
+<li><p>Event: a collection of outcomes that can be assigned a probability. E.g., flipping a (fair) coin twice, an event is flipping a head on the first flip and a head on the second flip.</p>
+<ul>
+<li><p>Here, by saying fair, we mean that all outcomes are equally likely.</p></li>
+</ul>
+</li>
+<li><p>Probability: the likelihood that somthing will happen.  E.g., on a fair coin, the probability of heads is 1/2 or 50%.  In other words, the likelihood of us flipping a head is about half.</p>
+<ul>
+<li><p>To calculate the probabilty, we first need to find the total number of possible outcomes.  For a single coin flip this is 2: either heads or tails.  We then need to find the total number of outcomes in the event we are interested in.  In the case of flipping a head, there is only one event where this happens, so the probability is then 1/2 =0.5.</p></li>
+</ul>
+</li>
+<li><p>Independent: two events are independent if the occurence of one has no impact on the occurance of the other. E.g., when flipping a (fair) coin twice, the outcome of the first flip has no impact on the second flip.</p></li>
+<li><p>Mean: the average or expected value. In terms of a probability distribution, the mean is the long-term average value of the random variable.</p></li>
+<li><p>Variability: A measure of spread in the data. Large amounts of variability in experiments “hide” scientific findings.</p>
+<ul>
+<li><p>Variance, <span class="math notranslate nohighlight">\(\sigma^2\)</span>: A way to measure variability.  A small variance means that the data is tightly clumped together, whereas a large variance means that the data is more spread out.</p></li>
+<li><p>Standard deviation: Calculated from variance as <span class="math notranslate nohighlight">\(s = \sqrt{\sigma^2}\)</span>. The standard deviation shows how spread out the data is from the mean.  A small standard deviation means the data is close to the mean, whereas a large standard deviation means the data has a bit of spread away from the mean.  The standard deviation is also sometimes written as just <span class="math notranslate nohighlight">\(\sigma\)</span>, with the variance then defined as the square of the standard deviation.</p></li>
+</ul>
+</li>
+</ul>
+<p>Remarks:</p>
+<ul class="simple">
+<li><p>the mean, variance, and standard deviation (as well as other measures like median and mode) are often referred to as Descriptive Statistics because they describe the data. These quantities are not typically called parameters, but rather statistics.</p></li>
+<li><p>we use Inferential Statistics to leverage our knowledge of the sample’s statistics to say something about the entire population (in other words, make an inference).</p></li>
+</ul>
+<section id="probability">
+<h3>Probability<a class="headerlink" href="#probability" title="Permalink to this heading">#</a></h3>
+<p><strong>Definition</strong> If an experiment can result in any one of <span class="math notranslate nohighlight">\(N\)</span> different equally likely outcomes, and if exactly <span class="math notranslate nohighlight">\(n\)</span> of these outcomes correspond to event <span class="math notranslate nohighlight">\(A\)</span>, then the probability of event <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(P(A) = \frac{n}{N}\)</span>.</p>
+<p>Example: Let’s toss a fair coin 2 times. Calculate the probability <span class="math notranslate nohighlight">\(P(A)\)</span> that at least one tail occurs.</p>
+<p>Solution:</p>
+<p>Let H represent Heads and T represent Tails. Our event is <span class="math notranslate nohighlight">\(\{HH, HT, TH, TT \}\)</span>.  Since the coin is fair, each outcome is equally likely and we can calculate the probability, <span class="math notranslate nohighlight">\(p\)</span>, of each outcome as <span class="math notranslate nohighlight">\(4p = 1 \implies p = \frac{1}{4}.\)</span></p>
+<p>We want the probability that at least one tail is flipped.  There are 3 outcomes when this occurs <span class="math notranslate nohighlight">\(HT, TH, TT\)</span>, and so the total probability is <span class="math notranslate nohighlight">\(P(A) = \frac{1}{4} + \frac{1}{4} + \frac{1}{4} \implies P(A) = \frac{3}{4}.\)</span></p>
+<section id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h4>
+<p>Suppose three cards are drawn in succession, without replacement, from an ordinary deck of cards.  Calculate the probability <span class="math notranslate nohighlight">\(P\)</span> that the first card is a red ace, the second card is a 10 or a jack, and the 3rd card is greater than 3 but less that 7.</p>
+<p>Solution:</p>
+<p><span class="math notranslate nohighlight">\(A_1\)</span>: First card is red ace.  We can only draw the ace of hearts or diamonds here, so <span class="math notranslate nohighlight">\(P(A_1) = \frac{2}{52}.\)</span></p>
+<p><span class="math notranslate nohighlight">\(A_2\)</span>: Second card is a 10 or a jack. There are 8 total cards we could pick to satisfy this. We can draw the 10 and jack of hearts, diamonds, clubs, or spades.  Since we already drew one card for <span class="math notranslate nohighlight">\(A_1\)</span>, there are only 51 total cards left, so <span class="math notranslate nohighlight">\(P(A_2) = \frac{8}{51}.\)</span></p>
+<p><span class="math notranslate nohighlight">\(A_3\)</span>: Third card is greater than 3 but less than 7.   There are 12 total cards we can pick to satisfy this.  We can draw the 4, 5, or 6 of hearts, diamonds, clubs, or spades. We have drawn 2 cards already, so there are only 50 cards left, so <span class="math notranslate nohighlight">\(P(A_3) = \frac{12}{50}.\)</span></p>
+<p>The total probability <span class="math notranslate nohighlight">\(P = \frac{2}{52} \cdot \frac{8}{51} \cdot \frac{12}{50} = \frac{8}{5525}.\)</span></p>
+<p>Why do we multiply the probabilities here instead of adding them like the previous example?</p>
+<p>In this example, we are asking about the probability that multiple events will occur, rather than considering a single event like the previous example.  Since these events are independent of each other, we multiply their probabilities together to get the total probability.</p>
+</section>
+</section>
+<section id="random-variable">
+<h3>Random Variable<a class="headerlink" href="#random-variable" title="Permalink to this heading">#</a></h3>
+<p>A variable whose value is randomly chosen every time an experiment is performed is called a random variable. Random variables can be discrete (e.g., as in a Bernoulli trial) or continuous, and will associate a real number with each element in the sample.</p>
+<p>A random variable is often denoted with a capital letter, e.g., <span class="math notranslate nohighlight">\(X\)</span>, and its value with a lower case, e.g., <span class="math notranslate nohighlight">\(x.\)</span>  We may sometimes see the notation <span class="math notranslate nohighlight">\(P(X=x)\)</span> used to denote the probabilty of the random variable <span class="math notranslate nohighlight">\(X\)</span> having the value of <span class="math notranslate nohighlight">\(x.\)</span></p>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Discrete random variable: Suppose we are on a production line and sample components until a defect is observed. Let <span class="math notranslate nohighlight">\(X\)</span> be a random variable defined by the number of items observed before a defect is found. So, if we sample a non-defect, non-defect, and then a defect, we would have <span class="math notranslate nohighlight">\(X=3\)</span>.</p></li>
+<li><p>Continuous random variable: Let <span class="math notranslate nohighlight">\(X\)</span> be the random variable defined by the waiting time, in minutes, between successive clients served at a bank. The random variable <span class="math notranslate nohighlight">\(X\)</span> takes on all values <span class="math notranslate nohighlight">\(x\)</span> for which <span class="math notranslate nohighlight">\(x \geq 0\)</span>.</p></li>
+</ol>
+<p><strong>Remark:</strong> In most application problems, we will be dealing with continuous random variables, as these generally represent measured quantities (e.g., temperature, distance). We will often see discrete random variables when working with count data (e.g., number of 6’s rolled on a die)</p>
+</section>
+<section id="probability-density-functions">
+<h3>Probability density functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this heading">#</a></h3>
+<p>It is often convenient to write the probabilities of a random variable as a formula.  Such a representation is called a probability density function (sometimes probability mass function or probability function).  The probability density function gives us a functional relationship between an observation and the associated probability.</p>
+<p>The probability density function, <span class="math notranslate nohighlight">\(f(x)\)</span>, must have:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> in the domain.</p></li>
+<li><p>In the case of continuous, <span class="math notranslate nohighlight">\(\int f(x) \, dx = 1\)</span> or in the case of discrete <span class="math notranslate nohighlight">\(\sum f(x) = 1\)</span>.</p></li>
+<li><p>In the case of continuous, <span class="math notranslate nohighlight">\(P(a&lt;X&lt;b) = \int\limits_a^b f(x) \, dx\)</span>.  Here, we are saying we want the probability that the random variable lies between two ordinates. In the case of discrete, the probability of the event <span class="math notranslate nohighlight">\(x\)</span> occuring is given by <span class="math notranslate nohighlight">\(P(X = x) = f(x)\)</span>.  Here, we are saying we want the probability that the random variable <span class="math notranslate nohighlight">\(X\)</span> has a value of <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+</ol>
+<p>Remark: You will often see probability distribution and probability density used almost interchangeably. A probability distribution refers to all of the outcomes along with the associated probabilities. A function that represents a probability distribution is called a probability density function.</p>
+</section>
+<section id="uniform-distribution">
+<h3>Uniform Distribution<a class="headerlink" href="#uniform-distribution" title="Permalink to this heading">#</a></h3>
+<p>Let’s first look at a uniform probability distribution. This is defined as the funciton $<span class="math notranslate nohighlight">\(f(x) = \left\{
+\begin{array}{ll}
+      \frac{1}{b-a} &amp; a \leq x \leq b, \\
+    0 &amp; \textrm{otherwise.}
+\end{array} 
+\right.\)</span>$</p>
+<p>Properties/characteristics:</p>
+<ul class="simple">
+<li><p>“flat” density function.</p></li>
+<li><p>assumes that the probability of falling in the interval <span class="math notranslate nohighlight">\([A,B]\)</span> is constant.</p></li>
+<li><p>not many applications due to the constant distribution.</p>
+<ul>
+<li><p>is sometimes used as an initial basis for some modelling problems (e.g., distribution of impurities in an oxide).</p></li>
+</ul>
+</li>
+</ul>
+<p>Remarks:</p>
+<ol class="arabic simple">
+<li><p>The variance is defined to be <span class="math notranslate nohighlight">\(\sigma^2 = \frac{(B-A)^2}{12}.\)</span></p></li>
+<li><p>The mean is <span class="math notranslate nohighlight">\(\mu = \frac{A+B}{2}\)</span>.</p></li>
+</ol>
+</section>
+<section id="normal-distribution">
+<h3>Normal Distribution<a class="headerlink" href="#normal-distribution" title="Permalink to this heading">#</a></h3>
+<p>The normal distribution (sometimes Gaussian distribution or bell curve) is given by the function
+$<span class="math notranslate nohighlight">\( f(x) = \frac{1}{\sigma \sqrt{2 \pi}} e ^{-\frac{1}{2} \left( \frac{x - \mu}{\sigma} \right)^2 },\)</span><span class="math notranslate nohighlight">\(
+where \)</span>\mu<span class="math notranslate nohighlight">\( is the mean (average) and \)</span>\sigma$ is the standard deviation.</p>
+<p>Properties/characteristics:</p>
+<ul class="simple">
+<li><p>typically want to use when it is equally likely to be above or below the mean.</p></li>
+<li><p>a normal distribution with mean <span class="math notranslate nohighlight">\(0\)</span> and variance <span class="math notranslate nohighlight">\(1\)</span> is called the standard normal distribution.</p></li>
+<li><p>has a variety of applications, and is (likely) the most widely used probability density function.</p></li>
+</ul>
+<p>Remarks:</p>
+<ol class="arabic simple">
+<li><p>The variance is defined to be <span class="math notranslate nohighlight">\(\sigma^2.\)</span></p></li>
+<li><p>The mean is also refered to as the expected value, which is denoted by <span class="math notranslate nohighlight">\(\mathbb{E}(x)\)</span>.</p></li>
+</ol>
+</section>
+<section id="exponential-distribution">
+<h3>Exponential Distribution<a class="headerlink" href="#exponential-distribution" title="Permalink to this heading">#</a></h3>
+<p>The exponential distribution is given by the function
+$<span class="math notranslate nohighlight">\( f(x) = \lambda e ^{- \lambda x },\)</span><span class="math notranslate nohighlight">\(
+where \)</span>\lambda&gt;0<span class="math notranslate nohighlight">\( is the &quot;rate parameter&quot; given by \)</span>\mu = \frac{1}{\lambda}$.</p>
+<p>Properties/characteristics:</p>
+<ul class="simple">
+<li><p>the rate parameter <span class="math notranslate nohighlight">\(\lambda\)</span> controls the shape of the distribution.</p></li>
+<li><p>typically used to model the time between events.</p></li>
+<li><p>it is a specific case of the gamma distribution.</p></li>
+</ul>
+<p>Remarks:</p>
+<ol class="arabic simple">
+<li><p>The variance for the exponential distribution is equal to <span class="math notranslate nohighlight">\(\frac{1}{\lambda^2}\)</span>.</p></li>
+</ol>
+</section>
+<section id="cumulative-probability-distribution">
+<h3>Cumulative Probability Distribution<a class="headerlink" href="#cumulative-probability-distribution" title="Permalink to this heading">#</a></h3>
+<p>Sometimes, it can also be beneficial to compute the cumulative distribution. If we have a continuous probability density function, then the cumulative distribution is defined to be
+$<span class="math notranslate nohighlight">\(F(x) = \int_{-\infty}^x  f(x) \, dx,\)</span><span class="math notranslate nohighlight">\(
+where \)</span>f(x)$ is the probability density function.</p>
+</section>
+</section>
+<section id="central-limit-theorem">
+<h2>Central Limit Theorem<a class="headerlink" href="#central-limit-theorem" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>states that if we have a population with a mean <span class="math notranslate nohighlight">\(\mu\)</span> and a standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>.  If we have a sufficiently large number of random samples from the population with replacement, then the distribution of the sample means is approximately normal.</p></li>
+</ul>
+<p>This means that as we increase the sample size, the mean will approach the population mean and that when we have multiple large samples, the sampling distirbution of the mean is normally distributed (even if the original is not).</p>
+<p>How large is “sufficiently large”?</p>
+<ul class="simple">
+<li><p>likely depends on the context</p></li>
+<li><p>most textbooks will suggest between <span class="math notranslate nohighlight">\(30-50\)</span> samples as the cutoff</p></li>
+<li><p>in practice, more is always better (usually on the order of hundreds of data points)</p></li>
+</ul>
+<section id="check-your-understanding-questions">
+<h3>Check your understanding questions<a class="headerlink" href="#check-your-understanding-questions" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>List out the possible outcomes for rolling a (fair) die.</p></li>
+</ol>
+<ul class="simple">
+<li><p>What is the probability that each of those occurs?</p></li>
+<li><p>What happens to those probabilities if we roll the die twice?</p></li>
+<li><p>Can we say that these events are independent?</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Why is it important to include the word fair in Question 1, as well as in the examples, above?</p></li>
+<li><p>Flipping a coin and rolling a die are examples that generate a discrete probability distribution; i.e., they have a countable outcome list.  These are sometimes referred to as Bernoulli trial. Sketch out the discrete probability distributions for flipping a fair coin and rolling a fair die.</p></li>
+<li><p>Suppose we roll a pair of (fair) dice and then sum the result.  E.g., suppose we roll a 1 and a 5, we will then record the value of 6 as the result.  List out the possible sums and calculate the probabilty of each. Then sketch the discrete probability distribution.  Where do you think the mean is? Would you say the distribution has a large or small variance?</p></li>
+</ol>
+</section>
+<section id="tasks">
+<h3>Tasks<a class="headerlink" href="#tasks" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Find a place on campus and count the number of people that walk by you each minute for 10 minutes. Save the data in a Jupyter notebook as an array with one array for Time (in minutes) with entries 1,2,3,… 10, and one for Number of People observed in each minute.  Please ensure that the number of people observed is <em>not</em> cumulative. Calculate the probability that someone walks by you for each minute.</p></li>
+<li><p>What previous experience (e.g., from other courses) do you have with probability and statistics?</p></li>
+<li><p>When working with statistics, we want to make determinations about a population from a sample of that population.  How might the type of sample impact the characteristics we extract?</p></li>
+<li><p>Submit your answers to Q2 and Q3 under Tasks to Canvas.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import packages</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;packages imported&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;packages imported&quot;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="forming-a-probability-distribution">
+<h3>Forming a probability distribution<a class="headerlink" href="#forming-a-probability-distribution" title="Permalink to this heading">#</a></h3>
+<p>Form a group of 4-6 and combine your data together.  Use the total number of people as the total number of outcomes and the number of people in each minute as a single outcome.</p>
+<ol class="arabic simple">
+<li><p>Calculate the probability that someone walks by you for each minute.</p></li>
+<li><p>Plot the data as a histogram, with 10 bins (i.e., a bin for each minute).</p></li>
+</ol>
+<p>Then answer the following questions:</p>
+<ul class="simple">
+<li><p>What type of distribution do you see?</p></li>
+<li><p>How would we need to define our variables so that we can claim the distribution is a probability density function?</p></li>
+<li><p>Is there anything we would need to do to the data to fit the definition of a probability density function?</p></li>
+</ul>
+</section>
+<section id="id1">
+<h3>Uniform Distribution<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Plot a uniform distribution on the interval <span class="math notranslate nohighlight">\([1,6]\)</span>.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">np.random.uniform(a,b,n)</span></code> to randomly sample from a uniform distribtion on <span class="math notranslate nohighlight">\([1,4]\)</span> with <span class="math notranslate nohighlight">\(n=1000\)</span> points and plot the results.  Is it a probability distribution? Why or why not?  If it is not, what would you need to do to turn it in to a probability distribution?</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s plot a uniform distribution with a = 1 and b = 6</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># left endpoint</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># right endpoint</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">200</span> <span class="c1"># number fo points</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="c1">#input</span>
+
+<span class="n">uniform</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">piecewise</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">),</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">uniform</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;probability distribution&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/69bf7ecc55f1582bc4b543450bb40221e99279096d66ce697e7d7313e78151a1.png" src="../_images/69bf7ecc55f1582bc4b543450bb40221e99279096d66ce697e7d7313e78151a1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s pull some numbers from a uniform distribution and plot them</span>
+
+<span class="c1"># Let&#39;s generate 1000 numbers in the range of 1 to 4 from a uniform distribution</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span> 
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/74bb780aa6bc4c73200c1699df83848c550f806659922af6ee6a15c544063711.png" src="../_images/74bb780aa6bc4c73200c1699df83848c550f806659922af6ee6a15c544063711.png" />
+</div>
+</div>
+<p>So, why does this not look like the distribution function in the previous plot?</p>
+<p>Well, we are not plotting the same thing.  In this plot, we are visualizing the 1000 selected numbers in the interval <span class="math notranslate nohighlight">\([1,4]\)</span>.  To see the distribution, we need count the number of values that have the same output in <span class="math notranslate nohighlight">\([1,4]\)</span> — we need a histogram!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we will use the histogram plot in matplotlib</span>
+<span class="n">buckets</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1">#make 25 bins between 1 and 4.</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">buckets</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability Distribution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Values&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1300429dab17fdff64cc046465a2a6955ee59273bd08a45a45a0373cf8fcfc64.png" src="../_images/1300429dab17fdff64cc046465a2a6955ee59273bd08a45a45a0373cf8fcfc64.png" />
+</div>
+</div>
+<p>Now, we have a distribution!</p>
+<p>Q: How would you change the code blocks above to make it look closer to the definition function?</p>
+</section>
+<section id="id2">
+<h3>Normal Distribution<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Plot a normal distribution with <span class="math notranslate nohighlight">\(\mu = 0\)</span> and <span class="math notranslate nohighlight">\(\sigma = 1\)</span>.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">np.random.normal(mean,variance,n)</span></code> to randomly sample <span class="math notranslate nohighlight">\(n\)</span> points from a normal distribtion with zero mean, variance of one, and <span class="math notranslate nohighlight">\(n=1000\)</span>. Plot the results.  Is it a probability distribution? Why or why not?  If it is not, what would you need to do to turn it in to a probability distribution?</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s plot a normal distribution with mean of 0 and standard deviation of 1</span>
+
+<span class="n">mu</span> <span class="o">=</span> <span class="mi">0</span> 
+<span class="n">sigma</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">normal_dist</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span> <span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">mu</span><span class="p">)</span><span class="o">/</span><span class="n">sigma</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">normal_dist</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;probability distribution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/57b7c2e7fa8d3786e191c212ddf23ba0655253af10bb39468fc97506000f6b17.png" src="../_images/57b7c2e7fa8d3786e191c212ddf23ba0655253af10bb39468fc97506000f6b17.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can also generate a normal distribution using the scipy package</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">normal_dist</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># here the input into the norm.pdf function requires variance, not standard deviation, so </span>
+<span class="c1"># we need to square the sigma value</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">normal_dist</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;probability distribution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/57b7c2e7fa8d3786e191c212ddf23ba0655253af10bb39468fc97506000f6b17.png" src="../_images/57b7c2e7fa8d3786e191c212ddf23ba0655253af10bb39468fc97506000f6b17.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now, lets&#39;s pull some numbers from a normal distribution and plot them</span>
+
+<span class="c1"># Let&#39;s generate 1000 numbers with a mean of 0 and variance of 1 from a normal distribution</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span> 
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Like before, we will also create a histogram</span>
+
+<span class="n">buckets</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1">#make 20</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">buckets</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability Distribution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Values&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/427a4a259d5ce0077866ad6389c18b2562fbf78080086ee35ee74fb581b27ffb.png" src="../_images/427a4a259d5ce0077866ad6389c18b2562fbf78080086ee35ee74fb581b27ffb.png" />
+<img alt="../_images/dc3a9ee38e438483d472f2caa1978f4cf9a72081cafddc4e3997d83fc92c6d40.png" src="../_images/dc3a9ee38e438483d472f2caa1978f4cf9a72081cafddc4e3997d83fc92c6d40.png" />
+</div>
+</div>
+<p>Compare this probability distribution to the function definition.  What do you notice? How can you get the shape to be more similar?</p>
+<section id="cumulative-distribution">
+<h4>Cumulative Distribution<a class="headerlink" href="#cumulative-distribution" title="Permalink to this heading">#</a></h4>
+<p>Using the sample from the normal distirbution above, calculate the cumulative distribution function and plot the curve. Then calculate the probability of <span class="math notranslate nohighlight">\(-1.5 \leq x \leq 2\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s plot the cumulative distribution for the random numbers we pulled out of the normal distribution</span>
+<span class="c1"># in the previous code block.</span>
+
+<span class="n">counts</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">buckets</span><span class="p">)</span>
+<span class="n">probability</span> <span class="o">=</span> <span class="n">counts</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>  <span class="c1"># this calculates the probability in each bucket </span>
+<span class="n">cumulative</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">probability</span><span class="p">)</span> <span class="c1"># this sums the probabilities in a cumulative sum</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span><span class="n">cumulative</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability Distribution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Values&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ae0f472ca9eb9ad2118462dd7df6397a8d161d1e9bf1eeed1df756985350a543.png" src="../_images/ae0f472ca9eb9ad2118462dd7df6397a8d161d1e9bf1eeed1df756985350a543.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we want P(-1.5 &lt;= x &lt;= 2) = P(x=2) - P(x=-1.5)</span>
+<span class="c1"># Why P(x=2)-P(x=1.5)? Well, we want the area between -1.5 and 2.  For the cumulative sum</span>
+<span class="c1"># we calculate from -infinity to the value we are interested in (i.e., the area to the left of the x value).</span>
+<span class="c1"># So P(x=2) will be -infinity to 2, and then we want to subtract off the area from -infinity to -1.5, or P(x=-1.5)</span>
+
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normal_pdf</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> <span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span> <span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="mi">0</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+
+<span class="n">Prob_1</span><span class="p">,</span><span class="n">error</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">normal_pdf</span><span class="p">,</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span><span class="o">-</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">Prob_2</span><span class="p">,</span><span class="n">error1</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">normal_pdf</span><span class="p">,</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> 
+
+
+<span class="n">Total_prob</span> <span class="o">=</span> <span class="n">Prob_2</span><span class="o">-</span><span class="n">Prob_1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">Total_prob</span><span class="p">)</span>
+
+<span class="c1"># alternatively, we could integrate from -1.5 to 2!</span>
+
+<span class="n">Prob_3</span><span class="p">,</span><span class="n">error2</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">normal_pdf</span><span class="p">,</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Prob_3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9104426667829628
+0.9104426667829628
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id3">
+<h3>Exponential Distribution<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Plot an exponential distribution with means of 1, 5, and 10.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">np.random.exponential(scale=mean,size=n)</span></code> to randomly sample <span class="math notranslate nohighlight">\(n=1000\)</span> points from an exponential distribtion with mean of <span class="math notranslate nohighlight">\(0.5\)</span>. Plot the results.  Is it a probability distribution? Why or why not?  If it is not, what would you need to do to turn it in to a probability distribution?</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s plot the exponential distribution with means of 1,5,10.</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">exp_dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mu</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">mu</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">mu</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">exp_dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;mu=1&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">exp_dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;mu=5&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">exp_dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;mu=10&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;probability distribution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a0633c52602306f5e839e02bf5687bd6f259f693bb9b07ba7470ebdd6f53a6be.png" src="../_images/a0633c52602306f5e839e02bf5687bd6f259f693bb9b07ba7470ebdd6f53a6be.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now, lets&#39;s pull some numbers from an exponential distribution and plot them</span>
+
+<span class="c1"># Let&#39;s generate 1000 numbers with a mean of 0.5 from an exponential distribution</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Like before, we will also create a histogram</span>
+
+<span class="n">buckets</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1">#make 20</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">buckets</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability Distribution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Values&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/eb80fb8481ab26c0eda9fc35d8a2484925086d2dd9ee072ac0676eb5a8cd984c.png" src="../_images/eb80fb8481ab26c0eda9fc35d8a2484925086d2dd9ee072ac0676eb5a8cd984c.png" />
+<img alt="../_images/425b2e05551ec35dd04a3d7ff3d4be892aa82796fbe27ab908db2e0b997c1e3b.png" src="../_images/425b2e05551ec35dd04a3d7ff3d4be892aa82796fbe27ab908db2e0b997c1e3b.png" />
+</div>
+</div>
+</section>
+<section id="in-class-activity-3">
+<h3>In class activity 3<a class="headerlink" href="#in-class-activity-3" title="Permalink to this heading">#</a></h3>
+<p>In your groups, reconfigure your data into a probability density function, and then plot the probability density function.</p>
+<p>Calculate the mean and standard deviation of your data using np.mean() and np.std().  Use these values to create a normal distribution of your data set.  How does the normal curve match with the “actual” probability density funciton?  What do you think would happen if you had more data points?</p>
+<p>Some other guiding questions:</p>
+<ul class="simple">
+<li><p>How can you check if your probability density function satisfies the definition?</p></li>
+<li><p>Did you need to normalize your data? Why or why not?</p></li>
+<li><p>How would you turn your probability density function into a cumulative distribution?</p></li>
+<li><p>What predictions would you make from your probability density and/or cumulative distribution?</p></li>
+</ul>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -434,12 +991,12 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="overview.html"
+       href="random.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Overview</p>
+        <p class="prev-next-title">Probability Distributions</p>
       </div>
     </a>
     <a class="right-next"
@@ -460,6 +1017,48 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-concepts-in-probability">Basic Concepts in Probability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology">Terminology</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability">Probability</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variable">Random Variable</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-density-functions">Probability density functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uniform-distribution">Uniform Distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normal-distribution">Normal Distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exponential-distribution">Exponential Distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-probability-distribution">Cumulative Probability Distribution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#central-limit-theorem">Central Limit Theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-your-understanding-questions">Check your understanding questions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tasks">Tasks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forming-a-probability-distribution">Forming a probability distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Uniform Distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Normal Distribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-distribution">Cumulative Distribution</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exponential Distribution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-class-activity-3">In class activity 3</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
