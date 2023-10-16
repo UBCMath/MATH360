@@ -24,20 +24,26 @@ parts:
       - file: deterministic/motion/projectile.ipynb
       - file: deterministic/motion/orbits.ipynb
       - file: deterministic/motion/eulers-3-body.ipynb
-    - file: deterministic/mass/index.md
-      sections:
-      - file: deterministic/mass/conservation.ipynb
-      - file: deterministic/mass/action.md
     - file: deterministic/heat/index.md
       sections:
       - file: deterministic/heat/balance.ipynb
       - file: deterministic/heat/conduction.ipynb
       - file: deterministic/heat/radiation.ipynb
       - file: deterministic/heat/climate.ipynb
+    - file: deterministic/mass/index.md
+      sections:
+      - file: deterministic/mass/conservation.ipynb
+      - file: deterministic/mass/chemical.ipynb
   - caption: Stochastic Models
     chapters:
     - file: stochastic/overview.md
-    - file: stochastic/distributions.ipynb
+    - file: stochastic/distributions/index.md
+      sections:
+      - file: stochastic/distributions/variables.ipynb
+      - file: stochastic/distributions/normal.ipynb
+      - file: stochastic/distributions/uniform.ipynb
+      - file: stochastic/distributions/exponential.ipynb
+      - file: stochastic/distributions/gamma.ipynb
   - caption: Data-Driven Models
     chapters:
     - file: data-driven/overview.md

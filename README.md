@@ -12,7 +12,8 @@
 
 * [Notes on Diffy Qs: Differential Equations for Engineers](https://www.jirka.org/diffyqs/html/diffyqs.html)
 * [Mathematical Python](https://patrickwalls.github.io/mathematicalpython)
-* [Mathematics and Climate](https://doi.org/10.1137/1.9781611972610)
+* [Mathematics and Climate](https://epubs.siam.org/doi/book/10.1137/1.9781611972610)
+* [A Primer on Mathematical Models in Biology](https://epubs.siam.org/doi/book/10.1137/1.9781611972504)
 
 ## Prerequisites
 
