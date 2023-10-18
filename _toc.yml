@@ -44,6 +44,10 @@ parts:
       - file: stochastic/distributions/uniform.ipynb
       - file: stochastic/distributions/exponential.ipynb
       - file: stochastic/distributions/gamma.ipynb
+    - file: stochastic/monte-carlo/index.md
+      sections:
+      - file: stochastic/monte-carlo/sampling.ipynb
+#      - file: stochastic/monte-carlo/kde.ipynb
   - caption: Data-Driven Models
     chapters:
     - file: data-driven/overview.md
