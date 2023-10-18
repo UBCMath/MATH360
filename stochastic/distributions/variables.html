@@ -195,20 +195,24 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="gamma.html">Gamma Distribution</a></li>
 </ul>
 </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../monte-carlo/index.html">Monte Carlo Methods</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../monte-carlo/sampling.html">Random Sampling</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data-Driven Models</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../data-driven/overview.html">Overview</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../data-driven/linear-regression/index.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../data-driven/linear-regression/index.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../data-driven/linear-regression/linear.html">Linear Regression</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../data-driven/logistic-regression/index.html">Logistic Regression</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../data-driven/logistic-regression/index.html">Logistic Regression</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../data-driven/logistic-regression/logistic-function.html">Logistic Function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../data-driven/logistic-regression/cost-regularization.html">Cost and Regularization</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../data-driven/numerical-methods/index.html">Numerical Methods</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../data-driven/numerical-methods/index.html">Numerical Methods</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../data-driven/numerical-methods/gradient.html">Gradient Descent</a></li>
 </ul>
 </li>
@@ -409,7 +413,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-density-functions">Probability Density Functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-and-variance">Mean and Variance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-and-shifting">Scaling and Shifting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-distribution-function">Cumulative Distribution Function</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-estimation">Parameter Estimation</a></li>
 </ul>
             </nav>
@@ -424,14 +427,6 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="variables-and-densities">
 <h1>Variables and Densities<a class="headerlink" href="#variables-and-densities" title="Permalink to this heading">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-</div>
-</div>
-</div>
 <section id="random-variables">
 <h2>Random Variables<a class="headerlink" href="#random-variables" title="Permalink to this heading">#</a></h2>
 <p>Consider an experiment or a random event such as flipping a coin or measuring wind speed and direction at a specific time and location. A <strong>random variable</strong> is a function that associates a numerical value with the outcome of an experiment or random event. If the range of values of a random variable <span class="math notranslate nohighlight">\(X\)</span> is finite or countable (like the set of integers) then we call <span class="math notranslate nohighlight">\(X\)</span> a <strong>discrete random variable</strong>. If the range of values of a random variable <span class="math notranslate nohighlight">\(X\)</span> is uncountably infinite (like the set of real numbers <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>) then we call <span class="math notranslate nohighlight">\(X\)</span> a <strong>continuous random variable</strong>. For example:</p>
@@ -486,10 +481,6 @@ P(a \le X \le b) = \int_a^b f(x) \, dx
 \[
 \int_{-\infty}^{\infty} af(ax) \, dx = \int_{-\infty}^{\infty} f(y) \, dy = 1
 \]</div>
-</section>
-<section id="cumulative-distribution-function">
-<h2>Cumulative Distribution Function<a class="headerlink" href="#cumulative-distribution-function" title="Permalink to this heading">#</a></h2>
-<p><em>Under construction</em></p>
 </section>
 <section id="parameter-estimation">
 <h2>Parameter Estimation<a class="headerlink" href="#parameter-estimation" title="Permalink to this heading">#</a></h2>
@@ -578,7 +569,6 @@ P(a \le X \le b) = \int_a^b f(x) \, dx
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-density-functions">Probability Density Functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-and-variance">Mean and Variance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-and-shifting">Scaling and Shifting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-distribution-function">Cumulative Distribution Function</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-estimation">Parameter Estimation</a></li>
 </ul>
   </nav></div>
