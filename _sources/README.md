@@ -22,6 +22,12 @@
 * Linear Algebra (MATH 221)
 * Mathematical Computing (MATH 210)
 
+## Authors
+
+[Patrick Walls](https://patrickwalls.github.io/) is an Associate Professor of Teaching in the [Department of Mathematics](https://www.math.ubc.ca/) at the [University of British Columbia](https://www.ubc.ca/) and teaches undergraduate courses in mathematical computing, linear algebra, and optimization.
+
+[Lindsey Daniels](https://www.math.ubc.ca/user/3614) is an Assistant Professor of Teaching in the [Department of Mathematics](https://www.math.ubc.ca/) at the [University of British Columbia](https://www.ubc.ca/) and teaches undergraduate courses in differential equations, calculus and mathematical modelling.
+
 ## License
 
 This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
