@@ -46,12 +46,13 @@ parts:
       - file: stochastic/distributions/gamma.ipynb
     - file: stochastic/sampling.ipynb
     - file: stochastic/kernel.ipynb
+#    - file: stochastic/wind.ipynb
   - caption: Data-Driven Models
     chapters:
-    - file: data-driven/overview.md
     - file: data-driven/linear-regression/index.md
       sections:
-      - file: data-driven/linear-regression/linear.md
+      - file: data-driven/linear-regression/least-squares.ipynb
+      - file: data-driven/linear-regression/residuals.ipynb
     - file: data-driven/logistic-regression/index.md
       sections:
       - file: data-driven/logistic-regression/logistic-function.ipynb
@@ -64,3 +65,4 @@ parts:
 #    - file: appendices/animations.ipynb
 #    - file: appendices/3d-plotting.ipynb
 #    - file: appendices/graphics.ipynb
+#    - file: appendices/pandas.ipynb
