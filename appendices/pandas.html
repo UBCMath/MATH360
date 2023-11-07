@@ -1,0 +1,1144 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Data Analysis with pandas &#8212; Introduction to Mathematical Modelling</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'appendices/pandas';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Mathematical Graphics" href="graphics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction to Mathematical Modelling</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelling Process</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../process/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../process/process.html">Modelling Process</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../deterministic/overview.html">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/differential/index.html">Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/differential/equations.html">Scalar Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/differential/systems.html">Systems of Equations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/nondimensionalization/index.html">Nondimensionalization</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/nondimensionalization/dimensions.html">Dimensions and Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/nondimensionalization/scaling.html">Scaling</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/motion/index.html">Objects in Motion</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/laws-of-motion.html">Laws of Motion and Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/mass-spring-2d.html">2D Mass Spring System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/simple-pendulum.html">Simple Pendulum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/projectile.html">Projectile Motion with Drag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/orbits.html">Planetary Orbits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/motion/eulers-3-body.html">Euler’s 3-Body Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/heat/index.html">Heat Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/heat/balance.html">Energy Balance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/heat/conduction.html">Thermal Conduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/heat/radiation.html">Thermal Radiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/heat/climate.html">Global Energy Balance</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../deterministic/mass/index.html">Mass Balance</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/mass/conservation.html">Conservation of Mass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deterministic/mass/chemical.html">Chemical Kinetics</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Stochastic Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../stochastic/overview.html">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../stochastic/distributions/index.html">Probability Distributions</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../stochastic/distributions/variables.html">Variables and Densities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stochastic/distributions/normal.html">Normal Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stochastic/distributions/uniform.html">Uniform Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stochastic/distributions/exponential.html">Exponential Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stochastic/distributions/gamma.html">Gamma Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../stochastic/sampling.html">Random Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stochastic/kernel.html">Kernel Density Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stochastic/wind.html">Wind Energy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data-Driven Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../data-driven/overview.html">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/linear-regression/index.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data-driven/linear-regression/linear.html">Linear Regression</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/logistic-regression/index.html">Logistic Regression</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data-driven/logistic-regression/logistic-function.html">Logistic Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data-driven/logistic-regression/cost-regularization.html">Cost and Regularization</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/numerical-methods/index.html">Numerical Methods</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data-driven/numerical-methods/gradient.html">Gradient Descent</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="animations.html">Animations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3d-plotting.html">3D Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphics.html">Mathematical Graphics</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Analysis with pandas</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/appendices/pandas.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/UBCMath/MATH360" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/appendices/pandas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Analysis with pandas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-and-inspect-data">Import and Inspect Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-rows-and-columns">Select Rows and Columns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-new-columns">Create New Columns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregate-data">Aggregate Data</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-analysis-with-pandas">
+<h1>Data Analysis with pandas<a class="headerlink" href="#data-analysis-with-pandas" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="import-and-inspect-data">
+<h2>Import and Inspect Data<a class="headerlink" href="#import-and-inspect-data" title="Permalink to this heading">#</a></h2>
+<p>Import a csv file with the function <code class="docutils literal notranslate"><span class="pre">pd.read_csv</span></code>. The file should be saved to the same directory as the current notebook:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;wind.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The data is imported as a pandas dataframe object which we think of as spreadsheet:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.frame.DataFrame
+</pre></div>
+</div>
+</div>
+</div>
+<p>View the first 5 rows of the dataframe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>day</th>
+      <th>month</th>
+      <th>year</th>
+      <th>dayofyear</th>
+      <th>avg_wind_speed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>13</td>
+      <td>4</td>
+      <td>2023</td>
+      <td>103</td>
+      <td>13.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>12</td>
+      <td>4</td>
+      <td>2023</td>
+      <td>102</td>
+      <td>13.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11</td>
+      <td>4</td>
+      <td>2023</td>
+      <td>101</td>
+      <td>17.5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>10</td>
+      <td>4</td>
+      <td>2023</td>
+      <td>100</td>
+      <td>11.5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9</td>
+      <td>4</td>
+      <td>2023</td>
+      <td>99</td>
+      <td>19.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>View the last 5 rows of the dataframe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>day</th>
+      <th>month</th>
+      <th>year</th>
+      <th>dayofyear</th>
+      <th>avg_wind_speed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9995</th>
+      <td>1</td>
+      <td>12</td>
+      <td>1995</td>
+      <td>335</td>
+      <td>19.5</td>
+    </tr>
+    <tr>
+      <th>9996</th>
+      <td>30</td>
+      <td>11</td>
+      <td>1995</td>
+      <td>334</td>
+      <td>19.5</td>
+    </tr>
+    <tr>
+      <th>9997</th>
+      <td>29</td>
+      <td>11</td>
+      <td>1995</td>
+      <td>333</td>
+      <td>25.0</td>
+    </tr>
+    <tr>
+      <th>9998</th>
+      <td>28</td>
+      <td>11</td>
+      <td>1995</td>
+      <td>332</td>
+      <td>21.5</td>
+    </tr>
+    <tr>
+      <th>9999</th>
+      <td>27</td>
+      <td>11</td>
+      <td>1995</td>
+      <td>331</td>
+      <td>17.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>View a summary of the dataframe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 10000 entries, 0 to 9999
+Data columns (total 5 columns):
+ #   Column          Non-Null Count  Dtype  
+---  ------          --------------  -----  
+ 0   day             10000 non-null  int64  
+ 1   month           10000 non-null  int64  
+ 2   year            10000 non-null  int64  
+ 3   dayofyear       10000 non-null  int64  
+ 4   avg_wind_speed  10000 non-null  float64
+dtypes: float64(1), int64(4)
+memory usage: 390.8 KB
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="select-rows-and-columns">
+<h2>Select Rows and Columns<a class="headerlink" href="#select-rows-and-columns" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="create-new-columns">
+<h2>Create New Columns<a class="headerlink" href="#create-new-columns" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="aggregate-data">
+<h2>Aggregate Data<a class="headerlink" href="#aggregate-data" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;month&#39;</span><span class="p">,</span><span class="s1">&#39;day&#39;</span><span class="p">,</span><span class="s1">&#39;avg_wind_speed&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;month&#39;</span><span class="p">,</span><span class="s1">&#39;day&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="21" halign="left">avg_wind_speed</th>
+    </tr>
+    <tr>
+      <th>day</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>...</th>
+      <th>22</th>
+      <th>23</th>
+      <th>24</th>
+      <th>25</th>
+      <th>26</th>
+      <th>27</th>
+      <th>28</th>
+      <th>29</th>
+      <th>30</th>
+      <th>31</th>
+    </tr>
+    <tr>
+      <th>month</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>14.625000</td>
+      <td>16.339286</td>
+      <td>16.714286</td>
+      <td>15.267857</td>
+      <td>15.267857</td>
+      <td>14.446429</td>
+      <td>16.642857</td>
+      <td>15.625000</td>
+      <td>15.910714</td>
+      <td>14.125000</td>
+      <td>...</td>
+      <td>13.803571</td>
+      <td>14.160714</td>
+      <td>13.178571</td>
+      <td>11.964286</td>
+      <td>13.214286</td>
+      <td>12.071429</td>
+      <td>12.553571</td>
+      <td>15.142857</td>
+      <td>14.178571</td>
+      <td>13.892857</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>13.642857</td>
+      <td>12.517857</td>
+      <td>12.964286</td>
+      <td>14.553571</td>
+      <td>17.410714</td>
+      <td>13.732143</td>
+      <td>14.000000</td>
+      <td>13.821429</td>
+      <td>10.660714</td>
+      <td>12.303571</td>
+      <td>...</td>
+      <td>15.285714</td>
+      <td>15.410714</td>
+      <td>13.482143</td>
+      <td>14.285714</td>
+      <td>14.500000</td>
+      <td>12.803571</td>
+      <td>14.500000</td>
+      <td>15.357143</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>15.142857</td>
+      <td>15.982143</td>
+      <td>14.785714</td>
+      <td>15.607143</td>
+      <td>15.357143</td>
+      <td>13.392857</td>
+      <td>13.392857</td>
+      <td>14.428571</td>
+      <td>15.303571</td>
+      <td>15.267857</td>
+      <td>...</td>
+      <td>15.625000</td>
+      <td>16.267857</td>
+      <td>12.857143</td>
+      <td>14.678571</td>
+      <td>14.410714</td>
+      <td>16.125000</td>
+      <td>18.285714</td>
+      <td>16.303571</td>
+      <td>14.482143</td>
+      <td>16.214286</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>15.250000</td>
+      <td>16.160714</td>
+      <td>15.589286</td>
+      <td>13.482143</td>
+      <td>15.142857</td>
+      <td>13.017857</td>
+      <td>14.821429</td>
+      <td>15.821429</td>
+      <td>14.321429</td>
+      <td>14.517857</td>
+      <td>...</td>
+      <td>16.037037</td>
+      <td>14.962963</td>
+      <td>13.574074</td>
+      <td>14.370370</td>
+      <td>15.259259</td>
+      <td>15.833333</td>
+      <td>12.796296</td>
+      <td>14.388889</td>
+      <td>14.129630</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>14.962963</td>
+      <td>14.962963</td>
+      <td>14.018519</td>
+      <td>13.796296</td>
+      <td>14.351852</td>
+      <td>13.777778</td>
+      <td>14.370370</td>
+      <td>14.648148</td>
+      <td>12.592593</td>
+      <td>11.518519</td>
+      <td>...</td>
+      <td>13.185185</td>
+      <td>13.574074</td>
+      <td>13.833333</td>
+      <td>13.648148</td>
+      <td>13.296296</td>
+      <td>13.518519</td>
+      <td>14.277778</td>
+      <td>13.629630</td>
+      <td>13.740741</td>
+      <td>11.092593</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>14.018519</td>
+      <td>13.444444</td>
+      <td>12.777778</td>
+      <td>13.907407</td>
+      <td>14.296296</td>
+      <td>11.888889</td>
+      <td>13.648148</td>
+      <td>13.759259</td>
+      <td>14.388889</td>
+      <td>12.574074</td>
+      <td>...</td>
+      <td>14.092593</td>
+      <td>13.388889</td>
+      <td>12.425926</td>
+      <td>12.074074</td>
+      <td>14.555556</td>
+      <td>13.555556</td>
+      <td>13.537037</td>
+      <td>13.111111</td>
+      <td>12.462963</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>15.611111</td>
+      <td>14.685185</td>
+      <td>13.500000</td>
+      <td>12.777778</td>
+      <td>13.462963</td>
+      <td>12.666667</td>
+      <td>14.777778</td>
+      <td>12.000000</td>
+      <td>12.166667</td>
+      <td>13.814815</td>
+      <td>...</td>
+      <td>14.555556</td>
+      <td>14.462963</td>
+      <td>13.185185</td>
+      <td>12.722222</td>
+      <td>12.611111</td>
+      <td>12.444444</td>
+      <td>13.148148</td>
+      <td>12.407407</td>
+      <td>12.962963</td>
+      <td>12.555556</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>15.000000</td>
+      <td>13.222222</td>
+      <td>11.907407</td>
+      <td>12.629630</td>
+      <td>13.407407</td>
+      <td>13.037037</td>
+      <td>12.777778</td>
+      <td>13.333333</td>
+      <td>11.351852</td>
+      <td>12.518519</td>
+      <td>...</td>
+      <td>12.407407</td>
+      <td>11.111111</td>
+      <td>12.166667</td>
+      <td>12.055556</td>
+      <td>12.814815</td>
+      <td>13.333333</td>
+      <td>11.703704</td>
+      <td>13.981481</td>
+      <td>13.555556</td>
+      <td>12.981481</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>12.462963</td>
+      <td>11.574074</td>
+      <td>11.777778</td>
+      <td>12.481481</td>
+      <td>11.500000</td>
+      <td>12.444444</td>
+      <td>12.833333</td>
+      <td>14.685185</td>
+      <td>14.055556</td>
+      <td>13.129630</td>
+      <td>...</td>
+      <td>12.592593</td>
+      <td>12.388889</td>
+      <td>12.703704</td>
+      <td>13.407407</td>
+      <td>13.685185</td>
+      <td>13.166667</td>
+      <td>13.481481</td>
+      <td>14.148148</td>
+      <td>14.944444</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>12.796296</td>
+      <td>13.314815</td>
+      <td>12.574074</td>
+      <td>12.907407</td>
+      <td>11.277778</td>
+      <td>11.629630</td>
+      <td>13.277778</td>
+      <td>14.314815</td>
+      <td>13.629630</td>
+      <td>15.425926</td>
+      <td>...</td>
+      <td>12.629630</td>
+      <td>13.500000</td>
+      <td>12.703704</td>
+      <td>15.851852</td>
+      <td>13.185185</td>
+      <td>13.611111</td>
+      <td>14.722222</td>
+      <td>14.388889</td>
+      <td>14.851852</td>
+      <td>14.222222</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>11.851852</td>
+      <td>12.870370</td>
+      <td>13.611111</td>
+      <td>15.703704</td>
+      <td>13.370370</td>
+      <td>15.870370</td>
+      <td>13.592593</td>
+      <td>13.333333</td>
+      <td>14.129630</td>
+      <td>12.518519</td>
+      <td>...</td>
+      <td>13.962963</td>
+      <td>14.962963</td>
+      <td>15.555556</td>
+      <td>15.203704</td>
+      <td>14.611111</td>
+      <td>16.303571</td>
+      <td>14.500000</td>
+      <td>15.535714</td>
+      <td>15.553571</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>15.625000</td>
+      <td>14.357143</td>
+      <td>12.589286</td>
+      <td>13.839286</td>
+      <td>12.017857</td>
+      <td>12.285714</td>
+      <td>13.428571</td>
+      <td>13.392857</td>
+      <td>14.107143</td>
+      <td>14.160714</td>
+      <td>...</td>
+      <td>13.053571</td>
+      <td>13.160714</td>
+      <td>13.625000</td>
+      <td>13.375000</td>
+      <td>14.678571</td>
+      <td>14.982143</td>
+      <td>12.303571</td>
+      <td>14.160714</td>
+      <td>13.517857</td>
+      <td>12.357143</td>
+    </tr>
+  </tbody>
+</table>
+<p>12 rows × 31 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./appendices"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="graphics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Mathematical Graphics</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-and-inspect-data">Import and Inspect Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-rows-and-columns">Select Rows and Columns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-new-columns">Create New Columns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregate-data">Aggregate Data</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UBC Math
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

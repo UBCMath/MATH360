@@ -61,11 +61,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'data-driven/overview';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Linear Regression" href="linear-regression/index.html" />
-    <link rel="prev" title="Kernel Density Estimation" href="../stochastic/kernel.html" />
+    <link rel="prev" title="Wind Energy" href="../stochastic/wind.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -195,6 +197,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../stochastic/sampling.html">Random Sampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../stochastic/kernel.html">Kernel Density Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stochastic/wind.html">Wind Energy</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data-Driven Models</span></p>
 <ul class="current nav bd-sidenav">
@@ -212,6 +215,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="numerical-methods/gradient.html">Gradient Descent</a></li>
 </ul>
 </li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendices/animations.html">Animations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/3d-plotting.html">3D Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/graphics.html">Mathematical Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/pandas.html">Data Analysis with pandas</a></li>
 </ul>
 
     </div>
@@ -390,7 +400,22 @@ document.write(`
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h1>
 <section id="big-ideas">
 <h2>Big Ideas<a class="headerlink" href="#big-ideas" title="Permalink to this heading">#</a></h2>
-<p><em>Under construction</em></p>
+<p>Suupose a variable <span class="math notranslate nohighlight">\(y\)</span> depends on be independent variables <span class="math notranslate nohighlight">\(x_1,\dots,x_p\)</span>. Use the notation <span class="math notranslate nohighlight">\(\mathbf{x} = (x_1,\dots,x_p) \in \mathbb{R}^p\)</span> to denote the vector of independent variables.  The construction of a <strong>data-driven model</strong> consists of the following steps:</p>
+<p>A <strong>data-driven model</strong> is a function <span class="math notranslate nohighlight">\(f(x,\beta)\)</span> and relates an independent variable <span class="math notranslate nohighlight">\(x\)</span> to an dependent variable $</p>
+<div class="math notranslate nohighlight">
+\[
+y = f(x;\beta) + \varepsilon
+\]</div>
+<p>which depends on a parameter <span class="math notranslate nohighlight">\(\beta\)</span>
+where <span class="math notranslate nohighlight">\(\varepsilon\)</span> is the error.</p>
+<p>When the dependent variable is continuous then we call</p>
+<ul class="simple">
+<li><p>Observe samples <span class="math notranslate nohighlight">\(y_0,\dots,y_N\)</span> of the dependent variable and corresponding values <span class="math notranslate nohighlight">\(\mathbf{x}_0,\dots,\mathbf{x}_N\)</span> of the dependent variables</p></li>
+<li><p>Choose a regression function <span class="math notranslate nohighlight">\(f(\mathbf{x}; \boldsymbol{\beta})\)</span> which depends on some vector of parameters <span class="math notranslate nohighlight">\(\boldsymbol{\beta} = (\beta_0,\beta_1,\dots)\)</span></p></li>
+<li><p>Choose a cost function <span class="math notranslate nohighlight">\(C\)</span> which measures the goodness-of-fit of the function <span class="math notranslate nohighlight">\(f\)</span> relative to the observed data</p></li>
+<li><p>Compute the parameters <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> which minimize the cost <span class="math notranslate nohighlight">\(C\)</span></p></li>
+<li><p>Analyze the regression model <span class="math notranslate nohighlight">\(y = f(\mathbf{x} ; \boldsymbol{\beta}) + \varepsilon\)</span> where <span class="math notranslate nohighlight">\(\varepsilon\)</span> is the random error representing the discrepancy in the approximation</p></li>
+</ul>
 </section>
 <section id="learning-goals">
 <h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this heading">#</a></h2>
@@ -430,12 +455,12 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../stochastic/kernel.html"
+       href="../stochastic/wind.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Kernel Density Estimation</p>
+        <p class="prev-next-title">Wind Energy</p>
       </div>
     </a>
     <a class="right-next"

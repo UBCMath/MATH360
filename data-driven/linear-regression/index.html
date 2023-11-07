@@ -61,11 +61,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'data-driven/linear-regression/index';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Linear Regression" href="linear.html" />
-    <link rel="prev" title="Overview" href="../overview.html" />
+    <link rel="next" title="Least Squares" href="least-squares.html" />
+    <link rel="prev" title="Kernel Density Estimation" href="../../stochastic/kernel.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -198,9 +200,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data-Driven Models</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Linear Regression</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="linear.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="least-squares.html">Least Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="residuals.html">Residuals and <span class="math notranslate nohighlight">\(R^2\)</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../logistic-regression/index.html">Logistic Regression</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -377,7 +379,23 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linear-regression">
 <h1>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this heading">#</a></h1>
-<p><em>Under construction</em></p>
+<p>A <strong>linear regression model</strong> is of the form</p>
+<div class="math notranslate nohighlight">
+\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_p x_p + \varepsilon
+\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y\)</span> is the dependent variable (called the <strong>target</strong>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_1,\dots,x_p\)</span> are the independent variables (called the <strong>features</strong>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varepsilon\)</span> is the <strong>residual</strong></p></li>
+</ul>
+<p>The construction of a linear regression model usually consists of the following steps:</p>
+<ul class="simple">
+<li><p>Observe samples <span class="math notranslate nohighlight">\((\mathbf{x}_1,y_1),\dots,(\mathbf{x}_N,y_N)\)</span> (where each <span class="math notranslate nohighlight">\(\mathbf{x}_i = (x_{i,1},\dots,x_{i,p})\)</span> is a vector of the independent variables)</p></li>
+<li><p>Choose a cost function <span class="math notranslate nohighlight">\(C\)</span> such as the <strong>residual sum of squares</strong></p></li>
+<li><p>Compute the parameters <span class="math notranslate nohighlight">\(\beta_0,\beta_1,\dots,\beta_p\)</span> which minimize the cost <span class="math notranslate nohighlight">\(C\)</span></p></li>
+</ul>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -414,20 +432,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../overview.html"
+       href="../../stochastic/kernel.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Overview</p>
+        <p class="prev-next-title">Kernel Density Estimation</p>
       </div>
     </a>
     <a class="right-next"
-       href="linear.html"
+       href="least-squares.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Linear Regression</p>
+        <p class="prev-next-title">Least Squares</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -1,0 +1,899 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Residuals and \(R^2\) &#8212; Introduction to Mathematical Modelling</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'data-driven/linear-regression/residuals';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Logistic Regression" href="../logistic-regression/index.html" />
+    <link rel="prev" title="Least Squares" href="least-squares.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction to Mathematical Modelling</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelling Process</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../process/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../process/process.html">Modelling Process</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../deterministic/overview.html">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../deterministic/differential/index.html">Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/differential/equations.html">Scalar Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/differential/systems.html">Systems of Equations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../deterministic/nondimensionalization/index.html">Nondimensionalization</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/nondimensionalization/dimensions.html">Dimensions and Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/nondimensionalization/scaling.html">Scaling</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../deterministic/motion/index.html">Objects in Motion</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/motion/laws-of-motion.html">Laws of Motion and Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/motion/mass-spring-2d.html">2D Mass Spring System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/motion/simple-pendulum.html">Simple Pendulum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/motion/projectile.html">Projectile Motion with Drag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/motion/orbits.html">Planetary Orbits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/motion/eulers-3-body.html">Euler’s 3-Body Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../deterministic/heat/index.html">Heat Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/heat/balance.html">Energy Balance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/heat/conduction.html">Thermal Conduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/heat/radiation.html">Thermal Radiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/heat/climate.html">Global Energy Balance</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../deterministic/mass/index.html">Mass Balance</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/mass/conservation.html">Conservation of Mass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/mass/chemical.html">Chemical Kinetics</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Stochastic Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../stochastic/overview.html">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../stochastic/distributions/index.html">Probability Distributions</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../stochastic/distributions/variables.html">Variables and Densities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stochastic/distributions/normal.html">Normal Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stochastic/distributions/uniform.html">Uniform Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stochastic/distributions/exponential.html">Exponential Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stochastic/distributions/gamma.html">Gamma Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../stochastic/sampling.html">Random Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stochastic/kernel.html">Kernel Density Estimation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data-Driven Models</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Linear Regression</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="least-squares.html">Least Squares</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Residuals and <span class="math notranslate nohighlight">\(R^2\)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../logistic-regression/index.html">Logistic Regression</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../logistic-regression/logistic-function.html">Logistic Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logistic-regression/cost-regularization.html">Cost and Regularization</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerical-methods/index.html">Numerical Methods</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerical-methods/gradient.html">Gradient Descent</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/data-driven/linear-regression/residuals.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/UBCMath/MATH360" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/data-driven/linear-regression/residuals.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Residuals and R^2</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#residual-analysis">Residual Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficient-of-determination-r-2">Coefficient of Determination <span class="math notranslate nohighlight">\(R^2\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-temperature">Example: Temperature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-temperature-with-biannual-variation">Example: Temperature with Biannual Variation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="residuals-and-r-2">
+<h1>Residuals and <span class="math notranslate nohighlight">\(R^2\)</span><a class="headerlink" href="#residuals-and-r-2" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="residual-analysis">
+<h2>Residual Analysis<a class="headerlink" href="#residual-analysis" title="Permalink to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\((\mathbf{x}_1,y_1),\dots,(\mathbf{x}_N,y_N)\)</span> be a data set of <span class="math notranslate nohighlight">\(N\)</span> observations where each <span class="math notranslate nohighlight">\(\mathbf{x}_i = (x_{i,1},\dots,x_{i,p})\)</span> is a vector of values of the independent variables <span class="math notranslate nohighlight">\(x_1,\dots,x_p\)</span>. Consider a linear regression model</p>
+<div class="math notranslate nohighlight">
+\[
+y = \beta_0 + \beta_1 x_1 + \cdots + \beta_p x_p + \varepsilon
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\varepsilon\)</span> is the <strong>residual</strong>. Use the notation <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> for the residual of the <span class="math notranslate nohighlight">\(i\)</span>th observation in the data set:</p>
+<div class="math notranslate nohighlight">
+\[
+\varepsilon_i = y_i - (\beta_0 + \beta_1 x_{1,i} + \cdots + \beta_p x_{1,p})
+\]</div>
+<p>Once we compute parameters <span class="math notranslate nohighlight">\(\beta_0,\dots,\beta_p\)</span> which best fit the data, we would like to validate the model. The linear regression model is a good representation of the relationship between <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(x_1,\dots,x_p\)</span> if the residual <span class="math notranslate nohighlight">\(\varepsilon\)</span> satisfies the following properties:</p>
+<ol class="arabic simple">
+<li><p>The residuals <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> are normally distributed with mean 0.</p></li>
+<li><p>Distribution of residuals <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> does not depend on <span class="math notranslate nohighlight">\(x_1,\dots,x_p\)</span></p></li>
+<li><p>Distribution of residuals <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> does not depend on index <span class="math notranslate nohighlight">\(i\)</span> (or time <span class="math notranslate nohighlight">\(t_i\)</span>)</p></li>
+</ol>
+<p>We can verify these properties graphically by producing the following figures:</p>
+<ol class="arabic simple">
+<li><p>Plot histogram of residuals <span class="math notranslate nohighlight">\(\varepsilon_i\)</span></p></li>
+<li><p>Plot <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> versus <span class="math notranslate nohighlight">\(x_{i,j}\)</span> for each feature <span class="math notranslate nohighlight">\(x_j\)</span></p></li>
+<li><p>Plot <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> versus index <span class="math notranslate nohighlight">\(i\)</span> (or time <span class="math notranslate nohighlight">\(t_i\)</span>)</p></li>
+</ol>
+<p>Plot 1 should be a familiar bell curve centered at 0, and plots 2 and 3 should be random scatter plots with mean 0 and constant variance in the horizontal direction.</p>
+</section>
+<section id="coefficient-of-determination-r-2">
+<h2>Coefficient of Determination <span class="math notranslate nohighlight">\(R^2\)</span><a class="headerlink" href="#coefficient-of-determination-r-2" title="Permalink to this heading">#</a></h2>
+<p><em>Under construction</em></p>
+</section>
+<section id="example-temperature">
+<h2>Example: Temperature<a class="headerlink" href="#example-temperature" title="Permalink to this heading">#</a></h2>
+<p>Let’s again look at daily average temperature in Vancouver (see <a class="reference external" href="https://vancouver.weatherstats.ca">vancouver.weatherstats.ca</a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;temperature.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>day</th>
+      <th>month</th>
+      <th>year</th>
+      <th>dayofyear</th>
+      <th>avg_temperature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>13</td>
+      <td>4</td>
+      <td>2023</td>
+      <td>103</td>
+      <td>7.10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>12</td>
+      <td>4</td>
+      <td>2023</td>
+      <td>102</td>
+      <td>5.19</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11</td>
+      <td>4</td>
+      <td>2023</td>
+      <td>101</td>
+      <td>8.00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>10</td>
+      <td>4</td>
+      <td>2023</td>
+      <td>100</td>
+      <td>7.69</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9</td>
+      <td>4</td>
+      <td>2023</td>
+      <td>99</td>
+      <td>9.30</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let <span class="math notranslate nohighlight">\(T\)</span> be the temperature and let <span class="math notranslate nohighlight">\(d\)</span> be the day of the year. Define a regression model of the form</p>
+<div class="math notranslate nohighlight">
+\[
+T = \beta_0 + \beta_1 \cos(2 \pi d/365) + \beta_2 \sin(2 \pi d/365)
+\]</div>
+<p>Note that if we rewrite the variables as <span class="math notranslate nohighlight">\(y = T\)</span>, <span class="math notranslate nohighlight">\(x_1 = \cos(2 \pi d/365)\)</span> and <span class="math notranslate nohighlight">\(x_2 = \sin(2 \pi d/365)\)</span> then we see that this is indeed a linear regression model</p>
+<div class="math notranslate nohighlight">
+\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2
+\]</div>
+<p>Construct the corresponding data matrix <span class="math notranslate nohighlight">\(X\)</span> and compute the coefficient vector <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dayofyear&#39;</span><span class="p">]</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;avg_temperature&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">)])</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="nd">@X</span><span class="p">,</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="nd">@T</span><span class="p">)</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">365</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">ds</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">ds</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">Ts</span> <span class="o">=</span> <span class="n">beta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">x2</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;dayofyear&#39;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;avg_temperature&#39;</span><span class="p">],</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="n">Ts</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Daily Average Temperature 1995-2023&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Day of the Year&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature (Celsius)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f841af2d54fe04ac7c3ad661577a05dbc7c334c2ef6caa9263d5222b495123f1.png" src="../../_images/f841af2d54fe04ac7c3ad661577a05dbc7c334c2ef6caa9263d5222b495123f1.png" />
+</div>
+</div>
+<p>Compute the residuals and plot the distribution:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">,</span><span class="n">beta</span><span class="p">:</span> <span class="n">beta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">residual</span> <span class="o">=</span> <span class="n">T</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">beta</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">residual</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Residuals&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Residual&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Relative Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6988a84cc7d51f7e79424489e295dca8af9a5fde775e6d814f2fb6304fe072c8.png" src="../../_images/6988a84cc7d51f7e79424489e295dca8af9a5fde775e6d814f2fb6304fe072c8.png" />
+</div>
+</div>
+<p>The distribution definitely looks like a normal distribution. Compute the mean and variance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mean =&#39;</span><span class="p">,</span><span class="n">mean</span><span class="p">,</span><span class="s1">&#39;, variance =&#39;</span><span class="p">,</span><span class="n">var</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mean = 2.8549607122840824e-14 , variance = 6.773167782960342
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, let’s plot the residuals <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> versus each of the input variables <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">),</span><span class="n">residual</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x1&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/39ce22935e8d7476b425f270e9d43e97b5f6793a2b969c82ca70ae6206271a15.png" src="../../_images/39ce22935e8d7476b425f270e9d43e97b5f6793a2b969c82ca70ae6206271a15.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">),</span><span class="n">residual</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x_2$&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/702529f9d3e53c9fda4238cd556ecda2597e7e24ad35956a9e3a6f4d0c051d71.png" src="../../_images/702529f9d3e53c9fda4238cd556ecda2597e7e24ad35956a9e3a6f4d0c051d71.png" />
+</div>
+</div>
+<p>Both plots suggest that there is not much variation with respect to <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span>.</p>
+<p>Now let’s plot <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> versus day of the year <span class="math notranslate nohighlight">\(d\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">residual</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Day of the Year&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/67314142e0e791b770a4fdcb43db9cc2aa9187b1c16ece857f525349c1d90bbd.png" src="../../_images/67314142e0e791b770a4fdcb43db9cc2aa9187b1c16ece857f525349c1d90bbd.png" />
+</div>
+</div>
+<p>We can see there is some variation in the error! This means that our model is missing something. It looks like there is a variation with period 6 months. Lets build that into the model!</p>
+</section>
+<section id="example-temperature-with-biannual-variation">
+<h2>Example: Temperature with Biannual Variation<a class="headerlink" href="#example-temperature-with-biannual-variation" title="Permalink to this heading">#</a></h2>
+<p>We can see in the previous example that the linear model doesn’t quite fit the data. Let’s modify our linear regression model to include periodic functions with periods of 1 year (365 days) and 6 months (365/2 days):</p>
+<div class="math notranslate nohighlight">
+\[
+T = \beta_0 + \beta_1 \cos(2 \pi d/365) + \beta_2 \sin(2 \pi d/365) + \beta_3 \cos(4 \pi d/365) + \beta_4 \sin(4 \pi d/365)
+\]</div>
+<p>Construct the corresponding data matrix <span class="math notranslate nohighlight">\(X\)</span> and compute the coefficient vector <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dayofyear&#39;</span><span class="p">]</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;avg_temperature&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">)])</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="nd">@X</span><span class="p">,</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="nd">@T</span><span class="p">)</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">365</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">ds</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">ds</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">x3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">ds</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">x4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">ds</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">Ts</span> <span class="o">=</span> <span class="n">beta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">x2</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">x3</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">*</span><span class="n">x4</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;dayofyear&#39;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;avg_temperature&#39;</span><span class="p">],</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="n">Ts</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Daily Average Temperature 1995-2023&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Day of the Year&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature (Celsius)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d7a5464d6c9df8c85abb322bc143d7a44c634a3ccfb9cba4964f38d756ff355e.png" src="../../_images/d7a5464d6c9df8c85abb322bc143d7a44c634a3ccfb9cba4964f38d756ff355e.png" />
+</div>
+</div>
+<p>Analysis the model. Plot the distribution of residuals:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">,</span><span class="n">beta</span><span class="p">:</span> <span class="n">beta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">residual</span> <span class="o">=</span> <span class="n">T</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">beta</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">residual</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Residuals&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Residual&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Relative Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/025a64df8f8ddead8b2d05c16bcf6ada40b288d657cd178b9510d9397109349b.png" src="../../_images/025a64df8f8ddead8b2d05c16bcf6ada40b288d657cd178b9510d9397109349b.png" />
+</div>
+</div>
+<p>The distribution definitely looks like a normal distribution. Compute the mean and variance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mean =&#39;</span><span class="p">,</span><span class="n">mean</span><span class="p">,</span><span class="s1">&#39;, variance =&#39;</span><span class="p">,</span><span class="n">var</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mean = 2.6413715659145965e-14 , variance = 6.20105106178613
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, let’s plot the residuals <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> versus each of the input variables <span class="math notranslate nohighlight">\(x_1,x_2,x_3,x_4\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">),</span><span class="n">residual</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x_1$&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residual&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">),</span><span class="n">residual</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x_2$&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residual&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">),</span><span class="n">residual</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x_3$&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residual&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">),</span><span class="n">residual</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x_4$&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residual&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a9aba60ed11f2fa8a4204fe70bf4ec4297e0c5a2a7097bb510dfe847bdbc4426.png" src="../../_images/a9aba60ed11f2fa8a4204fe70bf4ec4297e0c5a2a7097bb510dfe847bdbc4426.png" />
+</div>
+</div>
+<p>Finally, plot <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> versus day of the year <span class="math notranslate nohighlight">\(d\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">residual</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Day of the Year&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6e821c96867dffd785b7fce5a981553c409f5eea46e36940163d3903e9d1540d.png" src="../../_images/6e821c96867dffd785b7fce5a981553c409f5eea46e36940163d3903e9d1540d.png" />
+</div>
+</div>
+<p>All the plots suggest the mean of the residual is 0 independent of each variable and time however the variation seems to increase in the winter. How can we account for this?</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./data-driven/linear-regression"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="least-squares.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Least Squares</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../logistic-regression/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Logistic Regression</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#residual-analysis">Residual Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficient-of-determination-r-2">Coefficient of Determination <span class="math notranslate nohighlight">\(R^2\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-temperature">Example: Temperature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-temperature-with-biannual-variation">Example: Temperature with Biannual Variation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UBC Math
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

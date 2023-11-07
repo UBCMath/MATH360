@@ -200,9 +200,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data-Driven Models</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../data-driven/overview.html">Overview</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/linear-regression/index.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../data-driven/linear-regression/linear.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data-driven/linear-regression/least-squares.html">Least Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data-driven/linear-regression/residuals.html">Residuals and <span class="math notranslate nohighlight">\(R^2\)</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/logistic-regression/index.html">Logistic Regression</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -525,7 +525,7 @@ f(x,\alpha) = \left\{ \begin{array}{ccc} \displaystyle \frac{x^{\alpha-1} e^{-x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/66ecb97817f909eb300ffe14e62697c38488b9f367b4669103b31ea230efc728.png" src="../_images/66ecb97817f909eb300ffe14e62697c38488b9f367b4669103b31ea230efc728.png" />
+<img alt="../_images/a8ba182367f018d0495e8e10882991df6eb2026a87c5a3bcc620694dc93289c8.png" src="../_images/a8ba182367f018d0495e8e10882991df6eb2026a87c5a3bcc620694dc93289c8.png" />
 </div>
 </div>
 </section>
@@ -564,7 +564,7 @@ f(x,\alpha) = \left\{ \begin{array}{ccc} \displaystyle \frac{x^{\alpha-1} e^{-x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/12426a172e22fc7c2309342b37c4d3cf72561b36793359ae8443c9afb9e13d6b.png" src="../_images/12426a172e22fc7c2309342b37c4d3cf72561b36793359ae8443c9afb9e13d6b.png" />
+<img alt="../_images/333000f280cb3ba448b525172884636925cddb7e951e17aeb9d2709742958d56.png" src="../_images/333000f280cb3ba448b525172884636925cddb7e951e17aeb9d2709742958d56.png" />
 </div>
 </div>
 </section>
@@ -603,7 +603,7 @@ f(x,\alpha) = \left\{ \begin{array}{ccc} \displaystyle \frac{x^{\alpha-1} e^{-x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/78270cc3be1af46f78d44b1b4fa63a2a88927d1166e0683712949e138b6cd279.png" src="../_images/78270cc3be1af46f78d44b1b4fa63a2a88927d1166e0683712949e138b6cd279.png" />
+<img alt="../_images/a047886525fcd07d43d124dbca0f903eaa468921081d925be52b5ea6cae953d4.png" src="../_images/a047886525fcd07d43d124dbca0f903eaa468921081d925be52b5ea6cae953d4.png" />
 </div>
 </div>
 </section>
@@ -642,7 +642,7 @@ f(x,\alpha) = \left\{ \begin{array}{ccc} \displaystyle \frac{x^{\alpha-1} e^{-x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/31f73b3b500fe7b441a39f1be454df7095166312dec8b27255cb8cd39ed6b3c9.png" src="../_images/31f73b3b500fe7b441a39f1be454df7095166312dec8b27255cb8cd39ed6b3c9.png" />
+<img alt="../_images/6836ba9aed6e16348093dcbb4eb01379bf9e350d023094eddaa5698dc8c530cd.png" src="../_images/6836ba9aed6e16348093dcbb4eb01379bf9e350d023094eddaa5698dc8c530cd.png" />
 </div>
 </div>
 </section>
@@ -663,7 +663,7 @@ f(x,\alpha) = \left\{ \begin{array}{ccc} \displaystyle \frac{x^{\alpha-1} e^{-x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1455384446a4773c18dbe9743de16502589e3578396f7b614ebb54c262afbece.png" src="../_images/1455384446a4773c18dbe9743de16502589e3578396f7b614ebb54c262afbece.png" />
+<img alt="../_images/19070f2ef094c79d44e37c4ee1563ba7313cf014dcb414f945613dc30533d884.png" src="../_images/19070f2ef094c79d44e37c4ee1563ba7313cf014dcb414f945613dc30533d884.png" />
 </div>
 </div>
 <div class="admonition seealso">
@@ -688,7 +688,7 @@ f(x,\alpha) = \left\{ \begin{array}{ccc} \displaystyle \frac{x^{\alpha-1} e^{-x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1351cb36a9447172fc0ece2eea06faf3108b203d2e6519aaf6e138624b9cc717.png" src="../_images/1351cb36a9447172fc0ece2eea06faf3108b203d2e6519aaf6e138624b9cc717.png" />
+<img alt="../_images/562ae5e369596e7850c3d8a07294756e1f994020ef0077aac5e93f6f0d41b42a.png" src="../_images/562ae5e369596e7850c3d8a07294756e1f994020ef0077aac5e93f6f0d41b42a.png" />
 </div>
 </div>
 </section>
@@ -710,7 +710,7 @@ f(x,\alpha) = \left\{ \begin{array}{ccc} \displaystyle \frac{x^{\alpha-1} e^{-x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a9a8a2417d315824908ed15b93de7d35c7a9f1641f6d42d8caa15b625f1b6cf4.png" src="../_images/a9a8a2417d315824908ed15b93de7d35c7a9f1641f6d42d8caa15b625f1b6cf4.png" />
+<img alt="../_images/fe183690b27f8927fb443a2cf4ce9fa3cf37cfcab8517a3ac02f4f6c6a3b8976.png" src="../_images/fe183690b27f8927fb443a2cf4ce9fa3cf37cfcab8517a3ac02f4f6c6a3b8976.png" />
 </div>
 </div>
 </section>

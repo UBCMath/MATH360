@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'data-driven/linear-regression/linear';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -195,6 +197,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../stochastic/sampling.html">Random Sampling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stochastic/kernel.html">Kernel Density Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stochastic/wind.html">Wind Energy</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data-Driven Models</span></p>
 <ul class="current nav bd-sidenav">
@@ -212,6 +215,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../numerical-methods/gradient.html">Gradient Descent</a></li>
 </ul>
 </li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/animations.html">Animations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/3d-plotting.html">3D Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/graphics.html">Mathematical Graphics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendices/pandas.html">Data Analysis with pandas</a></li>
 </ul>
 
     </div>
@@ -255,6 +265,37 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="article-header-buttons">
 
 
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/data-driven/linear-regression/linear.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
 <a href="https://github.com/UBCMath/MATH360" target="_blank"
    class="btn btn-sm btn-source-repository-button"
    title="Source repository"
@@ -281,7 +322,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/data-driven/linear-regression/linear.md" target="_blank"
+      <li><a href="../../_sources/data-driven/linear-regression/linear.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -291,7 +332,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -350,7 +391,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -366,6 +409,19 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Linear Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#least-squares">Least Squares</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#residuals">Residuals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-real-estate-prices">Example: Real Estate Prices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-temperature">Example: Temperature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Example: Temperature</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -377,7 +433,437 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linear-regression">
 <h1>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this heading">#</a></h1>
-<p><em>Under construction</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h2>Linear Regression<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>A <strong>linear regression model</strong> is a function of the form</p>
+<div class="math notranslate nohighlight">
+\[
+f(\mathbf{x} ; \boldsymbol{\beta}) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_p x_p 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{x} = (x_1,\dots,x_p)\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{\beta} = (\beta_0,\beta_1,\dots,\beta_p)\)</span>.</p>
+</section>
+<section id="least-squares">
+<h2>Least Squares<a class="headerlink" href="#least-squares" title="Permalink to this heading">#</a></h2>
+<p><strong>Least squares regression</strong> corresponds to the case where we choose the <strong>sum of squared errors</strong> cost function</p>
+<div class="math notranslate nohighlight">
+\[
+C = \sum_{i=0}^N |y_i - f(\mathbf{x}_i ; \boldsymbol{\beta} ) |^2
+\]</div>
+<p>For simple linear regression this corresponds to</p>
+<div class="math notranslate nohighlight">
+\[
+C = || \mathbf{y} - X \boldsymbol{\beta} ||^2 
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{y} = \begin{bmatrix} y_0 \\ y_1 \\ \vdots \\ y_N \end{bmatrix}
+\hspace{20mm}
+X = \begin{bmatrix} 1 &amp; x_0 \\ 1 &amp; x_1 \\ \vdots &amp; \vdots \\ 1 &amp; x_N \end{bmatrix}
+\hspace{20mm}
+\boldsymbol{\beta} = \begin{bmatrix} \beta_0 \\ \beta_1 \end{bmatrix}
+\end{split}\]</div>
+<p>Note that <span class="math notranslate nohighlight">\(X \boldsymbol{\beta}\)</span> is a vector in the column space of <span class="math notranslate nohighlight">\(X\)</span> therefore the distance <span class="math notranslate nohighlight">\(|| \mathbf{y} - X \boldsymbol{\beta} ||\)</span> is minimized when the line from <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> to <span class="math notranslate nohighlight">\(X\boldsymbol{\beta}\)</span> is orthogonal to the column space. In other words, we want to find <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> such that <span class="math notranslate nohighlight">\(X^T(\mathbf{y} - X \boldsymbol{\beta}) = 0\)</span> which leads to the <strong>normal equations</strong></p>
+<div class="math notranslate nohighlight">
+\[
+X^T X \boldsymbol{\beta} = X^T \mathbf{y}
+\]</div>
+</section>
+<section id="residuals">
+<h2>Residuals<a class="headerlink" href="#residuals" title="Permalink to this heading">#</a></h2>
+<p>The difference between the observed value <span class="math notranslate nohighlight">\(y_i\)</span> and the predicted value <span class="math notranslate nohighlight">\(f(\mathbf{x}_i ; \boldsymbol{\beta})\)</span> is called the <strong>residual</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\varepsilon_i = y_i - f(\mathbf{x}_i ; \boldsymbol{\beta})
+\]</div>
+</section>
+<section id="example-real-estate-prices">
+<h2>Example: Real Estate Prices<a class="headerlink" href="#example-real-estate-prices" title="Permalink to this heading">#</a></h2>
+<p>The data below was collected from <a class="reference external" href="https://www.realtor.ca">REALTOR.ca</a> for 2-bedroom apartments for sale in the Kitsilano neighborhood of Vancouver. The dependent variable <span class="math notranslate nohighlight">\(y\)</span> is the listing price and the independent variable <span class="math notranslate nohighlight">\(x\)</span> is the apartment size (in square feet).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1557</span><span class="p">,</span><span class="mi">1452</span><span class="p">,</span><span class="mi">767</span><span class="p">,</span><span class="mi">900</span><span class="p">,</span><span class="mi">1018</span><span class="p">,</span><span class="mi">802</span><span class="p">,</span><span class="mi">924</span><span class="p">,</span><span class="mi">981</span><span class="p">,</span><span class="mi">879</span><span class="p">,</span><span class="mi">819</span><span class="p">,</span><span class="mi">829</span><span class="p">,</span><span class="mi">1088</span><span class="p">,</span><span class="mi">1085</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.398</span><span class="p">,</span><span class="mf">1.750</span><span class="p">,</span><span class="mf">0.899</span><span class="p">,</span><span class="mf">0.848</span><span class="p">,</span><span class="mf">1.149</span><span class="p">,</span><span class="mf">0.825</span><span class="p">,</span><span class="mf">0.999888</span><span class="p">,</span><span class="mf">1.175</span><span class="p">,</span><span class="mf">0.885</span><span class="p">,</span><span class="mf">0.749888</span><span class="p">,</span><span class="mf">1.098</span><span class="p">,</span><span class="mf">1.099</span><span class="p">,</span><span class="mf">1.198</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Listing Price on REALTOR.ca&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Apartment Size (sqft)&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Price (Millons $)&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/9010168de4908d66437458cc424d6be0dbc7681e98b27a0d37f58dd00698e155.png" src="../../_images/9010168de4908d66437458cc424d6be0dbc7681e98b27a0d37f58dd00698e155.png" />
+</div>
+</div>
+<p>Choose a simple linear regression model for the data <span class="math notranslate nohighlight">\(y = \beta_0 + \beta_1 x + \varepsilon\)</span>. Construct the matrix <span class="math notranslate nohighlight">\(X\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span><span class="n">x</span><span class="p">])</span>
+<span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.000e+00, 1.557e+03],
+       [1.000e+00, 1.452e+03],
+       [1.000e+00, 7.670e+02],
+       [1.000e+00, 9.000e+02],
+       [1.000e+00, 1.018e+03],
+       [1.000e+00, 8.020e+02],
+       [1.000e+00, 9.240e+02],
+       [1.000e+00, 9.810e+02],
+       [1.000e+00, 8.790e+02],
+       [1.000e+00, 8.190e+02],
+       [1.000e+00, 8.290e+02],
+       [1.000e+00, 1.088e+03],
+       [1.000e+00, 1.085e+03]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Solve the normal equations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="nd">@X</span><span class="p">,</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="nd">@y</span><span class="p">)</span>
+<span class="n">beta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.10620723, 0.00096886])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot the linear regression model with the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span><span class="mi">1600</span><span class="p">)</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="n">beta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">xs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Listing Price on REALTOR.ca&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Apartment Size (sqft)&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Price (Millons $)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7f9cdba9c9a84c784bdb5ae8a12f41500b49746b0c7d97c08c3078bbad494c6f.png" src="../../_images/7f9cdba9c9a84c784bdb5ae8a12f41500b49746b0c7d97c08c3078bbad494c6f.png" />
+</div>
+</div>
+<p>The coefficient <span class="math notranslate nohighlight">\(\beta_1 = 0.00096886\)</span> suggests that the listing price of a 2-bedroom apartment increases by <span class="math notranslate nohighlight">\(968.86\)</span> dollars per square foot.</p>
+</section>
+<section id="example-temperature">
+<h2>Example: Temperature<a class="headerlink" href="#example-temperature" title="Permalink to this heading">#</a></h2>
+<p>Vancouver weather data is available at <a class="reference external" href="https://vancouver.weatherstats.ca">vancouver.weatherstats.ca</a>. Plot the daily average temperature as function of the day of the year.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;temperature.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>day</th>
+      <th>month</th>
+      <th>year</th>
+      <th>dayofyear</th>
+      <th>avg_temperature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>13</td>
+      <td>4</td>
+      <td>2023</td>
+      <td>103</td>
+      <td>7.10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>12</td>
+      <td>4</td>
+      <td>2023</td>
+      <td>102</td>
+      <td>5.19</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11</td>
+      <td>4</td>
+      <td>2023</td>
+      <td>101</td>
+      <td>8.00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>10</td>
+      <td>4</td>
+      <td>2023</td>
+      <td>100</td>
+      <td>7.69</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9</td>
+      <td>4</td>
+      <td>2023</td>
+      <td>99</td>
+      <td>9.30</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>day</th>
+      <th>month</th>
+      <th>year</th>
+      <th>dayofyear</th>
+      <th>avg_temperature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9995</th>
+      <td>1</td>
+      <td>12</td>
+      <td>1995</td>
+      <td>335</td>
+      <td>6.40</td>
+    </tr>
+    <tr>
+      <th>9996</th>
+      <td>30</td>
+      <td>11</td>
+      <td>1995</td>
+      <td>334</td>
+      <td>9.15</td>
+    </tr>
+    <tr>
+      <th>9997</th>
+      <td>29</td>
+      <td>11</td>
+      <td>1995</td>
+      <td>333</td>
+      <td>11.50</td>
+    </tr>
+    <tr>
+      <th>9998</th>
+      <td>28</td>
+      <td>11</td>
+      <td>1995</td>
+      <td>332</td>
+      <td>9.75</td>
+    </tr>
+    <tr>
+      <th>9999</th>
+      <td>27</td>
+      <td>11</td>
+      <td>1995</td>
+      <td>331</td>
+      <td>6.90</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;dayofyear&#39;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;avg_temperature&#39;</span><span class="p">],</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Daily Average Temperature 1995-2023&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Day of the Year&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature (Celsius)&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/100af5e710c81e9dc28113b15fb01d47d1b3efd2a84cf4dcfcb8ea6ecf2f5946.png" src="../../_images/100af5e710c81e9dc28113b15fb01d47d1b3efd2a84cf4dcfcb8ea6ecf2f5946.png" />
+</div>
+</div>
+<p>Let <span class="math notranslate nohighlight">\(T\)</span> by the temperature and let <span class="math notranslate nohighlight">\(d\)</span> be the day of the year. Define a regression model of the form</p>
+<div class="math notranslate nohighlight">
+\[
+T = \beta_0 + \beta_1 \cos(2 \pi d/365) + \beta_2 \sin(2 \pi d/365)
+\]</div>
+<p>Note that if we rewrite the variables as <span class="math notranslate nohighlight">\(y = T\)</span>, <span class="math notranslate nohighlight">\(x_1 = \cos(2 \pi d/365)\)</span> and <span class="math notranslate nohighlight">\(x_2 = \sin(2 \pi d/365)\)</span> then we see that this is indeed a linear regression model</p>
+<div class="math notranslate nohighlight">
+\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2
+\]</div>
+<p>Construct the corresponding data matrix <span class="math notranslate nohighlight">\(X\)</span> and compute the coefficient vector <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dayofyear&#39;</span><span class="p">]</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;avg_temperature&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">)])</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="nd">@X</span><span class="p">,</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="nd">@T</span><span class="p">)</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">365</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">Ts</span> <span class="o">=</span> <span class="n">beta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">ds</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">ds</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;dayofyear&#39;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;avg_temperature&#39;</span><span class="p">],</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="n">Ts</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Daily Average Temperature 1995-2023&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Day of the Year&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature (Celsius)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f841af2d54fe04ac7c3ad661577a05dbc7c334c2ef6caa9263d5222b495123f1.png" src="../../_images/f841af2d54fe04ac7c3ad661577a05dbc7c334c2ef6caa9263d5222b495123f1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">,</span><span class="n">beta</span><span class="p">:</span> <span class="n">beta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">residual</span> <span class="o">=</span> <span class="n">T</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">beta</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">residual</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cd717b131809d4b6889ed2c13f90d8180d783d24454816d1e53cf16462012126.png" src="../../_images/cd717b131809d4b6889ed2c13f90d8180d783d24454816d1e53cf16462012126.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.026025310340052316
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>Example: Temperature<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>We can see in teh previous example that the linear model doesn’t quite fit the data. Let’s modify our linear regression model to include periodic functions with periods of 1 year (365 days) and 6 months (365/2 days):</p>
+<div class="math notranslate nohighlight">
+\[
+T = \beta_0 + \beta_1 \cos(2 \pi d/365) + \beta_2 \sin(2 \pi d/365) + \beta_3 \cos(4 \pi d/365) + \beta_4 \sin(4 \pi d/365)
+\]</div>
+<p>Construct the corresponding data matrix <span class="math notranslate nohighlight">\(X\)</span> and compute the coefficient vector <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dayofyear&#39;</span><span class="p">]</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;avg_temperature&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">)])</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="nd">@X</span><span class="p">,</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="nd">@T</span><span class="p">)</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">365</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">ds</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">ds</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">x3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">ds</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">x4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">ds</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">Ts</span> <span class="o">=</span> <span class="n">beta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">x2</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">x3</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">*</span><span class="n">x4</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;dayofyear&#39;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;avg_temperature&#39;</span><span class="p">],</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="n">Ts</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Daily Average Temperature 1995-2023&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Day of the Year&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature (Celsius)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d7a5464d6c9df8c85abb322bc143d7a44c634a3ccfb9cba4964f38d756ff355e.png" src="../../_images/d7a5464d6c9df8c85abb322bc143d7a44c634a3ccfb9cba4964f38d756ff355e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">,</span><span class="n">beta</span><span class="p">:</span> <span class="n">beta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">residual</span> <span class="o">=</span> <span class="n">T</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">beta</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">residual</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e73f44725ea5e37fa80ce42f8a90eea13090008c4fb3bf136b6312df4d74fa65.png" src="../../_images/e73f44725ea5e37fa80ce42f8a90eea13090008c4fb3bf136b6312df4d74fa65.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.02490190968939154
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -438,6 +924,25 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Linear Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#least-squares">Least Squares</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#residuals">Residuals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-real-estate-prices">Example: Real Estate Prices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-temperature">Example: Temperature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Example: Temperature</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

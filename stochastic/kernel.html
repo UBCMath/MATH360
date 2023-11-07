@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'stochastic/kernel';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Overview" href="../data-driven/overview.html" />
+    <link rel="next" title="Linear Regression" href="../data-driven/linear-regression/index.html" />
     <link rel="prev" title="Random Sampling" href="sampling.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -200,9 +200,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data-Driven Models</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../data-driven/overview.html">Overview</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/linear-regression/index.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../data-driven/linear-regression/linear.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data-driven/linear-regression/least-squares.html">Least Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data-driven/linear-regression/residuals.html">Residuals and <span class="math notranslate nohighlight">\(R^2\)</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../data-driven/logistic-regression/index.html">Logistic Regression</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -451,7 +451,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/94175b650ce9823509d76638511f4f7acf4548501691f4c5898aa5922dbc8e95.png" src="../_images/94175b650ce9823509d76638511f4f7acf4548501691f4c5898aa5922dbc8e95.png" />
+<img alt="../_images/fe180698fd7a4c9af6687d5cd1ea2b9c2be5ff47bfe1abe5cb5ecd9ab4b17e94.png" src="../_images/fe180698fd7a4c9af6687d5cd1ea2b9c2be5ff47bfe1abe5cb5ecd9ab4b17e94.png" />
 </div>
 </div>
 <div class="admonition seealso">
@@ -541,7 +541,7 @@ K(x) = \left\{ \begin{array}{ccc} \frac{3}{4}(1 - x^2) &amp; , &amp; |x| \le 1 \
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0896d16966f2457886f423a361ae5e1b9471fe565f1fd04f20f5d635a5adc1d9.png" src="../_images/0896d16966f2457886f423a361ae5e1b9471fe565f1fd04f20f5d635a5adc1d9.png" />
+<img alt="../_images/2fde77b125ab15c9800e52b6a6e4b67e28b7d3b1c4069721e7e582a73ebbf652.png" src="../_images/2fde77b125ab15c9800e52b6a6e4b67e28b7d3b1c4069721e7e582a73ebbf652.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -558,7 +558,7 @@ K(x) = \left\{ \begin{array}{ccc} \frac{3}{4}(1 - x^2) &amp; , &amp; |x| \le 1 \
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/019b5026d06d40accd0645bdd31ea264f6deb509035eada23e74433f907c5e5c.png" src="../_images/019b5026d06d40accd0645bdd31ea264f6deb509035eada23e74433f907c5e5c.png" />
+<img alt="../_images/406d8a6b2fd22ade2d8900c17362a13703d16ec4d24214e69344949d6ae0f5bd.png" src="../_images/406d8a6b2fd22ade2d8900c17362a13703d16ec4d24214e69344949d6ae0f5bd.png" />
 </div>
 </div>
 </section>
@@ -587,7 +587,7 @@ K(x) = \left\{ \begin{array}{ccc} \frac{3}{4}(1 - x^2) &amp; , &amp; |x| \le 1 \
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/350ff80550e70a395e9b2064dfd39401d23336082a5427bc75688fbc85beee3a.png" src="../_images/350ff80550e70a395e9b2064dfd39401d23336082a5427bc75688fbc85beee3a.png" />
+<img alt="../_images/97ebfd57041b83845b22ec8fad131e15e3d6dc9dbe70b989b42aa36848b3ec11.png" src="../_images/97ebfd57041b83845b22ec8fad131e15e3d6dc9dbe70b989b42aa36848b3ec11.png" />
 </div>
 </div>
 <div class="admonition seealso">
@@ -638,11 +638,11 @@ K(x) = \left\{ \begin{array}{ccc} \frac{3}{4}(1 - x^2) &amp; , &amp; |x| \le 1 \
       </div>
     </a>
     <a class="right-next"
-       href="../data-driven/overview.html"
+       href="../data-driven/linear-regression/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Overview</p>
+        <p class="prev-next-title">Linear Regression</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
