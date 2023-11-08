@@ -53,6 +53,7 @@ parts:
       sections:
       - file: data-driven/linear-regression/least-squares.ipynb
       - file: data-driven/linear-regression/residuals.ipynb
+      - file: data-driven/linear-regression/packages.ipynb
     - file: data-driven/logistic-regression/index.md
       sections:
       - file: data-driven/logistic-regression/logistic-function.ipynb
