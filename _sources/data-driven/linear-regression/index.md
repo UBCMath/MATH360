@@ -10,6 +10,7 @@ where:
 
 * $y$ is the dependent variable (called the **target**)
 * $x_1,\dots,x_p$ are the independent variables (called the **features**)
+* $\beta_0,\dots,\beta_p$ are the **model parameters**
 * $\varepsilon$ is the **residual**
 
 The construction of a linear regression model usually consists of the following steps:

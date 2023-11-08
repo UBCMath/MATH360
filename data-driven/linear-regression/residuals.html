@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'data-driven/linear-regression/residuals';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Logistic Regression" href="../logistic-regression/index.html" />
+    <link rel="next" title="Regression Packages" href="packages.html" />
     <link rel="prev" title="Least Squares" href="least-squares.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -203,6 +203,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Linear Regression</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="least-squares.html">Least Squares</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Residuals and <span class="math notranslate nohighlight">\(R^2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="packages.html">Regression Packages</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../logistic-regression/index.html">Logistic Regression</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -499,7 +500,7 @@ R^2_{adj} = 1 - \frac{N-1}{N-p-1}\frac{\sum_{i=1}^N \varepsilon_i^2}{\sum_{i=1}^
 </section>
 <section id="example-realtor-ca">
 <h2>Example: <a class="reference external" href="http://REALTOR.ca">REALTOR.ca</a><a class="headerlink" href="#example-realtor-ca" title="Permalink to this heading">#</a></h2>
-<p>The data below was taken from <a class="reference external" href="https://www.realtor.ca">REALTOR.ca</a> for linstings in the Kitsilano neighborhood of Vancouver. The variables <span class="math notranslate nohighlight">\(x_1,x_2,x_3\)</span> correspond to the size (in square feet, sqft), the number of bedrooms and the number of bathrooms respectively. The dependent variable <span class="math notranslate nohighlight">\(y\)</span> is the listing price.</p>
+<p>The data below was taken from <a class="reference external" href="https://www.realtor.ca">REALTOR.ca</a> for listings in the Kitsilano neighborhood of Vancouver. The variables <span class="math notranslate nohighlight">\(x_1,x_2,x_3\)</span> correspond to the size (in square feet, sqft), the number of bedrooms and the number of bathrooms respectively. The dependent variable <span class="math notranslate nohighlight">\(y\)</span> is the listing price.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1050</span><span class="p">,</span><span class="mi">943</span><span class="p">,</span><span class="mi">1557</span><span class="p">,</span><span class="mi">662</span><span class="p">,</span><span class="mi">829</span><span class="p">,</span><span class="mi">724</span><span class="p">,</span><span class="mi">482</span><span class="p">,</span><span class="mi">702</span><span class="p">,</span><span class="mi">733</span><span class="p">,</span><span class="mi">637</span><span class="p">,</span><span class="mi">819</span><span class="p">,</span><span class="mi">802</span><span class="p">,</span><span class="mi">771</span><span class="p">,</span><span class="mi">779</span><span class="p">,</span><span class="mi">823</span><span class="p">,</span><span class="mi">924</span><span class="p">,</span><span class="mi">1088</span><span class="p">,</span><span class="mi">1018</span><span class="p">])</span>
@@ -973,11 +974,11 @@ T = \beta_0 + \beta_1 \cos(2 \pi d/365) + \beta_2 \sin(2 \pi d/365) + \beta_3 \c
       </div>
     </a>
     <a class="right-next"
-       href="../logistic-regression/index.html"
+       href="packages.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Logistic Regression</p>
+        <p class="prev-next-title">Regression Packages</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
