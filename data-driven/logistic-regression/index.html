@@ -61,11 +61,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'data-driven/logistic-regression/index';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Logistic Function" href="logistic-function.html" />
-    <link rel="prev" title="Residuals and \(R^2\)" href="../linear-regression/residuals.html" />
+    <link rel="prev" title="Regression Packages" href="../linear-regression/packages.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -201,11 +203,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../linear-regression/index.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linear-regression/least-squares.html">Least Squares</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linear-regression/residuals.html">Residuals and <span class="math notranslate nohighlight">\(R^2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linear-regression/packages.html">Regression Packages</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Logistic Regression</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="logistic-function.html">Logistic Function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cost-regularization.html">Cost and Regularization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multivariable.html">Multivariable Logistic Regression</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../numerical-methods/index.html">Numerical Methods</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -350,7 +354,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -366,6 +372,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bid-ideas">Bid Ideas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -377,7 +392,19 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="logistic-regression">
 <h1>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this heading">#</a></h1>
-<p><em>Under construction</em></p>
+<section id="bid-ideas">
+<h2>Bid Ideas<a class="headerlink" href="#bid-ideas" title="Permalink to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\((x_1,y_1),\dots,(x_N,y_N)\)</span> be a dataset such that the target values are binary: <span class="math notranslate nohighlight">\(y_k = 0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> for all <span class="math notranslate nohighlight">\(k=1,\dots,N\)</span>. The goal of logistic regression is to construct a <strong>logistic function</strong> <span class="math notranslate nohighlight">\(\sigma(x;W,b)\)</span> which best fits the data by minimizing a cost function such as <strong>cross entropy</strong>. The logistic regression model <span class="math notranslate nohighlight">\(\sigma(x;W,b)\)</span> takes values in the interval <span class="math notranslate nohighlight">\((0,1)\)</span> and we use the function to <strong>classify</strong> new data <span class="math notranslate nohighlight">\(x\)</span> by assigning the target <span class="math notranslate nohighlight">\(y=0\)</span> if <span class="math notranslate nohighlight">\(\sigma(x,W,b) &lt; 1/2\)</span> and <span class="math notranslate nohighlight">\(y = 1\)</span> if <span class="math notranslate nohighlight">\(\sigma(x;W,b) &gt; 1/2\)</span>. The hyperplane <span class="math notranslate nohighlight">\(\sigma(x;W,b) = 1/2\)</span> defines the <strong>decision boundary</strong>.</p>
+</section>
+<section id="learning-goals">
+<h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Summarize properties of the logistic function and the weight and bias parameters</p></li>
+<li><p>Compare and contrast cost functions for logistic regression models such as mean least squares and cross entropy</p></li>
+<li><p>Implement regularization terms in cost functions and tune regularization parameters</p></li>
+<li><p>Approximate optimal model parameters for logistic regression models using <code class="docutils literal notranslate"><span class="pre">sklearn</span></code></p></li>
+</ul>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -414,12 +441,12 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../linear-regression/residuals.html"
+       href="../linear-regression/packages.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Residuals and <span class="math notranslate nohighlight">\(R^2\)</span></p>
+        <p class="prev-next-title">Regression Packages</p>
       </div>
     </a>
     <a class="right-next"
@@ -440,6 +467,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bid-ideas">Bid Ideas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

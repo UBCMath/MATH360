@@ -203,6 +203,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../linear-regression/index.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linear-regression/least-squares.html">Least Squares</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linear-regression/residuals.html">Residuals and <span class="math notranslate nohighlight">\(R^2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linear-regression/packages.html">Regression Packages</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Logistic Regression</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
@@ -406,7 +407,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-properties">Definition and Properties</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weight-and-bias-parameters">Weight and Bias Parameters</a></li>
 </ul>
@@ -430,15 +430,6 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="learning-goals">
-<h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Summarize properties of the logistic function and the weight and bias parameters</p></li>
-<li><p>Compare and contrast cost functions for logistic regression models such as mean least squares and cross entropy</p></li>
-<li><p>Implement regularization terms in cost functions and tune regularization parameters</p></li>
-<li><p>Approximate optimal model parameters for logistic regression models using <code class="docutils literal notranslate"><span class="pre">sklearn</span></code></p></li>
-</ul>
-</section>
 <section id="definition-and-properties">
 <h2>Definition and Properties<a class="headerlink" href="#definition-and-properties" title="Permalink to this heading">#</a></h2>
 <p>The <strong>logistic function</strong> is <span class="math notranslate nohighlight">\(\sigma(x) = \displaystyle \frac{1}{1 + e^{-x}}\)</span>. Plot the logistic function over the interval <span class="math notranslate nohighlight">\([-10,10]\)</span>.</p>
@@ -643,7 +634,6 @@ u(t) = \left\{ \begin{array}{ccc} 0 &amp; , &amp; t &lt; 0 \\ 1/2 &amp; , &amp; 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-properties">Definition and Properties</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weight-and-bias-parameters">Weight and Bias Parameters</a></li>
 </ul>

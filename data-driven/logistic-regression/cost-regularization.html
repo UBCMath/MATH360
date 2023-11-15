@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'data-driven/logistic-regression/cost-regularization';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Numerical Methods" href="../numerical-methods/index.html" />
+    <link rel="next" title="Multivariable Logistic Regression" href="multivariable.html" />
     <link rel="prev" title="Logistic Function" href="logistic-function.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -203,11 +203,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../linear-regression/index.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linear-regression/least-squares.html">Least Squares</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linear-regression/residuals.html">Residuals and <span class="math notranslate nohighlight">\(R^2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linear-regression/packages.html">Regression Packages</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Logistic Regression</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="logistic-function.html">Logistic Function</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Cost and Regularization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multivariable.html">Multivariable Logistic Regression</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../numerical-methods/index.html">Numerical Methods</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -406,7 +408,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression">Logistic Regression</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#least-squares-cost-function">Least Squares Cost Function</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-entropy-cost-function">Cross Entropy Cost Function</a></li>
@@ -425,14 +426,6 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="cost-and-regularization">
 <h1>Cost and Regularization<a class="headerlink" href="#cost-and-regularization" title="Permalink to this heading">#</a></h1>
-<section id="learning-goals">
-<h2>Learning Goals<a class="headerlink" href="#learning-goals" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Summarize properties of the logistic function and the weight and bias parameters</p></li>
-<li><p>Compare and contrast cost functions for logistic regression models such as mean least squares and cross entropy</p></li>
-<li><p>Implement regularization terms in cost functions and tune regularization parameters</p></li>
-<li><p>Approximate optimal model parameters for logistic regression models using <code class="docutils literal notranslate"><span class="pre">sklearn</span></code></p></li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -442,7 +435,6 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
 <section id="logistic-regression">
 <h2>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this heading">#</a></h2>
 <p>Suppose we have <span class="math notranslate nohighlight">\(N\)</span> data points <span class="math notranslate nohighlight">\((x_0,y_0),\dots,(x_{N-1},y_{N-1})\)</span> such that the targets are binary: <span class="math notranslate nohighlight">\(y_k = 0\)</span> or <span class="math notranslate nohighlight">\(y_k = 1\)</span> for <span class="math notranslate nohighlight">\(k=0,\dots,N-1\)</span>. The goal of <strong>logistic regression</strong> is to find parameters <span class="math notranslate nohighlight">\(W\)</span> and <span class="math notranslate nohighlight">\(b\)</span> such that <span class="math notranslate nohighlight">\(\sigma(x;W,b)\)</span> “best fits” the data. Experiment with different values <span class="math notranslate nohighlight">\(W\)</span> and <span class="math notranslate nohighlight">\(b\)</span> to find a best fit line for the data below.</p>
@@ -781,11 +773,11 @@ F(\mathbf{z}) = C_{CE,L^2}(W,b; \mathbf{x},\mathbf{y}; \alpha)
       </div>
     </a>
     <a class="right-next"
-       href="../numerical-methods/index.html"
+       href="multivariable.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Numerical Methods</p>
+        <p class="prev-next-title">Multivariable Logistic Regression</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -807,7 +799,6 @@ F(\mathbf{z}) = C_{CE,L^2}(W,b; \mathbf{x},\mathbf{y}; \alpha)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning Goals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression">Logistic Regression</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#least-squares-cost-function">Least Squares Cost Function</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-entropy-cost-function">Cross Entropy Cost Function</a></li>
