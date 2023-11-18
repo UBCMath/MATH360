@@ -59,6 +59,7 @@ parts:
       - file: data-driven/logistic-regression/logistic-function.ipynb
       - file: data-driven/logistic-regression/cost-regularization.ipynb
       - file: data-driven/logistic-regression/multivariable.ipynb
+      - file: data-driven/logistic-regression/evaluation.ipynb
     - file: data-driven/numerical-methods/index.md
       sections:
       - file: data-driven/numerical-methods/gradient.md
