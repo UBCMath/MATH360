@@ -1,0 +1,807 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Optimizing Cross-Entropy &#8212; Introduction to Mathematical Modelling</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'data-driven/numerical-methods/entropy';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Gradient Descent" href="gradient.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction to Mathematical Modelling</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelling Process</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../process/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../process/process.html">Modelling Process</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deterministic Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../deterministic/overview.html">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../deterministic/differential/index.html">Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/differential/equations.html">Scalar Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/differential/systems.html">Systems of Equations</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../deterministic/nondimensionalization/index.html">Nondimensionalization</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/nondimensionalization/dimensions.html">Dimensions and Units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/nondimensionalization/scaling.html">Scaling</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../deterministic/motion/index.html">Objects in Motion</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/motion/laws-of-motion.html">Laws of Motion and Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/motion/mass-spring-2d.html">2D Mass Spring System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/motion/simple-pendulum.html">Simple Pendulum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/motion/projectile.html">Projectile Motion with Drag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/motion/orbits.html">Planetary Orbits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/motion/eulers-3-body.html">Euler’s 3-Body Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../deterministic/heat/index.html">Heat Transfer</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/heat/balance.html">Energy Balance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/heat/conduction.html">Thermal Conduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/heat/radiation.html">Thermal Radiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/heat/climate.html">Global Energy Balance</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../deterministic/mass/index.html">Mass Balance</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/mass/conservation.html">Conservation of Mass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../deterministic/mass/chemical.html">Chemical Kinetics</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Stochastic Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../stochastic/overview.html">Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../stochastic/distributions/index.html">Probability Distributions</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../stochastic/distributions/variables.html">Variables and Densities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stochastic/distributions/normal.html">Normal Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stochastic/distributions/uniform.html">Uniform Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stochastic/distributions/exponential.html">Exponential Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stochastic/distributions/gamma.html">Gamma Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../stochastic/sampling.html">Random Sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stochastic/kernel.html">Kernel Density Estimation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data-Driven Models</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../linear-regression/index.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linear-regression/least-squares.html">Least Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linear-regression/residuals.html">Residuals and <span class="math notranslate nohighlight">\(R^2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linear-regression/packages.html">Regression Packages</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../logistic-regression/index.html">Logistic Regression</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../logistic-regression/logistic-function.html">Logistic Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logistic-regression/cost-regularization.html">Cost and Regularization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logistic-regression/multivariable.html">Multivariable Logistic Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logistic-regression/evaluation.html">Model Evaluation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Numerical Methods</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="gradient.html">Gradient Descent</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Optimizing Cross-Entropy</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://ubc.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A//github.com/UBCMath/MATH360&urlpath=lab/tree/MATH360/data-driven/numerical-methods/entropy.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/UBCMath/MATH360" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/data-driven/numerical-methods/entropy.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Optimizing Cross-Entropy</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regularized-cross-entropy">Regularized Cross-Entropy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-of-cross-entropy">Gradient of Cross-Entropy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="optimizing-cross-entropy">
+<h1>Optimizing Cross-Entropy<a class="headerlink" href="#optimizing-cross-entropy" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="regularized-cross-entropy">
+<h2>Regularized Cross-Entropy<a class="headerlink" href="#regularized-cross-entropy" title="Permalink to this heading">#</a></h2>
+<p>Consider <span class="math notranslate nohighlight">\(N\)</span> points <span class="math notranslate nohighlight">\((\mathbf{x}_0,y_0),\dots,(\mathbf{x}_{N-1},y_{N-1})\)</span> where <span class="math notranslate nohighlight">\(\mathbf{x}_k \in \mathbb{R}^n\)</span> for each <span class="math notranslate nohighlight">\(k\)</span>, and <span class="math notranslate nohighlight">\(y_k = 0\)</span> or <span class="math notranslate nohighlight">\(y_k = 1\)</span> for each <span class="math notranslate nohighlight">\(k\)</span>. The goal of logistic regression is to compute parameters <span class="math notranslate nohighlight">\(\mathbf{W} \in \mathbb{R}^n\)</span> and <span class="math notranslate nohighlight">\(b \in \mathbb{R}\)</span> which minimize the regularized cross entropy function</p>
+<div class="math notranslate nohighlight">
+\[
+C(\mathbf{W},b,\alpha) = -\frac{1}{N} \sum_{k=0}^{N-1} \left( y_k \log(\sigma(\mathbf{x}_k; \mathbf{W},b)) + (1 - y_k) \log(1 - \sigma(\mathbf{x}_k; \mathbf{W},b)) \right) + \alpha \Vert \mathbf{W} \Vert^2
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span> is the regularization parameter and</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma(\mathbf{x}; \mathbf{W},b) = \frac{1}{1 + e^{- \left( \langle \mathbf{W} , \mathbf{x} \rangle + b \right)}}
+\]</div>
+</section>
+<section id="gradient-of-cross-entropy">
+<h2>Gradient of Cross-Entropy<a class="headerlink" href="#gradient-of-cross-entropy" title="Permalink to this heading">#</a></h2>
+<p>We need to compute the gradient of <span class="math notranslate nohighlight">\(C(\mathbf{W},b,\alpha)\)</span> to implement the gradient descent method to find optimal parameters for logistic regression. Let’s begin with the derivatives of the logistic function <span class="math notranslate nohighlight">\(\sigma(\mathbf{x}; \mathbf{W},b)\)</span> where <span class="math notranslate nohighlight">\(\mathbf{x} = (x_0,\dots,x_{n-1})\)</span> and <span class="math notranslate nohighlight">\(\mathbf{W} = (W_0,\dots,W_{n-1})\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(z = \langle \mathbf{W} , \mathbf{x} \rangle + b\)</span> and <span class="math notranslate nohighlight">\(\sigma(z) = \sigma(\mathbf{x}; W,b)\)</span>. Recall</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma'(z) = \sigma(z) (1 - \sigma(z))
+\]</div>
+<p>Compute and simplify the partial derivative with respect to <span class="math notranslate nohighlight">\(W_{\ell}\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial \sigma}{\partial W_{\ell}} = \sigma'(z) \frac{\partial z}{\partial W_{\ell}} = \sigma(z) (1 - \sigma(z)) x_{\ell}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(x_{\ell}\)</span> is the entry of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> at index <span class="math notranslate nohighlight">\(\ell\)</span>. Therefore</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial \sigma}{\partial W_{\ell}} = x_{\ell} \sigma(\mathbf{x}; \mathbf{W},b) (1 - \sigma(\mathbf{x}; \mathbf{W},b))
+\]</div>
+<p>Similarly</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial \sigma}{\partial b} = \sigma'(z) \frac{\partial z}{\partial b} = \sigma(\mathbf{x}; \mathbf{W},b) (1 - \sigma(\mathbf{x}; \mathbf{W},b))
+\]</div>
+<p>Compute the partial derivative of <span class="math notranslate nohighlight">\(C(\mathbf{W},b,\alpha)\)</span> with respect to <span class="math notranslate nohighlight">\(W_{\ell}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{\partial C}{\partial W_{\ell}} &amp;= -\frac{1}{N} \sum_{k=0}^{N-1} \left( y_k x_{k,\ell} (1 - \sigma(\mathbf{x}_k; \mathbf{W},b)) - (1 - y_k) x_{k,\ell} \sigma(\mathbf{x}_k; \mathbf{W},b) \right) + 2 \alpha W_{\ell} \\
+&amp;= -\frac{1}{N} \sum_{k=0}^{N-1} x_{k,\ell} \left( y_k - \sigma(\mathbf{x}_k; \mathbf{W},b) \right) + 2 \alpha W_{\ell}
+\end{align*}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(x_{k,\ell}\)</span> is the entry of <span class="math notranslate nohighlight">\(\mathbf{x}_k\)</span> at index <span class="math notranslate nohighlight">\(\ell\)</span>. Similarly</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial C}{\partial b} = -\frac{1}{N} \sum_{k=0}^{N-1} \left( y_k - \sigma(\mathbf{x}_k; \mathbf{W},b) \right)
+\]</div>
+<p>Note that we can write these derivatives in matrix notation as</p>
+<div class="math notranslate nohighlight">
+\[
+\left( \frac{\partial C}{\partial W_0} , \dots, \frac{\partial C}{\partial W_{N-1}} \right) = -\frac{1}{N} X^T (\mathbf{y} - \sigma(X; \mathbf{W},b)) + 2 \alpha \mathbf{W}
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X = \begin{bmatrix} &amp; \mathbf{x}_0 &amp; \\ &amp; \mathbf{x}_1 &amp; \\ &amp; \vdots &amp; \\ &amp; \mathbf{x}_{N-1} &amp; \end{bmatrix}
+\hspace{20mm}
+\mathbf{y} = \begin{bmatrix} y_0 \\ y_1 \\ \vdots \\ y_{N-1} \end{bmatrix}
+\hspace{20mm}
+\sigma(X; \mathbf{W},b) = \begin{bmatrix} \sigma(\mathbf{x}_0; \mathbf{W},b) \\ \sigma(\mathbf{x}_1; \mathbf{W},b) \\ \vdots \\ \sigma(\mathbf{x}_{N-1}; \mathbf{W},b) \end{bmatrix}
+\end{split}\]</div>
+</section>
+<section id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">grad</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">eps</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">):</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">max_iter</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x0</span><span class="p">)])</span>
+    <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">x0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+        <span class="n">xk</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">k</span><span class="p">,:]</span>
+        <span class="n">grad_xk</span> <span class="o">=</span> <span class="n">grad</span><span class="p">(</span><span class="n">xk</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">grad_xk</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">:</span>
+            <span class="c1"># Truncate the matrix X to include</span>
+            <span class="c1"># only rows up to current index k</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,:]</span>
+            <span class="k">break</span>
+        <span class="n">X</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">xk</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">grad_xk</span>
+    <span class="k">return</span> <span class="n">X</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">C</span><span class="p">(</span><span class="n">W</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+    <span class="n">N</span><span class="p">,</span><span class="n">p</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">W</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">X</span><span class="nd">@W</span> <span class="o">+</span> <span class="n">b</span><span class="p">)))</span>
+    <span class="n">E</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">N</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">S</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">S</span><span class="p">))</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">W</span><span class="o">*</span><span class="n">W</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">E</span> <span class="o">+</span> <span class="n">R</span>
+
+<span class="k">def</span> <span class="nf">gradC</span><span class="p">(</span><span class="n">W</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+    <span class="n">N</span><span class="p">,</span><span class="n">p</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">W</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">X</span><span class="nd">@W</span> <span class="o">+</span> <span class="n">b</span><span class="p">)))</span>
+    <span class="n">dCdW</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">N</span><span class="o">*</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">@</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">S</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">alpha</span><span class="o">*</span><span class="n">W</span>
+    <span class="n">dCdb</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">N</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">S</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">dCdW</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="n">dCdb</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s apply gradient descent to the regularized cross-entropy function for the example below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cc9d9afed26901d0850309106466d28f1a093688dea99a557e19643bbba43716.png" src="../../_images/cc9d9afed26901d0850309106466d28f1a093688dea99a557e19643bbba43716.png" />
+</div>
+</div>
+<p>Define the vector function <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span> and <span class="math notranslate nohighlight">\(\nabla f\)</span> which represents <span class="math notranslate nohighlight">\(C(\mathbf{W},b,\alpha)\)</span> and its gradient.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">C</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">alpha</span><span class="p">)</span>
+<span class="n">gradf</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">gradC</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Apply gradient descent:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">gradf</span><span class="p">,[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>View the first 5 points:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-1.        ,  3.        ,  1.        ],
+       [-1.00005735,  2.9996237 ,  0.99994556],
+       [-1.00011447,  2.99924761,  0.99989116],
+       [-1.00017135,  2.99887172,  0.9998368 ],
+       [-1.000228  ,  2.99849603,  0.99978248]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>And the last 5 points in the:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.98715577,  2.71251609,  0.95642125],
+       [-0.98710747,  2.7123004 ,  0.95638196],
+       [-0.98705914,  2.71208484,  0.95634266],
+       [-0.98701079,  2.71186939,  0.95630337],
+       [-0.98696242,  2.71165406,  0.95626408]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s compare to the result computed by <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-1.09701124,  3.02449763]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">intercept_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.93960308])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The result is similar but not exactly the same. We can take a closer look at the documentation for <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> to see how it works.</p>
+<p>Let’s also compare the result computed by <code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">f</span><span class="p">,[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  message: Optimization terminated successfully.
+  success: True
+   status: 0
+      fun: 0.12531909819315135
+        x: [-8.221e-01  2.314e+00  7.267e-01]
+      nit: 13
+      jac: [-3.507e-06  2.081e-06 -7.134e-06]
+ hess_inv: [[ 5.836e+00 -4.121e+00 -6.103e+00]
+            [-4.121e+00  1.443e+01  2.905e+00]
+            [-6.103e+00  2.905e+00  2.368e+01]]
+     nfev: 60
+     njev: 15
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.82214028,  2.31409617,  0.72666693])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Again the result is similar but not exactly the same.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./data-driven/numerical-methods"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="gradient.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Gradient Descent</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regularized-cross-entropy">Regularized Cross-Entropy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-of-cross-entropy">Gradient of Cross-Entropy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UBC Math
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
